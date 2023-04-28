@@ -5,14 +5,29 @@ class Fighter(Character):
     def __init__(self):
         super().__init__()
 
+    def __repr__(self):
+        return "This is the Fighter Class Object."
+
 
 class Priest(Character):
-    pass
+    def __init__(self):
+        super().__init__()
+
+    def __repr__(self):
+        return "This is the Priest Class Object."
 
 
 class Thief(Character):
-    pass
+    def __init__(self):
+        super().__init__()
+
+    def __repr__(self):
+        return "This is the Thief Class Object."
 
 
 class Wizard(Character):
-    pass
+    def __init__(self):
+        super().__init__()
+
+    def __repr__(self):
+        return "This is the Wizard Class Object."
