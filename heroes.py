@@ -1,4 +1,5 @@
 from character import Character
+import random
 
 
 class Fighter(Character):
@@ -31,3 +32,20 @@ class Wizard(Character):
 
     def __repr__(self):
         return "This is the Wizard Class Object."
+
+
+def random_class():
+    num = random.randint(0, 3)
+    new_hero = None
+
+    match num:
+        case 0:
+            new_hero = Fighter()
+        case 1:
+            new_hero = Priest()
+        case 2:
+            new_hero = Thief()
+        case 3:
+            new_hero = Wizard()
+
+    return new_hero

@@ -1,41 +1,35 @@
 import random
-from heroes import Fighter, Priest, Thief, Wizard
+from heroes import random_class
 
 
-def roll_dice(sided, times):
-    return sum([random.randint(1, sided) for num in range(times)])
+def calculate_modifiers(rolls):
+    # TODO: Is there an easier formula for calculating the mod?
+    modifiers = []
+    mod_dict = {3: -4, 5: -3, 7: -2, 9: -1, 11: 0, 13: 1, 15: 2, 17: 3}
+    for num in rolls:
+        for check in range(3, 18, 2):
+            if num <= check:
+                modifiers.append(mod_dict[check])
+                break
+            elif num >= 18:
+                modifiers.append(4)
+                break
+
+    return modifiers
 
 
-def calculate_modifiers(num):
+def apply_stats(hero, stats):
     pass
-
-
-def roll_stats(hero):
-    rolls = [roll_dice(6, 3) for num in range(7)]
-    print(rolls)
-
-
-def random_class():
-    num = random.randint(0, 3)
-    new_hero = None
-
-    match num:
-        case 0:
-            new_hero = Fighter()
-        case 1:
-            new_hero = Priest()
-        case 2:
-            new_hero = Thief()
-        case 3:
-            new_hero = Wizard()
-
-    return new_hero
 
 
 def main():
     hero = random_class()
-    roll_stats(hero)
-
+    stat_rolls = hero.roll_stats()
+    modifiers = calculate_modifiers(stat_rolls)
+    stats = zip(stat_rolls, modifiers)
+    print(stats)
+    for stat in stats:
+        print(stat)
 
 if __name__ == "__main__":
     main()
