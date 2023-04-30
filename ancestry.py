@@ -53,7 +53,7 @@ def human(hero: object):
 
 
 def set_ancestry(hero):
-    randy_anc = random.randint(0, len(ANCESTRY))
+    randy_anc = random.randint(0, len(ANCESTRY) - 1)
     ancestry = ANCESTRY[randy_anc]
     set_ancestry_name(hero, ancestry)
     set_ancestry_details(hero, ancestry)

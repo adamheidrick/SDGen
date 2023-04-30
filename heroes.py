@@ -4,14 +4,27 @@ import random
 
 class Fighter(Character):
     def __init__(self):
+        self.hero_class = "Fighter"
+        self.armor = "Leather Armor"
+        self.weapon = ""
         super().__init__()
+        self.get_weapon()
+        self.set_hp(self.roll_dice(8, 1))
+        self.set_ac(11 + self.get_dex_mod())
+        con_mod = self.get_con_mod()
+        if con_mod > 0:
+            self.set_gear_slot(con_mod)
 
     def __repr__(self):
         return "This is the Fighter Class Object."
 
+    def get_weapon(self):
+        self.weapon = "RANDOM WEAPON"
+
 
 class Priest(Character):
     def __init__(self):
+        self.hero_class = "Priest"
         super().__init__()
 
     def __repr__(self):
@@ -20,6 +33,7 @@ class Priest(Character):
 
 class Thief(Character):
     def __init__(self):
+        self.hero_class = "Thief"
         super().__init__()
 
     def __repr__(self):
@@ -28,6 +42,7 @@ class Thief(Character):
 
 class Wizard(Character):
     def __init__(self):
+        self.hero_class = "Wizard"
         super().__init__()
 
     def __repr__(self):
