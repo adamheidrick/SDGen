@@ -1,5 +1,6 @@
 import random
 from heroes import random_class
+from ancestry import set_ancestry
 
 
 def calculate_modifiers(rolls):
@@ -18,18 +19,15 @@ def calculate_modifiers(rolls):
     return modifiers
 
 
-def apply_stats(hero, stats):
-    pass
-
-
 def main():
     hero = random_class()
     stat_rolls = hero.roll_stats()
     modifiers = calculate_modifiers(stat_rolls)
-    stats = zip(stat_rolls, modifiers)
-    print(stats)
-    for stat in stats:
-        print(stat)
+    stats = list(zip(stat_rolls, modifiers))
+    hero.apply_stats(stats)
+    set_ancestry(hero)
+    print(hero.__dict__)
+
 
 if __name__ == "__main__":
     main()
