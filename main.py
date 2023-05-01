@@ -1,8 +1,5 @@
-import random
 from heroes import random_class
 from ancestry import set_ancestry
-
-
 
 
 def main():

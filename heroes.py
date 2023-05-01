@@ -1,26 +1,67 @@
 from character import Character
 import random
+# TODO: Talents may impact stats, if so the modifiers will need to be recalculated.
 
 
 class Fighter(Character):
     def __init__(self):
         self.hero_class = "Fighter"
         self.armor = "Leather Armor"
+        self.weapons = ["All"]
         self.weapon = ""
+        self.talents = []
         super().__init__()
-        self.get_weapon()
-        self.set_hp(self.roll_dice(8, 1))
-        self.set_ac(11 + self.get_dex_mod())
-        con_mod = self.get_con_mod()
-        if con_mod > 0:
-            self.set_gear_slot(con_mod)
+        self.fighter_specs()
 
     def __repr__(self):
         return "This is the Fighter Class Object."
 
-    def get_weapon(self):
-        self.weapon = "RANDOM WEAPON"
+    def fighter_specs(self):
+        self.fighter_hp()
+        self.fighter_ac()
+        self.fighter_bonus_carry()
 
+    def fighter_hp(self):
+        self.set_hp(self.roll_dice(8, 1))
+
+    def fighter_ac(self):
+        self.set_ac(11 + self.get_dex_mod())
+
+    def fighter_bonus_carry(self):
+        con_mod = self.get_con_mod()
+        if con_mod > 0:
+            self.set_gear_slot(con_mod)
+
+    def weapon_mastery(self):
+        pass
+
+    def grit(self):
+        pass
+
+    def talent_roll(self):
+        # Roll for a talent. Talent names in list so if additional talent, then same talent is not chosen twice.
+        pass
+
+    def extra_weapon_dmg(self):
+        # +1 to melee and ranged attacks.
+        pass
+
+    def stat_boost(self):
+        # +2 to strength, dex, or constitution (Random).
+        pass
+
+    def choose_armor(self):
+        # Choose one kind of armor, Add +1 AC from that armor.
+        pass
+
+    def additional_talent(self):
+        # how to keep track of talents already? Enumerate with index.
+        # add additional talent
+        pass
+
+    def stat_distribute(self):
+        # +2 distribute to stats (find min)
+        pass
 
 class Priest(Character):
     def __init__(self):

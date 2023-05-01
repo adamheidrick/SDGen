@@ -1,10 +1,12 @@
 import random
+from background import Background
 
 
 class Character:
     def __init__(self):
         self.name = ""
         self.ancestry = ""
+        self.background = ""
         self.hp = 0
         self.ac = 0
         self.str = 0
@@ -21,8 +23,8 @@ class Character:
         self.cha_mod = 0
         self.gear_slots = 10
         self.notes = {}
-        self.modifiers = []
         self.roll_stats()
+        self.roll_background()
 
     def set_hp(self, num):
         self.hp += num
@@ -96,4 +98,16 @@ class Character:
     @staticmethod
     def roll_dice(sided, times):
         return sum([random.randint(1, sided) for num in range(times)])
+
+    def roll_background(self):
+        roll = self.roll_dice(20, 1)
+        self.set_background(roll)
+
+    def set_background(self, roll):
+        result = Background[roll]
+        title = result.split(':')[0]
+        body = result.split(':')[1]
+        self.background = title
+        self.notes.update({title: body})
+
 
