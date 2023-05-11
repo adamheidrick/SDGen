@@ -24,6 +24,7 @@ class Character:
         self.con_mod = 0
         self.cha = 0
         self.cha_mod = 0
+        self.gold = 5
         self.gear_slots = 10
         self.notes = {}
         self.stats = ["Str", "Int", "Dex", "Wis", "Con", "Cha"]
@@ -66,6 +67,7 @@ class Character:
 
     def get_dex_mod(self):
         return self.dex_mod
+
 
     def set_gear_slot(self, num):
         self.gear_slots += num
