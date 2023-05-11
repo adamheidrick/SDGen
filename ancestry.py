@@ -45,16 +45,15 @@ def halfling(hero: object):
 
 def human(hero: object):
     hero.set_ancestry("Human")
-    index = random.randint(0, len(COMMON_LANGUAGES) - 1)
+    additional_language = random.choice(COMMON_LANGUAGES)
     hero.set_notes({"Human: ": "Bold, adaptable, and diverse people who learn quickly and accomplish mighty deeds."})
-    hero.set_notes({"Languages: ": f"You know the Common language and {COMMON_LANGUAGES[index]} languages."})
+    hero.set_notes({"Languages: ": f"You know the Common language and {additional_language} languages."})
     hero.set_notes({"Ambitious: ": "You gain one additional talent roll at 1st level"})
     # TODO: Implement additional talent roll.
 
 
 def set_ancestry(hero):
-    randy_anc = random.randint(0, len(ANCESTRY) - 1)
-    ancestry = ANCESTRY[randy_anc]
+    ancestry = random.choice(ANCESTRY)
     set_ancestry_name(hero, ancestry)
     set_ancestry_details(hero, ancestry)
 

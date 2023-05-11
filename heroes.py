@@ -13,6 +13,8 @@ class Fighter(Character):
         self.talents = []
         super().__init__()
         self.fighter_specs()
+        self.grit()
+        self.roll_talents()
 
     def __repr__(self):
         return "This is the Fighter Class Object."
@@ -62,6 +64,10 @@ class Fighter(Character):
 
     def stat_distribute(self):
         # +2 distribute to stats (find min)
+        pass
+
+    def roll_talents(self):
+        # TODO: Write the Talent mechanic here. Use the above methods to set stats.
         pass
 
 

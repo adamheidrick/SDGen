@@ -1,5 +1,6 @@
 import random
-from background import Background, Alignment
+from background import Background, Alignment, Deities
+from ancestry import *
 
 
 class Character:
@@ -7,6 +8,7 @@ class Character:
         self.name = ""
         self.ancestry = ""
         self.background = ""
+        self.deity = None
         self.alignment = {}
         self.hp = 0
         self.ac = 0
@@ -25,8 +27,9 @@ class Character:
         self.gear_slots = 10
         self.notes = {}
         self.roll_stats()
-        self.roll_background()
+        self.set_background()
         self.roll_alignment()
+        self.roll_religion()
 
     def set_hp(self, num):
         self.hp += num
@@ -101,17 +104,16 @@ class Character:
     def roll_dice(sided, times):
         return sum([random.randint(1, sided) for num in range(times)])
 
-    def roll_background(self):
-        roll = self.roll_dice(20, 1)
-        self.set_background(roll)
-
     def roll_alignment(self):
-        roll = random.randint(0, 2)
-        self.alignment = Alignment[roll]
+        self.alignment = random.choice(Alignment)
 
-    def set_background(self, roll):
-        roll -= 2
-        result = Background[roll]
+    def roll_religion(self):
+        coin_toss = random.randint(0, 1)
+        if coin_toss == 1:
+            self.deity = random.choice(list(Deities[0].items()))
+
+    def set_background(self):
+        result = random.choice(Background)
         title = result.split(':')[0]
         body = result.split(':')[1]
         self.background = title
