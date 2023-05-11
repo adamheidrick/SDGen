@@ -1,4 +1,5 @@
 from character import Character
+from talents import *
 import random
 # TODO: Talents may impact stats, if so the modifiers will need to be recalculated.
 
@@ -63,9 +64,11 @@ class Fighter(Character):
         # +2 distribute to stats (find min)
         pass
 
+
 class Priest(Character):
     def __init__(self):
         self.hero_class = "Priest"
+        # TODO: Priest must choose one god.
         super().__init__()
 
     def __repr__(self):

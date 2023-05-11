@@ -1,5 +1,5 @@
 import random
-from background import Background
+from background import Background, Alignment
 
 
 class Character:
@@ -7,6 +7,7 @@ class Character:
         self.name = ""
         self.ancestry = ""
         self.background = ""
+        self.alignment = {}
         self.hp = 0
         self.ac = 0
         self.str = 0
@@ -25,6 +26,7 @@ class Character:
         self.notes = {}
         self.roll_stats()
         self.roll_background()
+        self.roll_alignment()
 
     def set_hp(self, num):
         self.hp += num
@@ -103,7 +105,12 @@ class Character:
         roll = self.roll_dice(20, 1)
         self.set_background(roll)
 
+    def roll_alignment(self):
+        roll = random.randint(0, 2)
+        self.alignment = Alignment[roll]
+
     def set_background(self, roll):
+        roll -= 2
         result = Background[roll]
         title = result.split(':')[0]
         body = result.split(':')[1]
