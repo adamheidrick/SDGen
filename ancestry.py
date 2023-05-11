@@ -8,6 +8,7 @@ def dwarf(hero: object):
     hero.set_notes({"Dwarf:": "Brave, stalwart fok as sturdy as the stone kingdoms they carve inside mountains"})
     hero.set_notes({"Languages:": "You know the Common and Dwarvish Languages"})
     hero.set_notes({"Stout": "Start with +2 HP Roll hit points per level with advantage"})
+    print("Applying Dwarf Stout Modifier +2 to HP.")
     hero.set_hp(2)
 
 
@@ -53,7 +54,10 @@ def human(hero: object):
 
 
 def set_ancestry(hero):
+    print("Choosing Ancestry.")
     ancestry = random.choice(ANCESTRY)
+    print(f"Ancestry Chosen = {ancestry}")
+
     set_ancestry_name(hero, ancestry)
     set_ancestry_details(hero, ancestry)
 

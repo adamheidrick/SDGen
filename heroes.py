@@ -25,15 +25,23 @@ class Fighter(Character):
         self.fighter_bonus_carry()
 
     def fighter_hp(self):
-        self.set_hp(self.roll_dice(8, 1))
+        print("Rolling for Fighter HP 1d8.")
+        self.set_hp(sum(self.roll_dice(8, 1)))
 
     def fighter_ac(self):
-        self.set_ac(11 + self.get_dex_mod())
+        ac = 11 + self.get_dex_mod()
+        print(f"Setting AC 11 + DEX Modifier: {self.get_dex_mod()} = {ac}.")
+        self.set_ac(ac)
 
     def fighter_bonus_carry(self):
+        print("Checking Fighter Hauler Perk.")
         con_mod = self.get_con_mod()
         if con_mod > 0:
+            print(f"Con Modifier: {con_mod} > 0")
+            self.set_notes({"Hauler": f"Gear Slot increased by {con_mod}"})
             self.set_gear_slot(con_mod)
+        else:
+            print(f"Con Modifier: {con_mod} < 0. Hauler perk not applied.")
 
     def weapon_mastery(self):
         pass
@@ -101,16 +109,22 @@ class Wizard(Character):
 
 def random_class():
     num = random.randint(0, 3)
+    print("Creating Random Class.")
+    print(f"Random Class Number = {num}")
     new_hero = None
 
     match num:
         case 0:
+            print("Fighter Class Chosen")
             new_hero = Fighter()
         case 1:
+            print("Priest Class Chosen")
             new_hero = Priest()
         case 2:
+            print("Thief Class Chosen")
             new_hero = Thief()
         case 3:
+            print("Wizard Class Chosen")
             new_hero = Wizard()
 
     return new_hero
