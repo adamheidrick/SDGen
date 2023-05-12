@@ -45,6 +45,7 @@ def halfling(hero: object):
 
 
 def human(hero: object):
+    print("Rolling for additional language (Human Perk).")
     hero.set_ancestry("Human")
     additional_language = random.choice(COMMON_LANGUAGES)
     hero.set_notes({"Human: ": "Bold, adaptable, and diverse people who learn quickly and accomplish mighty deeds."})

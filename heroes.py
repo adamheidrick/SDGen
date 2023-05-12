@@ -1,5 +1,6 @@
 from character import Character
 from talents import *
+from weapons import Weapons
 import random
 # TODO: Talents may impact stats, if so the modifiers will need to be recalculated.
 
@@ -13,8 +14,11 @@ class Fighter(Character):
         self.talents = []
         super().__init__()
         self.fighter_specs()
+        self.random_weapon()
+        self.weapon_mastery()
         self.grit()
         self.roll_talents()
+        self.ambitious()
 
     def __repr__(self):
         return "This is the Fighter Class Object."
@@ -43,11 +47,29 @@ class Fighter(Character):
         else:
             print(f"Con Modifier: {con_mod} < 0. Hauler perk not applied.")
 
+    def random_weapon(self):
+        print("Choosing Random Weapon.")
+        weapon = random.choice(list(Weapons))
+        print(f"{weapon} chosen.")
+        self.weapon = weapon
+        note = {weapon: Weapons[weapon]}
+        self.set_weapon_notes(note)
+
     def weapon_mastery(self):
+        self.weapon_notes[self.weapon].append("Weapon Mastery: +1 Attack and Damage + Half your level rounding down.")
+        # Just a descriptor to notes regarding the random weapon chosen of a +1 attack
+
+
+    def ambitious(self):
         pass
 
     def grit(self):
-        pass
+        print("Rolling for Grit.")
+        choices = ["Strength", "Dexterity"]
+        chosen = random.choice(choices)
+        print(f"{chosen} chosen.")
+        note = {chosen: f"True Grit: Advantage on {chosen} checks."}
+        self.set_notes(note)
 
     def talent_roll(self):
         # Roll for a talent. Talent names in list so if additional talent, then same talent is not chosen twice.
@@ -59,10 +81,6 @@ class Fighter(Character):
 
     def stat_boost(self):
         # +2 to strength, dex, or constitution (Random).
-        pass
-
-    def choose_armor(self):
-        # Choose one kind of armor, Add +1 AC from that armor.
         pass
 
     def additional_talent(self):
@@ -112,6 +130,7 @@ def random_class():
     print("Creating Random Class.")
     print(f"Random Class Number = {num}")
     new_hero = None
+    num = 0  # REMOVE THIS AS YOU DEVELOP
 
     match num:
         case 0:
