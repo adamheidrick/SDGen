@@ -17,8 +17,7 @@ class Fighter(Character):
         self.random_weapon()
         self.weapon_mastery()
         self.grit()
-        self.roll_talents()
-        self.ambitious()
+        self.talent_roll()
 
     def __repr__(self):
         return "This is the Fighter Class Object."
@@ -59,9 +58,10 @@ class Fighter(Character):
         self.weapon_notes[self.weapon].append("Weapon Mastery: +1 Attack and Damage + Half your level rounding down.")
         # Just a descriptor to notes regarding the random weapon chosen of a +1 attack
 
-
-    def ambitious(self):
-        pass
+    def weapon_mastery_talent(self):
+        self.set_weapon_notes({"Weapon Mastery Talent": "+1 Attack and Damage + Half your level rounding down. Applied"
+                                                        "to any Weapon you choose that does not already have weapon"
+                                                        "mastery."})
 
     def grit(self):
         print("Rolling for Grit.")
@@ -72,16 +72,50 @@ class Fighter(Character):
         self.set_notes(note)
 
     def talent_roll(self):
-        # Roll for a talent. Talent names in list so if additional talent, then same talent is not chosen twice.
-        pass
+        print("Rolling 2d6 for Talent.")
+        roll = self.roll_dice(6, 2)
+        total = sum(roll)
+        print(f"Roll Result: {roll} = {total}")
+        self.choose_talent(roll)
+
+    def choose_talent(self, choice):
+        print(f"Choosing Talent Based on {choice} roll.")
+        talents = fighterTalents
 
     def extra_weapon_dmg(self):
-        # +1 to melee and ranged attacks.
-        pass
+        self.set_notes({"Fighter Talent": "+1 to melee and ranged attacks."})
+        self.set_weapon_notes(self.weapon_notes[self.weapon].append("Fighter Talent +1 to attack"))
 
     def stat_boost(self):
-        # +2 to strength, dex, or constitution (Random).
-        pass
+        print("Randomly Choosing Stat Boost.")
+        random_stat = ["Strength", "Dexterity", "Constitution"]
+        ran_choice = random.randint(0, 2)
+        print(f"{random_stat[ran_choice]} Chosen.")
+        print(f"Adjusting {random_stat[ran_choice]} by + 2.")
+        print("Checking if Modifier Needs Adjusting.")
+        match ran_choice:
+            case 0:
+                self.set_str(2)
+                print(f"Strength now = {self.str}")
+                mod = self.modifier_check([self.str], ["Str"])
+                if mod[0] > self.str_mod:
+                    print("Adjusting Strength Modifier.")
+                    self.set_str_mod(mod[0])
+            case 1:
+                self.set_dex(2)
+                print(f"Dexterity now = {self.dex}")
+                mod = self.modifier_check([self.dex], ["Dex"])
+                if mod[0] > self.dex_mod:
+                    print("Adjusting Dexterity Modifier.")
+                    self.set_dex_mod(mod[0])
+            case 2:
+                self.set_con(2)
+                print(f"Constitution now = {self.con}")
+                mod = self.modifier_check([self.con], ["Con"])
+                if mod[0] > self.con_mod:
+                    print("Adjusting Constitution Modifier.")
+                    self.set_con_mod(mod[0])
+
 
     def additional_talent(self):
         # how to keep track of talents already? Enumerate with index.
@@ -90,10 +124,6 @@ class Fighter(Character):
 
     def stat_distribute(self):
         # +2 distribute to stats (find min)
-        pass
-
-    def roll_talents(self):
-        # TODO: Write the Talent mechanic here. Use the above methods to set stats.
         pass
 
 

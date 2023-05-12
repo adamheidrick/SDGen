@@ -62,12 +62,21 @@ class Character:
     def set_cha(self, num):
         self.cha += num
 
+    def set_str_mod(self, num):
+        self.str_mod = num
+
+    def set_dex_mod(self, num):
+        self.dex_mod = num
+
+    def set_con_mod(self, num):
+        self.con_mod = num
+
     def set_notes(self, note):
-        print(f"Adding to notes {note}")
+        print(f"Adding to Notes {note}")
         self.notes.update(note)
 
     def set_weapon_notes(self, note):
-        print(f"Adding {list(note)[0]} to Weapon Notes. ")
+        print(f"Adding {list(note)[0]} Details to Weapon Notes. ")
         self.weapon_notes.update(note)
 
     def get_dex_mod(self):
@@ -90,20 +99,26 @@ class Character:
 
     def calculate_modifiers(self, rolls):
         print("Calculating Modifiers.")
+        modifiers = self.modifier_check(rolls)
+        stats = list(zip(rolls, modifiers))
+        self.apply_stats(stats)
+
+    def modifier_check(self, rolls, stats=None):
+        if stats is None:
+            stats = self.stats
         modifiers = []
         mod_dict = {3: -4, 5: -3, 7: -2, 9: -1, 11: 0, 13: 1, 15: 2, 17: 3}
         for index, num in enumerate(rolls):
             for check in range(3, 18, 2):
                 if num <= check:
                     modifiers.append(mod_dict[check])
-                    print(f"Applying {self.stats[index]} : {num} a modifier of {mod_dict[check]}.")
+                    print(f"Applying {stats[index]} : {num} a modifier of {mod_dict[check]}.")
                     break
                 elif num >= 18:
                     modifiers.append(4)
-                    print(f"Applying {self.stats[index]} : {num} a modifier of {mod_dict[check]}.")
+                    print(f"Applying {stats[index]} : {num} a modifier of {mod_dict[check]}.")
                     break
-        stats = list(zip(rolls, modifiers))
-        self.apply_stats(stats)
+        return modifiers
 
     def roll_stats(self):
         print("Rolling for stats.")

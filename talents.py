@@ -1,5 +1,3 @@
-import random
-
 fighterTalents = ["Gain Weapon Mastery with on additional weapon.",
                   "+1 to melee and ranged attacks.",
                   "+2 to strength, Dexterity, or Constitution Stat.",
