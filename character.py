@@ -139,6 +139,7 @@ class Character:
 
     def stat_distribute(self):
         print("\tStat Distribution Talent Being Applied.")
+        stat_names = ["Str", "Int", "Dex", "Wis", "Con", "Cha"]
         stats = [self.str, self.int, self.dex, self.wis, self.con, self.cha]
         mods = [self.str_mod, self.int_mod, self.dex_mod, self.wis_mod, self.con_mod, self.cha_mod]
         mod_funcs = [self.set_str_mod, self.set_int_mod, self.set_dex_mod, self.set_wis_mod, self.set_con_mod,
@@ -146,19 +147,19 @@ class Character:
         funcs = [self.set_str, self.set_int, self.set_dex, self.set_wis, self.set_con, self.set_cha]
         for _ in range(2):
             minimum = min(stats)
-            self.find_min(minimum, stats, funcs, mod_funcs, mods)
+            self.find_min(minimum, stats, funcs, mod_funcs, mods, stat_names)
 
-    def find_min(self, minimum, stats, funcs, mod_funcs, mods):
+    def find_min(self, minimum, stats, funcs, mod_funcs, mods, stat_names):
         for index, stat in enumerate(stats):
             if stat == minimum:
-                print(f"\tIncreasing {self.stats[index]} {stats[index]} + 1 = {stats[index] + 1}")
+                print(f"\tIncreasing {stat_names[index]} {stats[index]} + 1 = {stats[index] + 1}")
                 funcs[index](1)
-                mod = self.modifier_check([stats[index] + 1], [self.stats[index]])
+                mod = self.modifier_check([stats[index] + 1], [stat_names[index]])
                 if mod[0] > mods[index]:
-                    print(f"\tAdjusting {self.stats[index]} Modifier")
+                    print(f"\tAdjusting {stat_names[index]} Modifier")
                     mod_funcs[index](mod[0])
-                note = {"Talent Point Distribution": f"Increased {self.stats[index]} from {stats[index]}"
-                                                     f" to {stats[index] + 1} and adjusted the {self.stats[index]}"
+                note = {"Talent Point Distribution": f"Increased {stat_names[index]} from {stats[index]}"
+                                                     f" to {stats[index] + 1} and adjusted the {stat_names[index]}"
                                                      f" modifier accordingly."}
                 self.set_notes(note)
 
@@ -166,7 +167,7 @@ class Character:
                 del mods[index]
                 del stats[index]
                 del funcs[index]
-                del self.stats[index]
+                del stat_names[index]
                 break
 
     def roll_stats(self):

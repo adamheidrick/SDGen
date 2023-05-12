@@ -36,6 +36,8 @@ def half_orc(hero: object):
     hero.set_notes({"Half Orc: ": "Towering, tusked warriors who are as daring as humans and as relentless as orcs."})
     hero.set_notes({"Languages: ": "You know the Common and Orcish languages."})
     hero.set_notes({"Mighty: ": "You have a +1 bonus to attack and damage rolls with melee weapons."})
+    print(hero.weapon_notes)
+    hero.set_weapon_notes({"Half-Orc Boon Mighty": "+1 attack and damage"})
 
 
 def halfling(hero: object):
