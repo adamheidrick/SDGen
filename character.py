@@ -36,7 +36,7 @@ class Character:
         self.roll_religion()
 
     def set_hp(self, num):
-        print(f"Increasing HP from {self.hp} + {num} = {self.hp + num}.")
+        print(f"\tIncreasing HP from {self.hp} + {num} = {self.hp + num}.")
         self.hp += num
 
     def set_ac(self, num):
@@ -73,15 +73,15 @@ class Character:
         self.con_mod = num
 
     def set_notes(self, note):
-        print(f"Adding to Notes {note}")
+        print(f"\tAdding to Notes {note}")
         self.notes.update(note)
 
     def set_weapon_notes(self, note):
-        print(f"Adding {list(note)[0]} Details to Weapon Notes.")
+        print(f"\tAdding {list(note)[0]} Details to Weapon Notes.")
         self.weapon_notes.update(note)
 
     def set_armor_notes(self, note):
-        print(f"Adding {list(note)[0]} Details to Armor Notes.")
+        print(f"\tAdding {list(note)[0]} Details to Armor Notes.")
         self.armor_notes.update(note)
 
     def get_dex_mod(self):
@@ -117,11 +117,11 @@ class Character:
             for check in range(3, 18, 2):
                 if num <= check:
                     modifiers.append(mod_dict[check])
-                    print(f"Applying {stats[index]} : {num} a modifier of {mod_dict[check]}.")
+                    print(f"\tApplying {stats[index]} : {num} a modifier of {mod_dict[check]}.")
                     break
                 elif num >= 18:
                     modifiers.append(4)
-                    print(f"Applying {stats[index]} : {num} a modifier of {mod_dict[check]}.")
+                    print(f"\tApplying {stats[index]} : {num} a modifier of {mod_dict[check]}.")
                     break
         return modifiers
 
@@ -140,7 +140,7 @@ class Character:
         for num in range(len(self.stats)):
             results = self.roll_dice(6, 3)
             total = sum(results)
-            print(f"Rolling 3d6 for {self.stats[num]}: Dice Results = {results} Total = {total}.")
+            print(f"\tRolling 3d6 for {self.stats[num]}: Dice Results = {results} Total = {total}.")
             rolls.append(total)
         return rolls
 
@@ -151,16 +151,16 @@ class Character:
     def roll_alignment(self):
         print("Rolling for Alignment.")
         self.alignment = random.choice(Alignment)
-        print(f"Alignment = {list(self.alignment)[0]}")
+        print(f"\tAlignment = {list(self.alignment)[0]}")
 
     def roll_religion(self):
         print("Rolling for Religion.")
         coin_toss = random.randint(0, 1)
         if coin_toss == 1:
             self.deity = random.choice(list(Deities[0].items()))
-            print(f"Deity = {list(self.deity)[0]}")
+            print(f"\tDeity = {list(self.deity)[0]}")
         else:
-            print("This character as of now does not believe in God.")
+            print("\tThis character as of now does not believe in God.")
 
     def set_background(self):
         result = random.choice(Background)

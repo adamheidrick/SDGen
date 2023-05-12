@@ -6,8 +6,3 @@ Armor = {"Leather": {"type": "leather", "gear_slot": 1, "AC": 11, "Properties": 
          "Shield": {"type": "shield", "gear_slot": 1, "AC": 2, "Properties": "Occupies one Hand."},
          "Mithral CM": {"type": "mithral chainmail", "gear_slot": -1, "AC": 13, "Properties": "No Penalty on Stealth and Swim."}}
 
-
-choice = random.choice(list(Armor))
-print(list(Armor))
-
-print(Armor[choice])

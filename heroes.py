@@ -35,28 +35,28 @@ class Fighter(Character):
         print("Rolling for Fighter HP 1d8.")
         result = self.roll_dice(8, 1)
         total = sum(result)
-        print(f"Result of Roll: {result} for a Total of {total}.")
+        print(f"\tResult of Roll: {result} for a Total of {total}.")
         self.set_hp(total)
 
     def fighter_ac(self):
         ac = 11 + self.get_dex_mod()
-        print(f"Setting AC 11 + DEX Modifier: {self.get_dex_mod()} = {ac}.")
+        print(f"\tSetting AC 11 + DEX Modifier: {self.get_dex_mod()} = {ac}.")
         self.set_ac(ac)
 
     def fighter_bonus_carry(self):
         print("Checking Fighter Hauler Perk.")
         con_mod = self.get_con_mod()
         if con_mod > 0:
-            print(f"Con Modifier: {con_mod} > 0")
-            self.set_notes({"Hauler": f"Gear Slot increased by {con_mod}"})
+            print(f"\tCon Modifier: {con_mod} > 0")
+            self.set_notes({"\tHauler": f"Gear Slot increased by {con_mod}"})
             self.set_gear_slot(con_mod)
         else:
-            print(f"Con Modifier: {con_mod} < 0. Hauler perk not applied.")
+            print(f"\tCon Modifier: {con_mod} < 0. Hauler perk not applied.")
 
     def random_weapon(self):
         print("Choosing Random Weapon.")
         weapon = random.choice(list(Weapons))
-        print(f"{weapon} chosen.")
+        print(f"\t{weapon} chosen.")
         self.weapon = weapon
         note = {weapon: Weapons[weapon]}
         self.set_weapon_notes(note)
@@ -82,15 +82,15 @@ class Fighter(Character):
         print("Flipping a Coin for Grit.")
         choices = ["Strength", "Dexterity"]
         chosen = random.choice(choices)
-        print(f"Grit Result: {chosen} chosen.")
-        note = {chosen: f"True Grit: Advantage on {chosen} checks."}
+        print(f"\tGrit Result: {chosen} chosen.")
+        note = {chosen: f"\tTrue Grit: Advantage on {chosen} checks."}
         self.set_notes(note)
 
     def talent_roll(self):
         print("Rolling 2d6 for Talent.")
         roll = self.roll_dice(6, 2)
         total = sum(roll)
-        print(f"Roll Result: {roll} = {total}")
+        print(f"\tRoll Result: {roll} = {total}")
         self.choose_talent(roll)
 
     def choose_talent(self, choice):
@@ -148,38 +148,38 @@ class Fighter(Character):
         note = {"Fighter Talent Armor Properties": Armor[choice]["Properties"] + "+1 to AC is already set."}
         self.set_armor_notes(note)
 
-        print(f"Adjusting AC and Gear Slots Based on {choice}.")
+        print(f"\tAdjusting AC and Gear Slots Based on {choice}.")
         match choice:
             case "Leather":
-                print(f"Leather armor was already equipped. "
-                      f"AC of {ac} and Gear Slot of {gear_slots} remains the same.")
+                print(f"\tLeather armor was already equipped. "
+                      f"\n\tAC of {ac} and Gear Slot of {gear_slots} remains the same.")
             case "Chainmail":
-                print(f"Adjusting AC {ac} to {ac + 2}")
+                print(f"\tAdjusting AC {ac} to {ac + 2}")
                 self.set_ac(ac + 2)
-                print(f"Adjusting Gear Slots {gear_slots} to {gear_slots - 1} ")
+                print(f"\tAdjusting Gear Slots {gear_slots} to {gear_slots - 1} ")
                 self.set_gear_slot(gear_slots - 1)
 
             case "Plate Mail":
                 adjusted_ac = Armor["Plate Mail"]["AC"]
-                print(f"Adjusting AC {ac} to {adjusted_ac}")
+                print(f"\tAdjusting AC {ac} to {adjusted_ac}")
                 self.set_ac(ac + 3)
-                print(f"Adjusting Gear Slots {gear_slots} to {gear_slots - 2} ")
+                print(f"\tAdjusting Gear Slots {gear_slots} to {gear_slots - 2} ")
                 self.set_gear_slot(gear_slots - 2)
 
             case "Shield":
-                print(f"Adjusting AC {ac} to {ac + 2}")
+                print(f"\tAdjusting AC {ac} to {ac + 2}")
                 self.set_ac(ac + 2)
-                print(f"Gear Slot of  {gear_slots} does not need to be adjusted.")
+                print(f"\tGear Slot of  {gear_slots} does not need to be adjusted.")
 
             case "Mithral CM":
-                print(f"Adjusting AC {ac} to {ac + 2}")
+                print(f"\tAdjusting AC {ac} to {ac + 2}")
                 self.set_ac(ac + 2)
-                print(f"Adjusting Gear Slots {gear_slots} to {gear_slots - 1} ")
+                print(f"\tAdjusting Gear Slots {gear_slots} to {gear_slots - 1} ")
                 self.set_gear_slot(gear_slots - 1)
 
-        print("Applying Talent +1 to AC bonus")
+        print("\tApplying Talent +1 to AC bonus")
         self.ac += 1
-        print(f"Final AC = {self.ac}")
+        print(f"\tFinal AC = {self.ac}")
         # TODO: Can there be Mithral PM?
 
 
@@ -225,7 +225,7 @@ def random_class():
 
     match num:
         case 0:
-            print("Fighter Class Chosen")
+            print("\tFighter Class Chosen")
             new_hero = Fighter()
         case 1:
             print("Priest Class Chosen")
