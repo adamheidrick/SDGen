@@ -1,5 +1,5 @@
 from character import Character
-from talents import *
+from background import Titles
 from weapons import Weapons
 from armor import Armor
 import random
@@ -7,22 +7,29 @@ import random
 
 class Fighter(Character):
     def __init__(self):
+        self.title = ""
         self.hero_class = "Fighter"
         self.armor = ""
         self.weapons = ["All"]
         self.weapon = ""
         self.talents = []
         super().__init__()
+        self.set_title()
         self.fighter_specs()
         self.random_weapon()
         self.set_armor()
         self.weapon_mastery()
         self.grit()
         self.talent_roll()
-        # if human extra talent roll.
 
     def __repr__(self):
         return "This is the Fighter Class Object."
+
+    def set_title(self):
+        title = Titles[self.hero_class][list(self.alignment)[0]]
+        print("Generating Title.")
+        print(f"\t{title}")
+        self.title = title
 
     def fighter_specs(self):
         self.fighter_hp()

@@ -1,5 +1,6 @@
 import random
 from background import Background, Alignment, Deities
+from crawling_kit import Crawling_Kit
 from ancestry import *
 
 
@@ -25,7 +26,8 @@ class Character:
         self.cha = 0
         self.cha_mod = 0
         self.gold = 5
-        self.gear_slots = 10
+        self.gear_slots = 3
+        self.gear = Crawling_Kit
         self.notes = {}
         self.weapon_notes = {}
         self.armor_notes = {}
@@ -205,10 +207,11 @@ class Character:
             print("\tThis character as of now does not believe in God.")
 
     def set_background(self):
+        print("Rolling for Background.")
         result = random.choice(Background)
         title = result.split(':')[0]
         body = result.split(':')[1]
         self.background = title
-        self.notes.update({title: body})
+        self.set_notes({title: body})
 
 
