@@ -21,6 +21,7 @@ def goblin(hero: object):
 
 
 def elf(hero: object):
+    # TODO: Dont forge the Farsight or Condition below. +1 or Spellcasting checks.
     hero.set_ancestry("Elf")
     hero.set_notes({"Elf: ": "Ethereal, graceful people whoever knowledge and beauty. Elves see far "
                                  "and live long."})
@@ -48,6 +49,7 @@ def human(hero: object):
     print("Rolling for additional language (Human Perk).")
     hero.set_ancestry("Human")
     additional_language = random.choice(COMMON_LANGUAGES)
+    print(f"Additional Language Chosen = {additional_language}.")
     hero.set_notes({"Human: ": "Bold, adaptable, and diverse people who learn quickly and accomplish mighty deeds."})
     hero.set_notes({"Languages: ": f"You know the Common language and {additional_language} languages."})
     hero.set_notes({"Ambitious: ": "You gain one additional talent roll at 1st level"})

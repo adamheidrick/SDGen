@@ -28,6 +28,7 @@ class Character:
         self.gear_slots = 10
         self.notes = {}
         self.weapon_notes = {}
+        self.armor_notes = {}
         self.stats = ["Str", "Int", "Dex", "Wis", "Con", "Cha"]
         self.roll_stats()
         self.set_background()
@@ -76,8 +77,12 @@ class Character:
         self.notes.update(note)
 
     def set_weapon_notes(self, note):
-        print(f"Adding {list(note)[0]} Details to Weapon Notes. ")
+        print(f"Adding {list(note)[0]} Details to Weapon Notes.")
         self.weapon_notes.update(note)
+
+    def set_armor_notes(self, note):
+        print(f"Adding {list(note)[0]} Details to Armor Notes.")
+        self.armor_notes.update(note)
 
     def get_dex_mod(self):
         return self.dex_mod

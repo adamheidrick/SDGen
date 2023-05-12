@@ -1,6 +1,7 @@
 from character import Character
 from talents import *
 from weapons import Weapons
+from armor import Armor
 import random
 # TODO: Talents may impact stats, if so the modifiers will need to be recalculated.
 
@@ -8,16 +9,19 @@ import random
 class Fighter(Character):
     def __init__(self):
         self.hero_class = "Fighter"
-        self.armor = "Leather Armor"
+        self.armor = ""
         self.weapons = ["All"]
         self.weapon = ""
         self.talents = []
         super().__init__()
         self.fighter_specs()
         self.random_weapon()
+        self.set_armor()
         self.weapon_mastery()
         self.grit()
         self.talent_roll()
+        self.armor_boost()
+        # if human extra talent roll.
 
     def __repr__(self):
         return "This is the Fighter Class Object."
@@ -29,7 +33,10 @@ class Fighter(Character):
 
     def fighter_hp(self):
         print("Rolling for Fighter HP 1d8.")
-        self.set_hp(sum(self.roll_dice(8, 1)))
+        result = self.roll_dice(8, 1)
+        total = sum(result)
+        print(f"Result of Roll: {result} for a Total of {total}.")
+        self.set_hp(total)
 
     def fighter_ac(self):
         ac = 11 + self.get_dex_mod()
@@ -63,11 +70,19 @@ class Fighter(Character):
                                                         "to any Weapon you choose that does not already have weapon"
                                                         "mastery."})
 
+    def set_armor(self, armor=None):
+        if armor is None:
+            print(f"Equipping Leather Armor.")
+            self.armor = Armor["Leather"]
+        else:
+            print(f"Equipping {armor}.")
+            self.armor = Armor[armor]
+
     def grit(self):
-        print("Rolling for Grit.")
+        print("Flipping a Coin for Grit.")
         choices = ["Strength", "Dexterity"]
         chosen = random.choice(choices)
-        print(f"{chosen} chosen.")
+        print(f"Grit Result: {chosen} chosen.")
         note = {chosen: f"True Grit: Advantage on {chosen} checks."}
         self.set_notes(note)
 
@@ -83,7 +98,7 @@ class Fighter(Character):
         talents = fighterTalents
 
     def extra_weapon_dmg(self):
-        self.set_notes({"Fighter Talent": "+1 to melee and ranged attacks."})
+        self.set_notes({"Fighter Talent": "+1 Attack to Melee and Ranged."})
         self.set_weapon_notes(self.weapon_notes[self.weapon].append("Fighter Talent +1 to attack"))
 
     def stat_boost(self):
@@ -93,8 +108,10 @@ class Fighter(Character):
         print(f"{random_stat[ran_choice]} Chosen.")
         print(f"Adjusting {random_stat[ran_choice]} by + 2.")
         print("Checking if Modifier Needs Adjusting.")
+        choice = None
         match ran_choice:
             case 0:
+                choice = "Strength"
                 self.set_str(2)
                 print(f"Strength now = {self.str}")
                 mod = self.modifier_check([self.str], ["Str"])
@@ -102,6 +119,7 @@ class Fighter(Character):
                     print("Adjusting Strength Modifier.")
                     self.set_str_mod(mod[0])
             case 1:
+                choice = "Dexterity"
                 self.set_dex(2)
                 print(f"Dexterity now = {self.dex}")
                 mod = self.modifier_check([self.dex], ["Dex"])
@@ -109,18 +127,61 @@ class Fighter(Character):
                     print("Adjusting Dexterity Modifier.")
                     self.set_dex_mod(mod[0])
             case 2:
+                choice = "Constitution"
                 self.set_con(2)
                 print(f"Constitution now = {self.con}")
                 mod = self.modifier_check([self.con], ["Con"])
                 if mod[0] > self.con_mod:
                     print("Adjusting Constitution Modifier.")
                     self.set_con_mod(mod[0])
+        self.set_notes({"Fighter Talent": f"+2 Added to {choice} and Modifier Adjusted."})
 
+    def armor_boost(self):
+        dex_mod = self.dex_mod
+        ac = self.ac
+        gear_slots = self.gear_slots
 
-    def additional_talent(self):
-        # how to keep track of talents already? Enumerate with index.
-        # add additional talent
-        pass
+        print("Rolling for Armor.")
+        choice = random.choice(list(Armor))
+        self.set_armor(choice)
+
+        note = {"Fighter Talent Armor Properties": Armor[choice]["Properties"] + "+1 to AC is already set."}
+        self.set_armor_notes(note)
+
+        print(f"Adjusting AC and Gear Slots Based on {choice}.")
+        match choice:
+            case "Leather":
+                print(f"Leather armor was already equipped. "
+                      f"AC of {ac} and Gear Slot of {gear_slots} remains the same.")
+            case "Chainmail":
+                print(f"Adjusting AC {ac} to {ac + 2}")
+                self.set_ac(ac + 2)
+                print(f"Adjusting Gear Slots {gear_slots} to {gear_slots - 1} ")
+                self.set_gear_slot(gear_slots - 1)
+
+            case "Plate Mail":
+                adjusted_ac = Armor["Plate Mail"]["AC"]
+                print(f"Adjusting AC {ac} to {adjusted_ac}")
+                self.set_ac(ac + 3)
+                print(f"Adjusting Gear Slots {gear_slots} to {gear_slots - 2} ")
+                self.set_gear_slot(gear_slots - 2)
+
+            case "Shield":
+                print(f"Adjusting AC {ac} to {ac + 2}")
+                self.set_ac(ac + 2)
+                print(f"Gear Slot of  {gear_slots} does not need to be adjusted.")
+
+            case "Mithral CM":
+                print(f"Adjusting AC {ac} to {ac + 2}")
+                self.set_ac(ac + 2)
+                print(f"Adjusting Gear Slots {gear_slots} to {gear_slots - 1} ")
+                self.set_gear_slot(gear_slots - 1)
+
+        print("Applying Talent +1 to AC bonus")
+        self.ac += 1
+        print(f"Final AC = {self.ac}")
+        # TODO: Can there be Mithral PM?
+
 
     def stat_distribute(self):
         # +2 distribute to stats (find min)
