@@ -155,6 +155,10 @@ class Character:
                 if mod[0] > mods[index]:
                     print(f"\tAdjusting {self.stats[index]} Modifier")
                     mod_funcs[index](mod[0])
+                note = {"Talent Point Distribution": f"Increased {self.stats[index]} from {stats[index]}"
+                                                     f" to {stats[index] + 1} and adjusted the {self.stats[index]}"
+                                                     f" modifier accordingly."}
+                self.set_notes(note)
 
                 del mod_funcs[index]
                 del mods[index]

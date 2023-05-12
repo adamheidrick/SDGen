@@ -47,13 +47,14 @@ def halfling(hero: object):
 
 
 def human(hero: object):
-    print("\tRolling for additional language (Human Perk).")
     hero.set_ancestry("Human")
     additional_language = random.choice(COMMON_LANGUAGES)
-    print(f"Additional Language Chosen = {additional_language}.")
+    print(f"Additional Language Chosen as a Human Perk = {additional_language}.")
     hero.set_notes({"Human: ": "Bold, adaptable, and diverse people who learn quickly and accomplish mighty deeds."})
     hero.set_notes({"Languages: ": f"You know the Common language and {additional_language} languages."})
     hero.set_notes({"Ambitious: ": "You gain one additional talent roll at 1st level"})
+    print("\tRolling for additional talent (Human Perk Ambition!).")
+    hero.talent_roll()
     # TODO: Implement additional talent roll.
 
 
