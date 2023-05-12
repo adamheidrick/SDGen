@@ -48,6 +48,21 @@ Deities = [{"Saint Terragnis (Lawful)": "A legendary knight who is the patron of
             }]
 
 
-Titles = {}
+Titles = {"Fighter": {"Lawful": "Squire", "Chaotic": "Knave", "Neutral": "Warrior"},
+          "Priest": {"Lawful": "Acolyte", "Chaotic": "Initiate", "Neutral": "Seeker"},
+          "Thief": {"Lawful": "Footpad", "Chaotic": "Thug", "Neutral": "Robber"},
+          "Wizard": {"Lawful": "Apprentice", "Chaotic": "Adept", "Neutral": "Shaman"},
+          }
 
-Name = {}
+Name = {"Dwarf": ["Hilde", "Torbin", "Marga", "Bruno", "Karina", "Naugrim", "Brenna", "Darvin", "Elga", "Alric",
+                  "Isolde", "Gendry", "Bruga", "Junnor", "Vidrid", "Torson", "Brielle", "Ulfgar", "Sarna", "Grimm"],
+        "Elf": ["Eliara", "Ryarn", "Sariel", "Tirolas", "Galira", "Varos", "Daeniel", "Axidor", "Hiralia", "Cyrwin",
+                "Lothiel", "Zaphiel", "Nayra", "Ithior", "Amriel", "Elyon", "Jirwyn", "Natinel", "Fiora", "Ruhiel"],
+        "Goblin": ["Iggs", "Tark", "Nix", "Lenk", "Roke", "Fitz", "Tila", "Riggs", "Prim", "Zeb",
+                   "Finn", "Borg", "Yark", "Deeg", "Nibs", "Brak", "Fink", "Rizzo", "Grix"],
+        "Halfling": ["Willow", "Benny", "Annie", "Tucker", "Marie", "Hobb", "Cora", "Gordie", "Rose", "Ardo",
+                     "Alma", "Norbert", "Jennie", "Barvin", "Tilly", "Pike", "Lydia", "Marlow", "Astrid", "Jasper"],
+        "Half-Orc": ["Vara", "Gralk", "Ranna", "Korv", "Zasha", "Hrogar", "Klara", "Tragan", "Brolga", "Drago",
+                     "Yelena", "Krull", "Ulara", "Tulk", "Shiraal", "Wulf", "Ivara", "Hirok", "Aja", "Zoraan"],
+        "Human": ["Zali", "Bram", "Clara", "Nattias", "Rina", "Denton", "Mirena", "Aran", "Morgan", "Giralt"
+                  "Tamra", "Oscar", "Ishana", "Rogar", "Jasmin", "Tarin", "Yuri", "Malchor", "Lienna", "Godfrey"]}

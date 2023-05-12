@@ -65,6 +65,7 @@ class Fighter(Character):
 
     def weapon_mastery_talent(self):
         print("\tTalent: Weapon Mastery Chosen: Weapon Mastery with One Additional Weapon.")
+        self.set_notes({"Weapon Mastery Talent": "See Weapon Notes. Talent Applied."})
         self.set_weapon_notes({"Weapon Mastery Talent": "+1 Attack and Damage + Half your level rounding down. Applied"
                                                         "to any Weapon you choose that does not already have weapon"
                                                         "mastery."})
