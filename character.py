@@ -66,6 +66,15 @@ class Character:
     def set_str_mod(self, num):
         self.str_mod = num
 
+    def set_int_mod(self, num):
+        self.int_mod = num
+
+    def set_wis_mod(self, num):
+        self.wis_mod = num
+
+    def set_cha_mod(self, num):
+        self.cha_mod = num
+
     def set_dex_mod(self, num):
         self.dex_mod = num
 
@@ -81,6 +90,7 @@ class Character:
         self.weapon_notes.update(note)
 
     def set_armor_notes(self, note):
+        self.armor_notes = {}
         print(f"\tAdding {list(note)[0]} Details to Armor Notes.")
         self.armor_notes.update(note)
 
@@ -124,6 +134,34 @@ class Character:
                     print(f"\tApplying {stats[index]} : {num} a modifier of {mod_dict[check]}.")
                     break
         return modifiers
+
+    def stat_distribute(self):
+        print("\tStat Distribution Talent Being Applied.")
+        stats = [self.str, self.int, self.dex, self.wis, self.con, self.cha]
+        mods = [self.str_mod, self.int_mod, self.dex_mod, self.wis_mod, self.con_mod, self.cha_mod]
+        mod_funcs = [self.set_str_mod, self.set_int_mod, self.set_dex_mod, self.set_wis_mod, self.set_con_mod,
+                     self.set_cha_mod]
+        funcs = [self.set_str, self.set_int, self.set_dex, self.set_wis, self.set_con, self.set_cha]
+        for _ in range(2):
+            minimum = min(stats)
+            self.find_min(minimum, stats, funcs, mod_funcs, mods)
+
+    def find_min(self, minimum, stats, funcs, mod_funcs, mods):
+        for index, stat in enumerate(stats):
+            if stat == minimum:
+                print(f"\tIncreasing {self.stats[index]} {stats[index]} + 1 = {stats[index] + 1}")
+                funcs[index](1)
+                mod = self.modifier_check([stats[index] + 1], [self.stats[index]])
+                if mod[0] > mods[index]:
+                    print(f"\tAdjusting {self.stats[index]} Modifier")
+                    mod_funcs[index](mod[0])
+
+                del mod_funcs[index]
+                del mods[index]
+                del stats[index]
+                del funcs[index]
+                del self.stats[index]
+                break
 
     def roll_stats(self):
         print("Rolling for stats.")
