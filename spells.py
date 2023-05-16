@@ -20,4 +20,11 @@ Priest_Spells = {"Light": ["Duration: 1 Hour Real Time",
                  "Shield of Faith": ["Duration: 5 Rounds",
                                      "Range: Self",
                                      "Details: A protective fore wrought of your holy conviction surrounds you. You "
-                                     "gain a +2 bonus to your armor class for the duration."]}
+                                     "gain a +2 bonus to your armor class for the duration."],
+                 "Turn Undead": ["Duration: Instant",
+                                 "Range: Near",
+                                 "Details: You rebuke undead creatures, forcing them to flee. You must present"
+                                 "a holy symbol to cast this spell. Undead creatures within near of you must make a"
+                                 "CHA check vs. your spellcasting check. If a creature fails by 10+ points and is "
+                                 "equal to or less than your level, it is destroyed. Otherwise, on a fail, it flees"
+                                 "from you for 5 rounds."]}

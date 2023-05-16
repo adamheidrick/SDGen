@@ -44,7 +44,7 @@ def halfling(hero: object):
     hero.set_ancestry("Halfling")
     hero.set_notes({"Halfling: ": "Small, cheerful country folk with mischievous streaks. They enjoy "
                                   "life’s simple pleasures.."})
-    hero.set_notes({"Language: ": "You know the Common language."})
+    hero.set_notes({"Languages:": "You know the Common language."})
     hero.set_notes({"Stealthy: ": "Once per day, you can become invisible for 3 rounds."})
 
 

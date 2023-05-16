@@ -200,12 +200,14 @@ class Fighter(Character):
 class Priest(Character):
     def __init__(self):
         self.hero_class = "Priest"
+        self.spells = {}
         # TODO: Priest must choose one god.
         super().__init__()
         self.priest_specs()
         self.set_title()
         self.random_weapon()
         self.set_armor()
+        self.set_spells()
 
     def __repr__(self):
         return "This is the Priest Class Object."
@@ -252,6 +254,21 @@ class Priest(Character):
             print(f"Equipping {armor}.")
             self.armor = Armor[armor]
 
+    def set_spells(self):
+        default = "Turn Undead"
+        print(f"Priest is Learning two Random Spells and {default}.")
+        spells = [item for item in Priest_Spells.keys() if item != default]
+        choices = random.sample(set(spells), 2)
+        choices.append(default)
+        for spell in choices:
+            self.spells.update({spell: Priest_Spells[spell]})
+            print(f"\tPriest learned {spell}")
+            print(f"\t\tAdding {spell} to Notes")
+
+    def check_religion(self):
+        # TODO: If no god then pick one. Either way, add to notes the gods symbol.
+        if self.deity is None:
+            print("IMPLEMENT")
 
 
 class Thief(Character):
