@@ -5,6 +5,7 @@ from ancestry import set_ancestry
 def main():
     hero = random_class()
     set_ancestry(hero)
+    hero.set_name(hero.ancestry)
     print("Packing Backpack.")
     for key, value in hero.gear.items():
         if key == "Backpack":

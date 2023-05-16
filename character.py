@@ -1,5 +1,5 @@
 import random
-from background import Background, Alignment, Deities
+from background import Background, Alignment, Deities, Name
 from crawling_kit import Crawling_Kit
 from ancestry import *
 
@@ -7,6 +7,9 @@ from ancestry import *
 class Character:
     def __init__(self):
         self.name = ""
+        self.title = ""
+        self.armor = ""
+        self.weapon = ""
         self.ancestry = ""
         self.background = ""
         self.deity = None
@@ -36,6 +39,10 @@ class Character:
         self.set_background()
         self.roll_alignment()
         self.roll_religion()
+
+    def set_name(self, ancestry):
+        name = random.choice(Name[ancestry])
+        self.name = name
 
     def set_hp(self, num):
         print(f"\tIncreasing HP from {self.hp} + {num} = {self.hp + num}.")

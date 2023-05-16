@@ -16,7 +16,7 @@ Background = ["Urchin: You grew up in the merciless streets of a large city.",
               "Scout: You survived on stealth, observation, and speed.",
               "Minstrel: You've traveled far with your charm and talent.",
               "Scholar: You know much about ancient history and lore.",
-              "Noble: A famous name has opened many doors for you."
+              "Noble: A famous name has opened many doors for you.",
               "Chirurgeon: You know anatomy, surgery, and first aid."
               ]
 
@@ -62,7 +62,7 @@ Name = {"Dwarf": ["Hilde", "Torbin", "Marga", "Bruno", "Karina", "Naugrim", "Bre
                    "Finn", "Borg", "Yark", "Deeg", "Nibs", "Brak", "Fink", "Rizzo", "Grix"],
         "Halfling": ["Willow", "Benny", "Annie", "Tucker", "Marie", "Hobb", "Cora", "Gordie", "Rose", "Ardo",
                      "Alma", "Norbert", "Jennie", "Barvin", "Tilly", "Pike", "Lydia", "Marlow", "Astrid", "Jasper"],
-        "Half-Orc": ["Vara", "Gralk", "Ranna", "Korv", "Zasha", "Hrogar", "Klara", "Tragan", "Brolga", "Drago",
+        "Half Orc": ["Vara", "Gralk", "Ranna", "Korv", "Zasha", "Hrogar", "Klara", "Tragan", "Brolga", "Drago",
                      "Yelena", "Krull", "Ulara", "Tulk", "Shiraal", "Wulf", "Ivara", "Hirok", "Aja", "Zoraan"],
         "Human": ["Zali", "Bram", "Clara", "Nattias", "Rina", "Denton", "Mirena", "Aran", "Morgan", "Giralt"
                   "Tamra", "Oscar", "Ishana", "Rogar", "Jasmin", "Tarin", "Yuri", "Malchor", "Lienna", "Godfrey"]}

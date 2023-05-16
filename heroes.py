@@ -2,20 +2,16 @@ from character import Character
 from background import Titles
 from weapons import Weapons
 from armor import Armor
+from spells import Priest_Spells
 import random
 
 
 class Fighter(Character):
     def __init__(self):
-        self.title = ""
         self.hero_class = "Fighter"
-        self.armor = ""
-        self.weapons = ["All"]
-        self.weapon = ""
-        self.talents = []
         super().__init__()
-        self.set_title()
         self.fighter_specs()
+        self.set_title()
         self.random_weapon()
         self.set_armor()
         self.weapon_mastery()
@@ -32,6 +28,7 @@ class Fighter(Character):
         self.title = title
 
     def fighter_specs(self):
+        print("Generating Fighter Class Attributes.")
         self.fighter_hp()
         self.fighter_ac()
         self.fighter_bonus_carry()
@@ -109,7 +106,6 @@ class Fighter(Character):
         choice = random.choice(talents)
         choice()
         talents.remove(choice)
-
 
     def extra_weapon_dmg(self):
         print("\tTalent +1 Melee and Ranged Attacks Being Applied.")
@@ -198,7 +194,7 @@ class Fighter(Character):
         print("\tApplying Talent +1 to AC bonus")
         self.ac += 1
         print(f"\tFinal AC = {self.ac}")
-        # TODO: Can there be Mithral PM?
+        # TODO: Can there be Mithral PM? YES! IMPLEMENT IT.
 
 
 class Priest(Character):
@@ -206,9 +202,56 @@ class Priest(Character):
         self.hero_class = "Priest"
         # TODO: Priest must choose one god.
         super().__init__()
+        self.priest_specs()
+        self.set_title()
+        self.random_weapon()
+        self.set_armor()
 
     def __repr__(self):
         return "This is the Priest Class Object."
+
+    def priest_specs(self):
+        print("Generating Priest Class Attributes.")
+        self.priest_hp()
+        self.priest_ac()
+
+    def priest_hp(self):
+        print("Rolling for Priest HP 1d6.")
+        result = self.roll_dice(6, 1)
+        total = sum(result)
+        print(f"\tResult of Roll: {result} for a Total of {total}.")
+        self.set_hp(total)
+
+    def priest_ac(self):
+        ac = 11 + self.get_dex_mod()
+        print(f"\tSetting AC 11 + DEX Modifier: {self.get_dex_mod()} = {ac}.")
+        self.set_ac(ac)
+
+    def set_title(self):
+        title = Titles[self.hero_class][list(self.alignment)[0]]
+        print("Generating Title.")
+        print(f"\t{title}")
+        self.title = title
+
+    def random_weapon(self):
+        print("Choosing Random Weapon.")
+        priest_weapons = ["Club", "Crossbow", "Dagger", "Mace", "Longsword", "Staff", "Warhammer"]
+        random_weapon = random.choice(priest_weapons)
+        print(f"\t{random_weapon} chosen.")
+        self.weapon = random_weapon
+        note = {random_weapon: Weapons[random_weapon]}
+        self.set_weapon_notes(note)
+
+    def set_armor(self, armor=None):
+        if armor is None:
+            print(f"Equipping Leather Armor.")
+            note = {"Armor Properties": Armor["Leather"]["Properties"]}
+            self.set_armor_notes(note)
+            self.armor = Armor["Leather"]
+        else:
+            print(f"Equipping {armor}.")
+            self.armor = Armor[armor]
+
 
 
 class Thief(Character):
@@ -234,7 +277,7 @@ def random_class():
     print(f"Rolling for Random Class = {num}")
     print("Generating Random Class.")
     new_hero = None
-    num = 0  # REMOVE THIS AS YOU DEVELOP
+    num = 1  # REMOVE THIS AS YOU DEVELOP
 
     match num:
         case 0:
