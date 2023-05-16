@@ -1,5 +1,5 @@
 from character import Character
-from background import Titles
+from background import Titles, Deities
 from weapons import Weapons
 from armor import Armor
 from spells import Priest_Spells
@@ -208,6 +208,7 @@ class Priest(Character):
         self.random_weapon()
         self.set_armor()
         self.set_spells()
+        self.check_religion()
 
     def __repr__(self):
         return "This is the Priest Class Object."
@@ -266,9 +267,14 @@ class Priest(Character):
             print(f"\t\tAdding {spell} to Notes")
 
     def check_religion(self):
-        # TODO: If no god then pick one. Either way, add to notes the gods symbol.
+        print("Checking Religion.")
         if self.deity is None:
-            print("IMPLEMENT")
+            self.deity = random.choice(list(Deities[0].items()))
+
+        deity = list(self.deity)[0]
+        print(f"\tPriest found {deity}.")
+        print(f"\tAdding {deity} Symbol to Gear.")
+        self.gear.update({deity + "symbol": [{"Quantity": 1}, {"Gear Slot": 0}]})
 
 
 class Thief(Character):
