@@ -276,6 +276,21 @@ class Priest(Character):
         print(f"\tAdding {deity} Symbol to Gear.")
         self.gear.update({deity + "symbol": [{"Quantity": 1}, {"Gear Slot": 0}]})
 
+    def roll_priest_talents(self):
+        pass
+
+    def advantage_on_spell(self):
+        pass
+
+    def attack_bonus(self):
+        pass
+
+    def cast_bonus(self):
+        pass
+
+    def str_wis_boost(self):
+        pass
+
 
 class Thief(Character):
     def __init__(self):
