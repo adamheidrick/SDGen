@@ -203,7 +203,6 @@ class Priest(Character):
         self.spells = {}
         self.talents = [self.advantage_on_spell, self.attack_bonus, self.cast_bonus, self.str_wis_boost,
                         self.stat_distribute]
-        # TODO: Priest must choose one god.
         super().__init__()
         self.priest_specs()
         self.set_title()
@@ -341,10 +340,140 @@ class Priest(Character):
 class Thief(Character):
     def __init__(self):
         self.hero_class = "Thief"
+        self.talents = [self.initiative_adv, self.back_stab_bonus, self.str_dex_cha,
+                        self.attack_bonus, self.stat_distribute]
         super().__init__()
+        self.thief_specs()
+        self.set_title()
+        self.random_weapon()
+        self.set_armor()
+        self.set_back_stab()
+        self.set_thievery()
+        self.talent_roll()
 
     def __repr__(self):
         return "This is the Thief Class Object."
+
+    def thief_specs(self):
+        print("Generating Thief Class Attributes.")
+        self.thief_hp()
+        self.thief_ac()
+
+    def thief_hp(self):
+        print("Rolling for Priest HP 1d4.")
+        result = self.roll_dice(4, 1)
+        total = sum(result)
+        print(f"\tResult of Roll: {result} for a Total of {total}.")
+        self.set_hp(total)
+
+    def thief_ac(self):
+        ac = 11 + self.get_dex_mod()
+        print(f"\tSetting AC 11 + DEX Modifier: {self.get_dex_mod()} = {ac}.")
+        self.set_ac(ac)
+
+    def set_title(self):
+        title = Titles[self.hero_class][list(self.alignment)[0]]
+        print("Generating Title.")
+        print(f"\t{title}")
+        self.title = title
+
+    def random_weapon(self):
+        print("Choosing Random Weapon.")
+        thief_weapons = ["Club", "Crossbow", "Dagger", "Shortbow", "Shortsword"]
+        random_weapon = random.choice(thief_weapons)
+        print(f"\t{random_weapon} chosen.")
+        self.weapon = random_weapon
+        note = {random_weapon: Weapons[random_weapon]}
+        self.set_weapon_notes(note)
+
+    def set_armor(self, armor=None):
+        if armor is None:
+            print(f"Equipping Leather Armor.")
+            note = {"Armor Properties": Armor["Leather"]["Properties"]}
+            self.set_armor_notes(note)
+            self.armor = Armor["Leather"]
+        else:
+            print(f"Equipping {armor}.")
+            self.armor = Armor[armor]
+
+    def set_back_stab(self):
+        print("Applying Back Stab.")
+        self.set_notes({'Backstab': 'If you hit a creature who is unaware of your attack, you deal'
+                                    'an extra weapon die of damage. Add additional weapon dice of damage'
+                                    'equal to half your level(round down).'})
+
+    def set_thievery(self):
+        print('Applying Thievery Class Attributes')
+        self.set_notes({'Thievery': 'You are adept at thieving skills and have the necessary tools of the trade'
+                                    'secreted on your person (they take up no gear slots).'})
+
+        print("\tUpdating Gear.")
+        self.gear.update({"Thief Tools": [{"Quantity": 'inf'}, {"Gear Slot": 0}]})
+        self.set_notes({'Thievery Training': 'You have advantage on Climbing, Sneaking and Hiding, Applying Disguises,'
+                                             'Finding and Disabling Traps, Delicate Tasks Such as Picking Pockets and '
+                                             'Opening Locks.'})
+
+    def talent_roll(self):
+        print("Rolling 2d6 for Talent.")
+        roll = self.roll_dice(6, 2)
+        total = sum(roll)
+        print(f"\tRoll Result: {roll} = {total}")
+        self.choose_talent(roll)
+
+    def choose_talent(self, roll):
+        print(f"\tChoosing Talent Based on {roll} roll.")
+        choice = random.choice(self.talents)
+        choice()
+        self.talents.remove(choice)
+
+    def initiative_adv(self):
+        print('\tThief Talent: Gain Initiative Advantage.')
+        self.set_notes({'Thief Talent': 'Gain Advantage on Initiative Rolls (re-roll if duplicate)'})
+
+    def back_stab_bonus(self):
+        print("\t Adding Backstab Talent Bonus to notes.")
+        self.notes['Backstab'] += ' (Thief Talent: +1 dice of damage)'
+
+    def str_dex_cha(self):
+        print("\tTalent Strength, Dexterity, or Charisma Boost Being Applied")
+        print("\tRandomly Choosing Stat Boost.")
+        random_stat = ["Strength", "Dexterity", "Charisma"]
+        ran_choice = random.randint(0, 2)
+        print(f"\t{random_stat[ran_choice]} Chosen.")
+        print(f"\tAdjusting {random_stat[ran_choice]} by + 2.")
+        print("\tChecking if Modifier Needs Adjusting.")
+        choice = None
+        match ran_choice:
+            case 0:
+                choice = "Strength"
+                self.set_str(2)
+                print(f"\tStrength now = {self.str}")
+                mod = self.modifier_check([self.str], ["Str"])
+                if mod[0] > self.str_mod:
+                    print("\tAdjusting Strength Modifier.")
+                    self.set_str_mod(mod[0])
+            case 1:
+                choice = "Dexterity"
+                self.set_dex(2)
+                print(f"\tDexterity now = {self.dex}")
+                mod = self.modifier_check([self.dex], ["Dex"])
+                if mod[0] > self.dex_mod:
+                    print("\tAdjusting Dexterity Modifier.")
+                    self.set_dex_mod(mod[0])
+            case 2:
+                choice = "Charisma"
+                self.set_cha(2)
+                print(f"\tCharisma now = {self.cha}")
+                mod = self.modifier_check([self.cha], ["Cha"])
+                if mod[0] > self.cha_mod:
+                    print("\tAdjusting Charisma Modifier.")
+                    self.set_cha_mod(mod[0])
+        self.set_notes({"Fighter Talent": f"+2 Added to {choice} and Modifier Adjusted."})
+
+    def attack_bonus(self):
+        print(f"\tTalent: +1 Attack to {self.weapon}")
+        self.weapon_notes[self.weapon].append("Priest Talent: +1 to attack.")
+        print(f"\tAdding {self.weapon} boost to weapon notes.")
 
 
 class Wizard(Character):
@@ -361,7 +490,7 @@ def random_class():
     print(f"Rolling for Random Class = {num}")
     print("Generating Random Class.")
     new_hero = None
-    num = 0  # REMOVE THIS AS YOU DEVELOP
+    num = 2  # REMOVE THIS AS YOU DEVELOP
 
     match num:
         case 0:

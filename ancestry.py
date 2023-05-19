@@ -31,7 +31,6 @@ def elf(hero: object):
 
 
 def half_orc(hero: object):
-    # TODO: Set Mighty Boon.
     hero.set_ancestry("Half Orc")
     hero.set_notes({"Half Orc": "Towering, tusked warriors who are as daring as humans and as relentless as orcs."})
     hero.set_notes({"Languages": "You know the Common and Orcish languages."})
