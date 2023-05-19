@@ -164,8 +164,14 @@ class Character:
                 funcs[index](1)
                 mod = self.modifier_check([stats[index] + 1], [stat_names[index]])
                 if mod[0] > mods[index]:
+                    new_mod = mod[0]
+                    old_mod = mods[index]
                     print(f"\tAdjusting {stat_names[index]} Modifier")
-                    mod_funcs[index](mod[0])
+                    mod_funcs[index](new_mod)
+                    if index == 2:
+                        difference = abs(new_mod - old_mod)
+                        print(f"\tAdjusting AC based on difference between {new_mod} and {old_mod} = {difference}")
+                        self.ac += difference
                 note = {"Talent Point Distribution": f"Increased {stat_names[index]} from {stats[index]}"
                                                      f" to {stats[index] + 1} and adjusted the {stat_names[index]}"
                                                      f" modifier accordingly."}
