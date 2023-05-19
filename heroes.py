@@ -2,7 +2,7 @@ from character import Character
 from background import Titles, Deities
 from weapons import Weapons
 from armor import Armor
-from spells import Priest_Spells
+from spells import Priest_Spells, Wizard_Spells
 import random
 
 
@@ -487,7 +487,6 @@ class Wizard(Character):
         self.set_title()
         self.random_weapon()
         self.set_armor()
-        self.set_additional_language()
         self.set_learn_spells()
         self.set_spell_casting()
         self.talent_roll()
@@ -534,14 +533,24 @@ class Wizard(Character):
 
     def set_learn_spells(self):
         print("Adding Learning Spells Wizard Attribute.")
-        self.set_notes({'Learning Spells': "You can permanently learn a wizard spell from a spell scroll"
-                                           "by studying  it fro a day and succeeding on a DC 15 Intelligence Check."
+        self.set_notes({'Learning Spells': "You can permanently learn a wizard spell from a spell scroll "
+                                           "by studying  it for a day and succeeding on a DC 15 Intelligence Check. "
                                            "Whether you succeed or fail, you expend the spell scroll. Spells you learn"
-                                           "in this way don't count toward your known spells."})
+                                           " in this way don't count toward your known spells."})
 
     def set_spell_casting(self):
         print("Wizard is Learning Three Spells.")
 
+        spells = [item for item in Wizard_Spells.keys()]
+        choices = random.sample(set(spells), 3)
+        for spell in choices:
+            self.spells.update({spell: Wizard_Spells[spell]})
+            print(f"\tWizard learned {spell}")
+            print(f"\t\tAdding {spell} to Notes")
+            del Wizard_Spells[spell]
+
+        self.set_notes({"Spellcasting": "Each time you gain a level, you choose new wizard spells to learn "
+                                        "according to the Wizard Spells Known table."})
 
     def talent_roll(self):
         pass
