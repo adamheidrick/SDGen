@@ -9,6 +9,8 @@ import random
 class Fighter(Character):
     def __init__(self):
         self.hero_class = "Fighter"
+        self.talents = [self.weapon_mastery_talent, self.extra_weapon_dmg, self.stat_boost, self.armor_boost,
+                        self.stat_distribute]
         super().__init__()
         self.fighter_specs()
         self.set_title()
@@ -101,11 +103,9 @@ class Fighter(Character):
 
     def choose_talent(self, choice):
         print(f"Choosing Talent Based on {choice} roll.")
-        talents = [self.weapon_mastery_talent, self.extra_weapon_dmg, self.stat_boost,
-                   self.armor_boost, self.stat_distribute]
-        choice = random.choice(talents)
+        choice = random.choice(self.talents)
         choice()
-        talents.remove(choice)
+        self.talents.remove(choice)
 
     def extra_weapon_dmg(self):
         print("\tTalent +1 Melee and Ranged Attacks Being Applied.")
@@ -201,6 +201,8 @@ class Priest(Character):
     def __init__(self):
         self.hero_class = "Priest"
         self.spells = {}
+        self.talents = [self.advantage_on_spell, self.attack_bonus, self.cast_bonus, self.str_wis_boost,
+                        self.stat_distribute]
         # TODO: Priest must choose one god.
         super().__init__()
         self.priest_specs()
@@ -209,6 +211,7 @@ class Priest(Character):
         self.set_armor()
         self.set_spells()
         self.check_religion()
+        self.talent_roll()
 
     def __repr__(self):
         return "This is the Priest Class Object."
@@ -276,20 +279,63 @@ class Priest(Character):
         print(f"\tAdding {deity} Symbol to Gear.")
         self.gear.update({deity + "symbol": [{"Quantity": 1}, {"Gear Slot": 0}]})
 
-    def roll_priest_talents(self):
-        pass
+    def talent_roll(self):
+        print("Rolling 2d6 for Talent.")
+        roll = self.roll_dice(6, 2)
+        total = sum(roll)
+        print(f"\tRoll Result: {roll} = {total}")
+        self.choose_talent(roll)
+
+    def choose_talent(self, roll):
+        print(f"\tChoosing Talent Based on {roll} roll.")
+        choice = random.choice(self.talents)
+        choice()
+        self.talents.remove(choice)
 
     def advantage_on_spell(self):
-        pass
+        spell_key = list(self.spells)
+        choice = random.choice(spell_key)
+        print(f"\tTalent: Advantage on casting spell {choice}.")
+        self.spells[choice].append('Priest Talent: Advantage')
+        print("\tUpdating Spell Book.")
 
     def attack_bonus(self):
-        pass
+        print(f"\tTalent: +1 Attack to {self.weapon}")
+        self.weapon_notes[self.weapon].append("Priest Talent: +1 to attack.")
+        print(f"\tAdding {self.weapon} boost to weapon notes.")
 
     def cast_bonus(self):
-        pass
+        print(f"\tTalent: +1 to spell-casting checks.")
+        self.set_notes({'Priest Talent': '+1 to spell-casting checks'})
 
     def str_wis_boost(self):
-        pass
+        print("\tTalent Strength or Wisdom Boost Being Applied")
+        print("\tRandomly Choosing Stat Boost.")
+        random_stat = ["Strength", "Wisdom"]
+        ran_choice = random.randint(0, 1)
+        print(f"\t{random_stat[ran_choice]} Chosen.")
+        print(f"\tAdjusting {random_stat[ran_choice]} by + 2.")
+        print("\tChecking if Modifier Needs Adjusting.")
+        choice = None
+        match ran_choice:
+            case 0:
+                choice = "Strength"
+                self.set_str(2)
+                print(f"\tStrength now = {self.str}")
+                mod = self.modifier_check([self.str], ["Str"])
+                if mod[0] > self.str_mod:
+                    print("\tAdjusting Strength Modifier.")
+                    self.set_str_mod(mod[0])
+            case 1:
+                choice = "Wisdom"
+                self.set_wis(2)
+                print(f"\tWisdom now = {self.wis}")
+                mod = self.modifier_check([self.wis], ["Wis"])
+                if mod[0] > self.dex_mod:
+                    print("\tAdjusting Wisdom Modifier.")
+                    self.set_wis_mod(mod[0])
+
+        self.set_notes({"Fighter Talent": f"+2 Added to {choice} and Modifier Adjusted."})
 
 
 class Thief(Character):
@@ -315,7 +361,7 @@ def random_class():
     print(f"Rolling for Random Class = {num}")
     print("Generating Random Class.")
     new_hero = None
-    num = 1  # REMOVE THIS AS YOU DEVELOP
+    num = 0  # REMOVE THIS AS YOU DEVELOP
 
     match num:
         case 0:
