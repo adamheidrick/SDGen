@@ -540,14 +540,12 @@ class Wizard(Character):
 
     def set_spell_casting(self):
         print("Wizard is Learning Three Spells.")
-
         spells = [item for item in Wizard_Spells.keys()]
         choices = random.sample(set(spells), 3)
         for spell in choices:
             self.spells.update({spell: Wizard_Spells[spell]})
             print(f"\tWizard learned {spell}")
             print(f"\t\tAdding {spell} to Notes")
-            del Wizard_Spells[spell]
 
         self.set_notes({"Spellcasting": "Each time you gain a level, you choose new wizard spells to learn "
                                         "according to the Wizard Spells Known table."})
@@ -574,8 +572,6 @@ def random_class():
     print(f"Rolling for Random Class = {num}")
     print("Generating Random Class.")
     new_hero = None
-    num = 3  # REMOVE THIS AS YOU DEVELOP
-
     match num:
         case 0:
             print("\tFighter Class Chosen")

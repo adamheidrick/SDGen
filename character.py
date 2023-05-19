@@ -12,6 +12,7 @@ class Character:
         self.weapon = ""
         self.ancestry = ""
         self.background = ""
+        self.languages = []
         self.deity = None
         self.alignment = {}
         self.hp = 0
