@@ -496,10 +496,27 @@ class Wizard(Character):
         return "This is the Wizard Class Object."
 
     def wizard_specs(self):
-        pass
+        print("Generating Thief Class Attributes.")
+        self.wizard_hp()
+        self.wizard_ac()
+
+    def wizard_hp(self):
+        print("Rolling for Priest HP 1d4.")
+        result = self.roll_dice(4, 1)
+        total = sum(result)
+        print(f"\tResult of Roll: {result} for a Total of {total}.")
+        self.set_hp(total)
+
+    def wizard_ac(self):
+        ac = 10 + self.get_dex_mod()
+        print(f"\tSetting AC 10 + DEX Modifier: {self.get_dex_mod()} = {ac}.")
+        self.set_ac(ac)
 
     def set_title(self):
-        pass
+        title = Titles[self.hero_class][list(self.alignment)[0]]
+        print("Generating Title.")
+        print(f"\t{title}")
+        self.title = title
 
     def random_weapon(self):
         print("Choosing Random Weapon.")
@@ -511,16 +528,20 @@ class Wizard(Character):
         self.set_weapon_notes(note)
 
     def set_armor(self):
-        pass
-
-    def set_additional_language(self):
-        pass
+        print('Setting Armor.')
+        print('\tWizards Cannot Wear Armor.')
+        self.armor = None
 
     def set_learn_spells(self):
-        pass
+        print("Adding Learning Spells Wizard Attribute.")
+        self.set_notes({'Learning Spells': "You can permanently learn a wizard spell from a spell scroll"
+                                           "by studying  it fro a day and succeeding on a DC 15 Intelligence Check."
+                                           "Whether you succeed or fail, you expend the spell scroll. Spells you learn"
+                                           "in this way don't count toward your known spells."})
 
     def set_spell_casting(self):
-        pass
+        print("Wizard is Learning Three Spells.")
+
 
     def talent_roll(self):
         pass

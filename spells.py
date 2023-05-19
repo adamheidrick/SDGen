@@ -28,3 +28,62 @@ Priest_Spells = {"Light": ["Duration: 1 Hour Real Time",
                                  "CHA check vs. your spellcasting check. If a creature fails by 10+ points and is "
                                  "equal to or less than your level, it is destroyed. Otherwise, on a fail, it flees"
                                  "from you for 5 rounds."]}
+
+Wizard_Spells = {
+    "Alarm": ["Duration: 1 Day",
+              "Range: Close",
+              "Details: You touch one object, such as a door threshold, setting a magical alarm on it. "
+              "If any creature you do not designate while casting the spell touches or crosses past the "
+              "object, a magical bell sounds in your head."],
+    "Burning Hands": ["Duration: Instant",
+                      "Range: Close",
+                      "Details: You spread your fingers with thumbs touching, unleashing a circle of flame that "
+                      "roars out to a close area around where you stand. Creatures within the area of effect "
+                      "take 1d6 damage, and flammable objects catch fire."],
+    "Charm Person": ["Duration: 1d8 days",
+                     "Range: Near",
+                     "Details: You magically beguile one humanoid of level 2 or less within near range, who views you "
+                     "as a close friend for the duration. The spell ends if you or your allies do anything the target "
+                     "notices to hurt it. The target knows you magically enchanted it after the spell end"],
+    "Detect Magic": ["Duration: Focus",
+                     "Range: Near",
+                     "Details: You can sense the presence of magic within near range for the spell's duration. "
+                     "If you focus for two rounds, you discern its general properties. Full barriers "
+                     "block this spell."],
+    "Feather Fall": ["Duration: Instant",
+                     "Range: Self",
+                     "Details: You may make an attempt to cast this spell when you fall. Your rate of descent slows so "
+                     "that you land safely on your feet."],
+    "Floating Disc": ["Duration:",
+                      "Range:",
+                      "Details: "],
+    "Hold Portal": ["Duration: 10 rounds",
+                    "Range: Near",
+                    "Details: You create a floating, circular disk of force with a concave center. It can carry up to "
+                    "20 gear slots. It hovers at waist level and automatically stays within near of you. It can’t "
+                    "cross over dropoffs or pits taller than a human."],
+    "Light": ["Duration: 1 hour real time",
+              "Range: Close",
+              "Details: One object you touch glows with bright, heatless light, illuminating out to a near distance "
+              "for 1 hour of real time."],
+    "Mage Armor": ["Duration: 10 rounds",
+                   "Range: Self",
+                   "Details: An invisible layer of magical force protects your vitals. Your armor class becomes 14 "
+                   "(18 on a critical spellcasting check) for the spell’s duration."],
+    "Magic Missile": ["Duration: Instant",
+                      "Range: Far",
+                      "Details: You have advantage on your check to cast this spell. A glowing bolt of force streaks "
+                      "from your open hand, dealing 1d4 damage to one target."],
+    "Protection from Evil": ["Duration: Focus",
+                             "Range: Close",
+                             "Details: For the spell’s duration, chaotic beings have disadvantage on attack rolls "
+                             "and hostile spellcasting checks against the target. These beings also can’t possess, "
+                             "compel, or beguile it. When cast on an alreadypossessed target, the possessing entity "
+                             "makes a CHA check vs. the last spellcasting check. On a failure, the "
+                             "entity is expelled."],
+    "Sleep": ["Duration: Instant",
+              "Range: Near",
+              "Details: You weave a lulling spell that fills a near-sized cube extending from you. Choose a number of "
+              "living creatures in the area up to to your level. Those creatures fall into a deep sleep if they are "
+              "LV 2 or less. Vigorous shaking or being injured wakes them."],
+}
