@@ -479,10 +479,64 @@ class Thief(Character):
 class Wizard(Character):
     def __init__(self):
         self.hero_class = "Wizard"
+        self.spells = {}
+        self.talents = [self.magic_item, self.spell_check_bonus, self.spell_adv,
+                        self.add_spell, self.stat_distribute]
         super().__init__()
+        self.wizard_specs()
+        self.set_title()
+        self.random_weapon()
+        self.set_armor()
+        self.set_additional_language()
+        self.set_learn_spells()
+        self.set_spell_casting()
+        self.talent_roll()
 
     def __repr__(self):
         return "This is the Wizard Class Object."
+
+    def wizard_specs(self):
+        pass
+
+    def set_title(self):
+        pass
+
+    def random_weapon(self):
+        print("Choosing Random Weapon.")
+        thief_weapons = ["Dagger", "Staff"]
+        random_weapon = random.choice(thief_weapons)
+        print(f"\t{random_weapon} chosen.")
+        self.weapon = random_weapon
+        note = {random_weapon: Weapons[random_weapon]}
+        self.set_weapon_notes(note)
+
+    def set_armor(self):
+        pass
+
+    def set_additional_language(self):
+        pass
+
+    def set_learn_spells(self):
+        pass
+
+    def set_spell_casting(self):
+        pass
+
+    def talent_roll(self):
+        pass
+
+    def magic_item(self):
+        pass
+
+    def spell_check_bonus(self):
+        # +2 to intelligence stat or +1 to wizard cast check
+        pass
+
+    def spell_adv(self):
+        pass
+
+    def add_spell(self):
+        pass
 
 
 def random_class():
@@ -490,7 +544,7 @@ def random_class():
     print(f"Rolling for Random Class = {num}")
     print("Generating Random Class.")
     new_hero = None
-    num = 2  # REMOVE THIS AS YOU DEVELOP
+    num = 3  # REMOVE THIS AS YOU DEVELOP
 
     match num:
         case 0:
