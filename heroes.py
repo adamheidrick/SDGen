@@ -572,6 +572,7 @@ def random_class():
     print(f"Rolling for Random Class = {num}")
     print("Generating Random Class.")
     new_hero = None
+    num = 3
     match num:
         case 0:
             print("\tFighter Class Chosen")

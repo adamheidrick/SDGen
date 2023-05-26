@@ -77,26 +77,29 @@ def set_ancestry_name(hero, ancestry):
 
 def set_ancestry_details(hero, ancestry):
     functions = [dwarf, goblin, elf, half_orc, halfling, human]
-    available_priest_languages = [x for x in PRIEST_BONUS if x not in hero.languages]
-    available_wizard_languages = [x for x in COMMON_LANGUAGES if x not in hero.languages]
 
     for index, function in enumerate(functions):
         if ancestry == ANCESTRY[index]:
             function(hero)
+    check_class(hero)
 
-    check_priest(available_priest_languages, hero)
-    check_wizard(available_wizard_languages, hero)
+
+def check_class(hero):
+    if hero.hero_class == "Priest":
+        available_priest_languages = [x for x in PRIEST_BONUS if x not in hero.languages]
+        check_priest(available_priest_languages, hero)
+    if hero.hero_class == "Wizard":
+        available_wizard_languages = [x for x in COMMON_LANGUAGES if x not in hero.languages]
+        check_wizard(available_wizard_languages, hero)
 
 
 def check_wizard(available_languages, hero):
-    if hero.hero_class == "Wizard":
-        print("Wizard is Learning Additional Languages.")
-        add_language = random.sample(available_languages, 2)
-        rare_language = random.sample(RARE_LANGUAGES, 2)
-        print_languages(add_language, rare_language)
-        add_language_notes(add_language, hero, rare_language)
-        print(hero.notes['Languages'])
-        available_languages = []
+    print("Wizard is Learning Additional Languages.")
+    add_language = random.sample(available_languages, 2)
+    rare_language = random.sample(RARE_LANGUAGES, 2)
+    print_languages(add_language, rare_language)
+    add_language_notes(add_language, hero, rare_language)
+    print(hero.notes['Languages'])
 
 
 def add_language_notes(add_language, hero, rare_language):
@@ -114,9 +117,8 @@ def print_languages(add_language, rare_language):
 
 
 def check_priest(available_languages, hero):
-    if hero.hero_class == "Priest":
-        print("Priest is Learning an Additional Language.")
-        add_language = random.choice(available_languages)
-        print(f"\t{add_language} language added to notes.")
-        hero.notes['Languages'] += f" ( Priest Bonus: {add_language})"
+    print("Priest is Learning an Additional Language.")
+    add_language = random.choice(available_languages)
+    print(f"\t{add_language} language added to notes.")
+    hero.notes['Languages'] += f" ( Priest Bonus: {add_language})"
 
