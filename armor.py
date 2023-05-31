@@ -1,5 +1,6 @@
 import random
 from character import Character
+from personality import *
 
 Armor = {"Leather": {"type": "leather", "gear_slot": 1, "AC": 11,
                      "Properties": "Just a bit of leather."},
@@ -48,16 +49,21 @@ magical_armor_curse = ["You take 2d10 damage if you remove this armor.",
                        "You take double damage from silvered weapons."]
 
 
-def magical_armor(qualities, personality, name):
+def magical_armor(qualities, personality, name, item_name):
     armor = {}
     bonus = calculate_bonus()
-    armor_type = random.choice(list(Armor))
-
+    armor_type = check_armor_type(item_name)
     update_armor(armor, armor_type, bonus, name)
-    update_armor_qualities(armor, qualities)
+    update_armor_qualities(armor, qualities, armor_type)
     update_armor_personalities(armor, personality)
-
     return armor
+
+
+def check_armor_type(item_name):
+    if item_name == "Shield":
+        return "Shield"
+    armor_options = [armor for armor in list(Armor) if armor != 'Shield']
+    return random.choice(armor_options)
 
 
 def update_armor(armor, armor_type, bonus, name):
@@ -66,14 +72,15 @@ def update_armor(armor, armor_type, bonus, name):
     armor[armor_type]["AC"] = bonus
 
 
-def update_armor_qualities(armor, qualities):
-    quality = choosing_qualities(qualities, armor)
+def update_armor_qualities(armor, qualities, armor_type):
+    quality = choosing_qualities(qualities, armor, armor_type)
     armor.update({'Armor Feature': random.choice(magical_armor_description)})
     armor.update({'Qualities': quality})
 
 
 def update_armor_personalities(armor, personality):
     personality = choosing_personalities(personality)
+    armor.update({'Armor Personality': personality})
 
 
 def calculate_bonus():
@@ -90,14 +97,14 @@ def calculate_bonus():
     return bonus
 
 
-def choosing_qualities(qualities, armor):
+def choosing_qualities(qualities, armor, armor_type):
     quality_1, quality_2 = qualities
     curse = random.choice(magical_armor_curse)
     benefit = random.choice(magical_armor_benefits)
 
     if check_gear_slot_curse(curse):
-        armor['gear_slot'] = 5
-        armor['Properties'] += ' Armor is Extremely Loud and Clunky (Cursed).'
+        armor[armor_type]['gear_slot'] = 5
+        armor[armor_type]['Properties'] += ' Armor is Extremely Loud and Clunky (Cursed).'
 
     if quality_1 is None and quality_2 == "curse":
         return curse
@@ -119,8 +126,8 @@ def check_gear_slot_curse(curse):
 
 def choosing_personalities(personality):
     personality_1, personality_2 = personality
-    virtue = 'Virtue'
-    flaw = 'Flaw'
+    virtue = random.choice(item_virtue)
+    flaw = random.choice(item_flaw)
 
     if personality_1 is None and personality_2 == "flaw":
         return flaw

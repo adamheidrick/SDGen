@@ -25,6 +25,6 @@ def generate_name():
     item_name = random.choice(weapon_type_names[item_type])
     suffix = random.choice(item_description)
     magical_item_name = prefix + ' ' + item_name + ' ' + suffix
-    return magical_item_name, item_type
+    return magical_item_name, item_type, item_name
 
-
+#TODO: How to manage if magic item is a shield.

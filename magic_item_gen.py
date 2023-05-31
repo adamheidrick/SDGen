@@ -13,11 +13,11 @@ Personality = [(None, Flaw), (None, None), (Virtue, Flaw), (Virtue, None)]
 
 
 def generate_magical_item():
-    name, item_type = generate_name()
+    name, item_type, item_name = generate_name()
     bonus = sum(Character.roll_dice(6, 2))
     quality = calculate_quality_roll(bonus)
     personality = calculate_personality_roll(bonus)
-    item = craft_item(item_type, quality, personality, name)
+    item = craft_item(item_type, quality, personality, name, item_name)
     print(item)
 
 
@@ -46,11 +46,12 @@ def calculate_personality_roll(bonus):
     return Personality[bonus]
 
 
-def craft_item(item_type, quality, personality, name):
+def craft_item(item_type, quality, personality, name, item_name):
+    item_type = 'Armor'
     match item_type:
         case 'Armor':
             print("Armor")
-            return magical_armor(quality, personality, name)
+            return magical_armor(quality, personality, name, item_name)
         case 'Potion':
             print("Potion")
             return 'Potion'
