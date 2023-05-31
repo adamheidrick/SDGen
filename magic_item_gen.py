@@ -47,7 +47,7 @@ def calculate_personality_roll(bonus):
 
 
 def craft_item(item_type, quality, personality, name, item_name):
-    item_type = 'Armor'
+    item_type = 'Potion'
     match item_type:
         case 'Armor':
             print("Armor")
