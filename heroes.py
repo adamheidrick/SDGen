@@ -565,6 +565,7 @@ class Wizard(Character):
 
     def magic_item(self):
         print("Crafting Magic Item")
+        # TODO Generate Magical Item
         pass
 
     def spell_check_bonus(self):

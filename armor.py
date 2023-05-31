@@ -46,16 +46,29 @@ magical_armor_curse = ["You take 2d10 damage if you remove this armor.",
                        "You have disadvantage on Dexterity Checks.",
                        "There's a secret 1 in 6 chance each NPC ally will betray you.",
                        "You take double damage from silvered weapons."]
-# TODO: If armor is cursed need to adjust gear slots.
 
 
-def magical_armor():
+def magical_armor(qualities, personality, name):
     armor = {}
     bonus = calculate_bonus()
     armor_type = random.choice(list(Armor))
+
+    update_armor(armor, armor_type, bonus)
+    update_armor_qualities(armor, name, qualities)
+
+    return armor
+
+
+def update_armor_qualities(armor, name, qualities):
+    quality = choosing_qualities(qualities, armor)
+    armor.update({'Armor Feature': random.choice(magical_armor_description)})
+    armor.update({'Qualities': quality})
+    armor.update({'Magical Item Name': name})
+
+
+def update_armor(armor, armor_type, bonus):
     armor.update({armor_type: Armor[armor_type]})
-    armor[armor_type]['AC'] = bonus
-    print(armor)
+    armor[armor_type]["AC"] = bonus
 
 
 def calculate_bonus():
@@ -72,4 +85,42 @@ def calculate_bonus():
     return bonus
 
 
-magical_armor()
+def calculate_quality_roll():
+    bonus = sum(Character.roll_dice(6, 2))
+    if bonus <= 3:
+        bonus = 0
+    elif bonus <= 7:
+        bonus = 1
+    elif bonus <= 11:
+        bonus = 2
+    else:
+        bonus = 3
+
+    return bonus
+
+
+def choosing_qualities(qualities, armor):
+    quality_1, quality_2 = qualities
+    curse = random.choice(magical_armor_curse)
+    benefit = random.choice(magical_armor_benefits)
+
+    if check_gear_slot_curse(curse):
+        armor['gear_slot'] = 5
+        armor['Properties'] += ' Armor is Extremely Loud and Clunky (Cursed).'
+
+    if quality_1 is None and quality_2 == "curse":
+        return curse
+
+    if quality_1 == "benefit" and quality_2 == 'curse':
+        qualities = [benefit, curse]
+        return qualities
+
+    if quality_1 == "benefit" and quality_2 is None:
+        return benefit
+
+    return random.sample(magical_armor_benefits, 2)
+
+
+def check_gear_slot_curse(curse):
+    if curse == "Armor uses 5 gear slots and is extremely loud and clunky.":
+        return True
