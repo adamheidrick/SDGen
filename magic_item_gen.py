@@ -1,6 +1,7 @@
 import random
 from magic_item_names import generate_name
-from armor import magical_armor, calculate_quality_roll
+from armor import magical_armor
+from character import Character
 
 Curse = "curse"
 Benefit = "benefit"
@@ -10,20 +11,61 @@ Virtue = "virtue"
 Qualities = [(None, Curse), (Benefit, Curse), (Benefit, None), (Benefit, Benefit)]
 Personality = [(None, Flaw), (None, None), (Virtue, Flaw), (Virtue, None)]
 
-name, item_type = generate_name()
-quality = Qualities[calculate_quality_roll()]
 
-match item_type:
-    case 'Armor':
-        print("Armor")
-        armor = magical_armor(quality, random.choice(Personality), name)
-    case 'Potion':
-        print("Potion")
-    case 'Scroll':
-        print("Scroll")
-    case "Utility":
-        print("Utility")
-    case "Wand":
-        print("Wand")
-    case "Weapon":
-        print("Weapon")
+def generate_magical_item():
+    name, item_type = generate_name()
+    bonus = sum(Character.roll_dice(6, 2))
+    quality = calculate_quality_roll(bonus)
+    personality = calculate_personality_roll(bonus)
+    item = craft_item(item_type, quality, personality, name)
+    print(item)
+
+
+def calculate_quality_roll(bonus):
+    if bonus <= 3:
+        bonus = 0
+    elif bonus <= 7:
+        bonus = 1
+    elif bonus <= 11:
+        bonus = 2
+    else:
+        bonus = 3
+    return Qualities[bonus]
+
+
+def calculate_personality_roll(bonus):
+    bonus = sum(Character.roll_dice(6, 2))
+    if bonus <= 3:
+        bonus = 0
+    elif bonus <= 9:
+        bonus = 1
+    elif bonus <= 11:
+        bonus = 2
+    else:
+        bonus = 3
+    return Personality[bonus]
+
+
+def craft_item(item_type, quality, personality, name):
+    match item_type:
+        case 'Armor':
+            print("Armor")
+            return magical_armor(quality, personality, name)
+        case 'Potion':
+            print("Potion")
+            return 'Potion'
+        case 'Scroll':
+            print("Scroll")
+            return 'Scroll'
+        case "Utility":
+            print("Utility")
+            return 'Utility'
+        case "Wand":
+            print("Wand")
+            return 'Wand'
+        case "Weapon":
+            print("Weapon")
+            return 'Weapon'
+
+
+generate_magical_item()

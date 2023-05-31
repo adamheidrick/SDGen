@@ -53,22 +53,27 @@ def magical_armor(qualities, personality, name):
     bonus = calculate_bonus()
     armor_type = random.choice(list(Armor))
 
-    update_armor(armor, armor_type, bonus)
-    update_armor_qualities(armor, name, qualities)
+    update_armor(armor, armor_type, bonus, name)
+    update_armor_qualities(armor, qualities)
+    update_armor_personalities(armor, personality)
 
     return armor
 
 
-def update_armor_qualities(armor, name, qualities):
+def update_armor(armor, armor_type, bonus, name):
+    armor.update({'Magical Item Name': name})
+    armor.update({armor_type: Armor[armor_type]})
+    armor[armor_type]["AC"] = bonus
+
+
+def update_armor_qualities(armor, qualities):
     quality = choosing_qualities(qualities, armor)
     armor.update({'Armor Feature': random.choice(magical_armor_description)})
     armor.update({'Qualities': quality})
-    armor.update({'Magical Item Name': name})
 
 
-def update_armor(armor, armor_type, bonus):
-    armor.update({armor_type: Armor[armor_type]})
-    armor[armor_type]["AC"] = bonus
+def update_armor_personalities(armor, personality):
+    personality = choosing_personalities(personality)
 
 
 def calculate_bonus():
@@ -76,20 +81,6 @@ def calculate_bonus():
     if bonus <= 5:
         bonus = 0
     elif bonus <= 8:
-        bonus = 1
-    elif bonus <= 11:
-        bonus = 2
-    else:
-        bonus = 3
-
-    return bonus
-
-
-def calculate_quality_roll():
-    bonus = sum(Character.roll_dice(6, 2))
-    if bonus <= 3:
-        bonus = 0
-    elif bonus <= 7:
         bonus = 1
     elif bonus <= 11:
         bonus = 2
@@ -124,3 +115,20 @@ def choosing_qualities(qualities, armor):
 def check_gear_slot_curse(curse):
     if curse == "Armor uses 5 gear slots and is extremely loud and clunky.":
         return True
+
+
+def choosing_personalities(personality):
+    personality_1, personality_2 = personality
+    virtue = 'Virtue'
+    flaw = 'Flaw'
+
+    if personality_1 is None and personality_2 == "flaw":
+        return flaw
+
+    if personality_1 is None and personality_2 is None:
+        return 'No Personality'
+
+    if personality_1 == "virtue" and personality_2 == "flaw":
+        return virtue, flaw
+
+    return virtue
