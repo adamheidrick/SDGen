@@ -360,7 +360,7 @@ class Thief(Character):
         self.thief_ac()
 
     def thief_hp(self):
-        print("Rolling for Priest HP 1d4.")
+        print("Rolling for Thief HP 1d4.")
         result = self.roll_dice(4, 1)
         total = sum(result)
         print(f"\tResult of Roll: {result} for a Total of {total}.")
@@ -495,12 +495,12 @@ class Wizard(Character):
         return "This is the Wizard Class Object."
 
     def wizard_specs(self):
-        print("Generating Thief Class Attributes.")
+        print("Generating Wizard Class Attributes.")
         self.wizard_hp()
         self.wizard_ac()
 
     def wizard_hp(self):
-        print("Rolling for Priest HP 1d4.")
+        print("Rolling for Wizard HP 1d4.")
         result = self.roll_dice(4, 1)
         total = sum(result)
         print(f"\tResult of Roll: {result} for a Total of {total}.")
@@ -551,20 +551,63 @@ class Wizard(Character):
                                         "according to the Wizard Spells Known table."})
 
     def talent_roll(self):
-        pass
+        print("Rolling 2d6 for Talent.")
+        roll = self.roll_dice(6, 2)
+        total = sum(roll)
+        print(f"\tRoll Result: {roll} = {total}")
+        self.choose_talent(roll)
+
+    def choose_talent(self, roll):
+        print(f"\tChoosing Talent Based on {roll} roll.")
+        choice = random.choice(self.talents)
+        choice()
+        self.talents.remove(choice)
 
     def magic_item(self):
+        print("Crafting Magic Item")
         pass
 
     def spell_check_bonus(self):
-        # +2 to intelligence stat or +1 to wizard cast check
-        pass
+        print("\tApplying Wizard Talent Intelligence or Spell-casting Check Bonus")
+        print("\tRandomly Choosing Intelligence Stat Boost or Spell-casting Check Boost.")
+        random_choice = random.choice(['I', 'C'])
+        if random_choice == 'C':
+            print("\tWizard Spell-casting Check Boost Chosen.")
+            note = {'Wizard Talent': '+1 on Spell-casting Check.'}
+            self.set_notes(note)
+            return
+
+        self.apply_int_boost()
+
+    def apply_int_boost(self):
+        print("\tIntelligence Stat Boost Chosen.")
+        print("\tApplying +1 to Intelligence.")
+        print("\tChecking for Modifier Adjustment.")
+        self.set_int(1)
+        print(f"\tIntelligence now = {self.int}")
+        mod = self.modifier_check([self.int], ["Int"])
+        if mod[0] > self.int_mod:
+            print("\tAdjusting Intelligence Modifier.")
+            self.set_int_mod(mod[0])
 
     def spell_adv(self):
-        pass
+        print("Applying Wizard Talent Spellcast Advantage.")
+        print("\tRandomly Choosing Spell.")
+        random_spell = random.choice(list(self.spells))
+        print(f"\t{random_spell} Chosen to Give Cast Check Boost")
+        print(f"\tApplying +1 to Spell-Casting Check to Spell Notes.")
+        self.spells[random_spell].append('Wizard Talent: +1 on Spell-Casting Checks')
 
     def add_spell(self):
-        pass
+        print("\tApplying Wizard Talent Learning Additional Spell.")
+        print("\tRandomly Choosing Available Spell to Learn.")
+        wizard_spells = set(list(Wizard_Spells))
+        known_spells = set(list(self.spells))
+        symmetric_difference = list(known_spells.symmetric_difference(wizard_spells))
+        random_choice = random.choice(symmetric_difference)
+        print(f"\tWizard Learning {random_choice}.")
+        spell_notes = Wizard_Spells[random_choice]
+        self.spells.update({random_choice: spell_notes})
 
 
 def random_class():
@@ -572,7 +615,7 @@ def random_class():
     print(f"Rolling for Random Class = {num}")
     print("Generating Random Class.")
     new_hero = None
-    num = 3
+
     match num:
         case 0:
             print("\tFighter Class Chosen")

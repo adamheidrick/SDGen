@@ -9,6 +9,7 @@ Armor = {"Leather": {"type": "leather", "gear_slot": 1, "AC": 11,
          "Shield": {"type": "shield", "gear_slot": 1, "AC": 2,
                     "Properties": "Occupies one Hand."},
          "Mithral CM": {"type": "mithral chainmail", "gear_slot": -1, "AC": 13,
-                        "Properties":"No Penalty on Stealth and Swim."}}
+                        "Properties": "No Penalty on Stealth and Swim."},
+         "Mithral PM": {"type": "mithral plate mail", "gear_slot": -1, "AC": 15,
+                        "Properties": "No Penalty on Stealth and Swim."}}
 
-# Todo: Mithral Plate Mail and make sure it is implemented in hero.py

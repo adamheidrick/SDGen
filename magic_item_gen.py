@@ -1,15 +1,11 @@
 
-class MagicItem:
-    def __init__(self):
-        self.type = None
-        self.qualities = None
-        self.personality = None
+Curse = "curse"
+Benefit = "benefit"
+Flaw = "flaw"
+Virtue = "virtue"
 
-    def choose_type(self):
-        pass
+Type = ["Armor", "Potion", "Scroll", "Utility", "Want", "Weapon"]
+Qualities = [(None, Curse), (Benefit, Curse), (Benefit, None), (Benefit, Benefit)]
+Personality = [(None, Flaw), (None, None), (Virtue, Flaw), (Virtue, None)]
 
-    def choose_qualities(self):
-        pass
 
-    def choose_personality(self):
-        pass
