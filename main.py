@@ -3,6 +3,7 @@ from ancestry import set_ancestry
 
 
 def main():
+    # Testing Mac setup for the road.
     hero = random_class()
     set_ancestry(hero)
     hero.set_name(hero.ancestry)
