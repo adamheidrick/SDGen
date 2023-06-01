@@ -69,7 +69,7 @@ def check_armor_type(item_name):
 def update_armor(armor, armor_type, bonus, name):
     armor.update({'Magical Item Name': name})
     armor.update({armor_type: Armor[armor_type]})
-    armor[armor_type]["AC"] = bonus
+    armor[armor_type]["AC"] += bonus
 
 
 def update_armor_qualities(armor, qualities, armor_type):
@@ -107,16 +107,16 @@ def choosing_qualities(qualities, armor, armor_type):
         armor[armor_type]['Properties'] += ' Armor is Extremely Loud and Clunky (Cursed).'
 
     if quality_1 is None and quality_2 == "curse":
-        return curse
+        return 'Curse: ' + curse
 
     if quality_1 == "benefit" and quality_2 == 'curse':
-        qualities = [benefit, curse]
+        qualities = ['Benefit: ' + benefit, 'Curse: ' + curse]
         return qualities
 
     if quality_1 == "benefit" and quality_2 is None:
-        return benefit
+        return 'Benefit: ' + benefit
 
-    return random.sample(magical_armor_benefits, 2)
+    return "Benefits: " + str(random.sample(magical_armor_benefits, 2))
 
 
 def check_gear_slot_curse(curse):
