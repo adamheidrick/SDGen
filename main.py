@@ -11,6 +11,8 @@ def main():
         if key == "Backpack":
             continue
         print(f"\tPacking {key}, {value[0]}")
+    print("... Generating Name ... ")
+    print(f"From the depths emerges {hero.name}")
     print(hero.__dict__)
 
 

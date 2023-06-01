@@ -9,6 +9,7 @@ def dwarf(hero: object):
     hero.set_ancestry("Dwarf")
     hero.set_notes({"Dwarf": "Brave, stalwart fok as sturdy as the stone kingdoms they carve inside mountains."})
     hero.set_notes({"Languages": "You know the Common and Dwarvish Languages."})
+    hero.languages.append('Dwarvish')
     hero.set_notes({"Stout": "Start with +2 HP Roll hit points per level with advantage."})
     print("\tApplying Dwarf Stout Modifier +2 to HP.")
     hero.set_hp(2)
@@ -18,11 +19,12 @@ def goblin(hero: object):
     hero.set_ancestry("Goblin")
     hero.set_notes({"Goblin": "Green, clever beings who thrive in dark, cramped places. As fierce as they are tiny."})
     hero.set_notes({"Languages": "You know the Common and Goblin languages."})
+    hero.languages.append("Goblin")
     hero.set_notes({"Keen Senses": "You can't be surprised"})
 
 
 def elf(hero: object):
-    # TODO: Dont forge the Farsight or Condition below. +1 or Spellcasting checks.
+    # TODO: Dont forget the Farsight or Condition below. +1 or Spellcasting checks.
     hero.set_ancestry("Elf")
     hero.set_notes({"Elf: ": "Ethereal, graceful people whoever knowledge and beauty. Elves see far "
                                  "and live long."})
@@ -48,6 +50,7 @@ def halfling(hero: object):
     hero.set_notes({"Halfling: ": "Small, cheerful country folk with mischievous streaks. They enjoy "
                                   "life’s simple pleasures.."})
     hero.set_notes({"Languages": "You know the Common language."})
+    hero.languages.append('Common')
     hero.set_notes({"Stealthy: ": "Once per day, you can become invisible for 3 rounds."})
 
 
