@@ -10,10 +10,11 @@ def choosing_qualities(qualities, curses, benefits):
         return 'Curse: ' + curse
 
     if quality_1 == "benefit" and quality_2 == 'curse':
-        qualities = ['Benefit: ' + benefit, 'Curse: ' + curse]
+        qualities = 'Benefit: ' + benefit + ' Curse: ' + curse
         return qualities
 
     if quality_1 == "benefit" and quality_2 is None:
         return 'Benefit: ' + benefit
 
     return "Benefits: " + str(random.sample(benefits, 2))
+

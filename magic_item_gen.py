@@ -2,6 +2,7 @@ import random
 from magic_item_names import generate_name
 from armor import magical_armor
 from potion_crafting import make_potion
+from weapons import magical_weapon
 from character import Character
 
 Curse = "curse"
@@ -19,7 +20,7 @@ def generate_magical_item():
     quality = calculate_quality_roll(bonus)
     personality = calculate_personality_roll(bonus)
     item = craft_item(item_type, quality, personality, name, item_name)
-    return item_type, item
+    return item
 
 
 def calculate_quality_roll(bonus):
@@ -50,11 +51,10 @@ def calculate_personality_roll(bonus):
 def craft_item(item_type, quality, personality, name, item_name):
     match item_type:
         case 'Armor':
-            print("Armor")
             return magical_armor(quality, personality, name, item_name)
         case 'Potion':
-            print("Potion")
-            return make_potion(quality)
+            potion_details = make_potion(quality, name)
+            return {"Magical Potion Item": potion_details}
         case 'Scroll':
             print("Scroll")
             return 'Scroll'
@@ -66,7 +66,7 @@ def craft_item(item_type, quality, personality, name, item_name):
             return 'Wand'
         case "Weapon":
             print("Weapon")
-            return 'Weapon'
+            return magical_weapon(quality, personality, name, item_name)
 
 
 print(generate_magical_item())

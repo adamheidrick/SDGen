@@ -123,20 +123,3 @@ def check_gear_slot_curse(curse):
     if curse == "Armor uses 5 gear slots and is extremely loud and clunky.":
         return True
 
-
-def choosing_personalities(personality):
-    personality_1, personality_2 = personality
-    virtue = random.choice(item_virtue)
-    flaw = random.choice(item_flaw)
-    personality = random.choice(personality_trait)
-
-    if personality_1 is None and personality_2 == "flaw":
-        return flaw, personality
-
-    if personality_1 is None and personality_2 is None:
-        return 'No Personality'
-
-    if personality_1 == "virtue" and personality_2 == "flaw":
-        return virtue, flaw, personality
-
-    return virtue

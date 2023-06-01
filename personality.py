@@ -59,3 +59,19 @@ personality_trait = ["Imperious", "Polite", "Puritanical", "Charming", "Anxious"
                      "Bossy", "Noble", "Greedy", "Protective", "Impulsive", "Brave", "Vicious", "Loyal"]
 
 
+def choosing_personalities(personality):
+    personality_1, personality_2 = personality
+    virtue = random.choice(item_virtue)
+    flaw = random.choice(item_flaw)
+    personality = random.choice(personality_trait)
+
+    if personality_1 is None and personality_2 == "flaw":
+        return flaw, personality
+
+    if personality_1 is None and personality_2 is None:
+        return 'Not Sentient'
+
+    if personality_1 == "virtue" and personality_2 == "flaw":
+        return virtue, flaw, personality
+
+    return virtue, 'Not Sentient'

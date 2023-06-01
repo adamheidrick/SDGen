@@ -37,13 +37,13 @@ potion_curse = ["DC 15 WIS check or attack nearest creature for 3 rounds.",
                 f"Your {random.choice(limbs)} are petrified for 5 rounds."]
 
 
-def make_potion(quality):
-    name = make_name()
+def make_potion(quality, name):
+    description = make_potion_description()
     qualities = choosing_qualities(quality, potion_curse, potion_benefit)
-    return name, qualities
+    return {'Name': name, 'Description': description, 'Qualities': qualities}
 
 
-def make_name():
+def make_potion_description():
     prefix = random.choice(feature_1)
     mid = random.choice(feature_2)
     suffix = random.choice(feature_3)

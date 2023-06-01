@@ -1,5 +1,5 @@
 import random
-from weapons import Weapons
+from weapons import Weapons, Arrows
 
 names = ["The Crimson", "The Ashen", "Ortival's", "The Doom", "The Twilight", "The Astral",
          "Krull's", "The Vicious", "Memmon's", "The Blessed", "The Infernal", "Madeera's",
@@ -10,7 +10,7 @@ weapon_type_names = {"Armor": ["Shield", "Armor"],
                      "Potion": ["Poultice", "Elixir"],
                      "Scroll": ["Rite", "Scroll", "Tome", ],
                      "Utility": ["Cape", "Skull", "Orb", "Eye"],
-                     "Weapon": list(Weapons),
+                     "Weapon": list(Weapons) + list(Arrows),
                      "Wand": ["Wand", "Rod"]}
 
 item_description = ["of Thundering Death", "of Ages", "of the Archmage", "of Destruction", "of Brak", "of Power",
@@ -27,4 +27,3 @@ def generate_name():
     magical_item_name = prefix + ' ' + item_name + ' ' + suffix
     return magical_item_name, item_type, item_name
 
-#TODO: How to manage if magic item is a shield.
