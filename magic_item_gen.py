@@ -3,6 +3,7 @@ from magic_item_names import generate_name
 from armor import magical_armor
 from potion_crafting import make_potion
 from weapons import magical_weapon
+from magic_ulitity import make_magic_utility
 from character import Character
 
 Curse = "curse"
@@ -60,7 +61,7 @@ def craft_item(item_type, quality, personality, name, item_name):
             return 'Scroll'
         case "Utility":
             print("Utility")
-            return 'Utility'
+            return make_magic_utility(quality, personality, name, item_name)
         case "Wand":
             print("Wand")
             return 'Wand'
