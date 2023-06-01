@@ -66,12 +66,12 @@ def choosing_personalities(personality):
     personality = random.choice(personality_trait)
 
     if personality_1 is None and personality_2 == "flaw":
-        return flaw, personality
+        return "Flaw: " + flaw, "Personality:" + personality
 
     if personality_1 is None and personality_2 is None:
         return 'Not Sentient'
 
     if personality_1 == "virtue" and personality_2 == "flaw":
-        return virtue, flaw, personality
+        return "Virtue: " + virtue, "Flaw: " + flaw, "Personality: " + personality
 
-    return virtue, 'Not Sentient'
+    return "Virtue: " + virtue, 'Not Sentient'

@@ -60,7 +60,7 @@ Weapon_benefits = ["Cut or smash through any material.",
                    f"Double damage to {random.choice(foes)}.",
                    "Reroll natural 1s once each when attacking with this weapon."]
 
-Weapon_curses = [f"You can't see{random.choice(unseen_foes)}.",
+Weapon_curses = [f"You can't see {random.choice(unseen_foes)}.",
                  "You are compelled to swallow all gemstones at first sight.",
                  "Burn a straw doll daily or weapon temporarily loses magic.",
                  "Any light source you hold immediately extinguishes.",
@@ -82,7 +82,7 @@ def magical_weapon(qualities, personality, name, item_name):
     category, details = base_weapon(item_name)
     magic_weapon = {'Magical Weapon': name, 'Category': category, 'Details': details, "Bonus": '+ ' + str(bonus),
                     "Features": feature,"Qualities": qualities, "Personality": virtue}
-    print(magic_weapon)
+    return magic_weapon
 
 
 def base_weapon(item_name):
