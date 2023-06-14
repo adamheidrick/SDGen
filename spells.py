@@ -130,14 +130,46 @@ Tier_2_Spells = {
                      "Details: An object you touch that weighs no more than 5 pounds becomes fixed in its current "
                      "location. It can support up to 5,000 pounds of weight for the duration of the spell."],
 
-    "Hold Person": ["Duration: ", "Range: ", "Details: "],
-    "Invisibility": ["Duration: ", "Range: ", "Details: "],
-    "Knock": ["Duration: ", "Range: ", "Details: "],
-    "Levitate": ["Duration: ", "Range: ", "Details: "],
-    "Mirror Image": ["Duration: ", "Range: ", "Details: "],
-    "Misty Step": ["Duration: ", "Range: ", "Details: "],
-    "Silence": ["Duration: ", "Range: ", "Details: "],
-    "Web": ["Duration: ", "Range: ", "Details: "]
+    "Hold Person": ["Duration: Focus",
+                    "Range: Near",
+                    "Details: You magically paralyze one humanoid creature of LV 4 or less you can see within range."],
+
+    "Invisibility": ["Duration: 10 Rounds",
+                     "Range: Close",
+                     "Details: A creature you touch becomes invisible for the spell’s duration. The spell ends if "
+                     "the target attacks or casts a spell."],
+
+    "Knock": ["Duration: Instant",
+              "Range: Near",
+              "Details: A door, window, gate, chest, or portal you can see within range instantly opens, defeating all "
+              "mundane locks and barriers. This spell creates a loud knock audible to all within earshot."],
+
+    "Levitate": ["Duration: Focus",
+                 "Range: Self",
+                 "Details: You can float a near distance vertically per round on your turn. You can also push against "
+                 "solid objects to move horizontally."],
+
+    "Mirror Image": ["Duration: 5 Rounds",
+                     "Range: Self",
+                     "Details: You create a number of illusory duplicates of yourself equal to half your level "
+                     "rounded down (minimum 1). The duplicates surround you and mimic you. Each time a creature "
+                     "attacks you, the attack misses and causes one of the duplicates to evaporate. If all of the "
+                     "illusions have disappeared, the spell ends."],
+
+    "Misty Step": ["Duration: Instant",
+                   "Range: Self",
+                   "Details: In a puff of smoke, you teleport a near distance to an area you can see."],
+
+    "Silence": ["Duration: Instant",
+                "Range: Near",
+                "Details: You magically mute sound in a near cube within the spell’s range. Creatures inside the area "
+                "are deafened, and any sounds they create cannot be heard."],
+
+    "Web": ["Duration: 5 Rounds",
+            "Range: Near",
+            "Details: You create a near-sized cube of sticky, dense spider web within the spell’s range. A creature "
+            "stuck in the web can’t move and must succeed on a Strength check vs. your spellcasting check to "
+            "free itself."]
 }
 
 Tier_3_Spells = {
@@ -173,12 +205,43 @@ Tier_3_Spells = {
                      "pass through any gap that smoke could. You can sense the terrain and any movement around you "
                      "out to a near distance. You can't cast spells while in this form."],
 
-    "Illusion": ["Duration: ", "Range: ", "Details: "],
-    "Lightning Bolt": ["Duration: ", "Range: ", "Details: "],
-    "Magic Circle": ["Duration: ", "Range: ", "Details: "],
-    "Protection from Energy": ["Duration: ", "Range: ", "Details: "],
-    "Sending": ["Duration: ", "Range: ", "Details: "],
-    "Speak with Dead": ["Duration: ", "Range: ", "Details: "]
+    "Illusion": ["Duration: Focus",
+                 "Range: Far",
+                 "Details: You create a convincing visible and audible illusion that fills up to a near-sized cube "
+                 "in range. The illusion cannot cause harm, but creatures who believe the illusion is real react to it "
+                 "as though it were. A creature who inspects the illusion from afar must pass a Wisdom check vs. your "
+                 "last spellcasting check to perceive the false nature of the illusion. Touching the illusion also "
+                 "reveals its false nature."],
+
+    "Lightning Bolt": ["Duration: Instant ",
+                       "Range: Far",
+                       "Details: You shoot a blue-white ray of lightning from your hands, hitting all creatures in a "
+                       "straight line out to a far distance. Creatures struck by the lightning take 3d6 damage."],
+
+    "Magic Circle": ["Duration: Focus",
+                     "Range: Near",
+                     "Details: You conjure a circle of runes out to near-sized cube centered on yourself and name a "
+                     "type of creature (for example, demons). For the spell’s duration, creatures of the chosen type "
+                     "cannot attack or cast a hostile spell on anyone inside the circle. The chosen creatures also "
+                     "can’t possess, compel, or beguile anyone inside the circle."],
+
+    "Protection from Energy": ["Duration: Focus",
+                               "Range: Close",
+                               "Details: One creature you touch becomes impervious to the wild fury of the elements. "
+                               "Choose fire, cold, or electricity. For the spell's duration, the target is immune to "
+                               "harm from energy of the chosen type."],
+
+    "Sending": ["Duration: Instant",
+                "Range: Unlimited",
+                "Details: You send a brief, mental message to any creature with whom you are familiar who is on "
+                "the same plane."],
+
+    "Speak with Dead": ["Duration: Instant",
+                        "Range: Close",
+                        "Details: A dead body you touch answers your questions in a distant, wheezing voice. You can "
+                        "ask the dead body up to three yes or no questions (one at a time). The GM truthfully answers "
+                        "'yes' or 'no' to each. If you cast this spell more than once in 24 hours, treat a failed "
+                        "spellcasting check for it as a critical failure, instead."]
 }
 Tier_4_Spells = {
     "Arcane Eye": ["Duration: Focus",
@@ -215,12 +278,41 @@ Tier_4_Spells = {
                    "you cast this spell more than once in 24 hours, treat a failed spellcasting check for it as a "
                    "critical failure, instead."],
 
-    "Passwall": ["Duration: ", "Range: ", "Details: "],
-    "Polymorph": ["Duration: ", "Range: ", "Details: "],
-    "Resilient Sphere": ["Duration: ", "Range: ", "Details: "],
-    "Stoneskin": ["Duration: ", "Range: ", "Details: "],
-    "Telekinesis": ["Duration: ", "Range: ", "Details: "],
-    "Wall of Force": ["Duration: ", "Range: ", "Details: "]
+    "Passwall": ["Duration: 5 Rounds",
+                 "Range: Close",
+                 "Details: A tunnel of your height opens in a barrier you touch and lasts for the duration. The "
+                 "passage can be up to near distance in length and must be in a straight line."],
+
+    "Polymorph": ["Duration: 10 Rounds",
+                  "Range: Close",
+                  "Details: You transform a creature you touch into another natural creature you choose of equal or "
+                  "smaller size. Any gear the target carries melds into its new form. The target gains the creature's "
+                  "physical statistics, but it retains its non-physical statistics. If the target goes to 0 hit points,"
+                  " it reverts to its true form at half its prior hit points. You can target any willing creature with "
+                  "this spell, or an unwilling creature whose level is less than or equal to half your level rounded "
+                  "down (minimum1)."],
+
+    "Resilient Sphere": ["Duration: 5 Rounds",
+                         "Range: Close",
+                         "Details: You conjure a weightless, glassy sphere around you that extends out to close range. "
+                         "For the spell's duration, nothing can pass through or crush the sphere. You can roll the "
+                         "sphere a near distance on your turn."],
+
+    "Stoneskin": ["Duration: 10 Rounds",
+                  "Range: Self",
+                  "Details: Your skin becomes like granite. For the spell's duration, your armor class becomes 17 "
+                  "(20 on a critical spellcasting check)."],
+
+    "Telekinesis": ["Duration: Focus",
+                    "Range: Far",
+                    "Details: You lift a creature or object with your mind. Choose a target that weights 1,000 pounds "
+                    "or less. You can move it a near distance in any direction and hold it in place."],
+
+    "Wall of Force": ["Duration: 5 Rounds",
+                      "Range: Near",
+                      "Details: You lift your hands, conjuring a transparent wall of force. The thin wall must be "
+                      "contiguous and can cover a near-sized area in width and length. You choose its shape. Nothing "
+                      "on the same plane can physically pass through the wall."]
 }
 
 Tier_5_Spells = {
@@ -243,13 +335,62 @@ Tier_5_Spells = {
                      "creature of LV 5 or less instantly dies. If it is LV 6+, it takes 3d8 damage, instead. A "
                      "non-magical object up to the size of a large tree is destroyed."],
 
-    "Hold Monster": ["Duration: ", "Range: ", "Details: "],
-    "Plane Shift": ["Duration: ", "Range: ", "Details: "],
-    "Power Word Kill": ["Duration: ", "Range: ", "Details: "],
-    "Prismatic Orb": ["Duration: ", "Range: ", "Details: "],
-    "Scrying": ["Duration: ", "Range: ", "Details: "],
-    "Shapechange": ["Duration: ", "Range: ", "Details: "],
-    "Summon Extraplanar": ["Duration: ", "Range: ", "Details: "],
-    "Teleport": ["Duration: ", "Range: ", "Details: "],
-    "Wish": ["Duration: ", "Range: ", "Details: "]
+    "Hold Monster": ["Duration: Focus",
+                     "Range: Near",
+                     "Details: You paralyze one creature you can see within range. If the target is LV 9+, it may make "
+                     "a STR check vs. your last spellcasting check at the start of its turn to end the spell."],
+
+    "Plane Shift": ["Duration: Instant",
+                    "Range: Close",
+                    "Details: You fold space and time, transporting yourself and all willing creatures within close "
+                    "range to a location on another plane of your choice. Unless you have been to your intended "
+                    "location before, you appear in a random place on the destination plane."],
+
+    "Power Word Kill": ["Duration: Instant",
+                        "Range: Near",
+                        "Details: You utter the Word of Doom. One creature you target of LV 9 or less dies if it "
+                        "hears you. Treat a failed spellcasting check for this spell as a critical failure, and roll "
+                        "the mishap with disadvantage."],
+
+    "Prismatic Orb": ["Duration: Instant",
+                      "Range: Far",
+                      "Details: You send a strobing orb of energy streaking toward a target within range. Choose an "
+                      "energy type from fire, cold, or electricity. The orb deals 3d8 damage and delivers a concussive "
+                      "blast of the chosen energy type. If the energy type is anathema to the target's existence (for "
+                      "example, cold energy against a fire elemental), the orb deals double damage to it, instead."],
+
+    "Scrying": ["Duration: Focus",
+                "Range: Self",
+                "Details: You look into a crystal ball or reflecting pool, calling up images of a distant place. For "
+                "the spell's duration, you can see and hear a creature or location you choose that is on the same "
+                "plane. This spell is DC 18 to cast if you try to scry on a creature or location that is unfamiliar "
+                "to you. Each round, creatures you view may make a Wisdom check vs. your last spellcasting check. On "
+                "a success, they become aware of your magical observation."],
+
+    "Shapechange": ["Duration: Focus",
+                    "Range: Self",
+                    "Details: You transform yourself and any gear you carry into another natural creature you've "
+                    "seen of level 10 or less. You assume the creature's physical statistics, but you retain your "
+                    "non-physical statistics (such as INT, WIS, and CHA). If you go to 0 HP while under the effects "
+                    "of this spell, you revert to your true form at 1 HP."],
+
+    "Summon Extraplanar": ["Duration: Focus",
+                           "Range: Near",
+                           "Details: You reach into the outer planes, summoning forth a creature. You summon an "
+                           "elemental or outsider of LV 7 or less. The creature is under your control and acts on "
+                           "your turn. If you lose focus on this spell, you lose control of the creature and it "
+                           "becomes hostile toward you and your allies. You must pass a spellcasting check on your "
+                           "turn to return the creature to the outer planes."],
+
+    "Teleport": ["Duration: Instant",
+                 "Range: Close",
+                 "Details: You and any willing creatures you choose within close range teleport to a location you "
+                 "specify on your same plane. You can travel to a known teleportation sigil or to a location you've "
+                 "been before. Otherwise, you have a 50% chance of arriving off-target."],
+
+    "Wish": ["Duration: Instant",
+             "Range: Self",
+             "Details: This mighty spell alters reality. Make a single wish, stating it as exactly as possible. "
+             "Your wish occurs, as interpreted by the GM. Treat a failed spellcasting check for this spell as a "
+             "critical failure, and roll the mishap with disadvantage."]
 }
