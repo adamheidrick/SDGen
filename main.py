@@ -1,9 +1,14 @@
+import logging
+
+from hero_logger import start_logger
 from heroes import random_class
 from ancestry import set_ancestry
 
+logger = logging.getLogger(__name__)
+
 
 def main():
-    # Testing Mac setup for the road.
+    start_logger()
     hero = random_class()
     set_ancestry(hero)
     hero.set_name(hero.ancestry)

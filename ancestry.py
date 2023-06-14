@@ -10,6 +10,7 @@ def dwarf(hero: object):
     hero.set_notes({"Dwarf": "Brave, stalwart fok as sturdy as the stone kingdoms they carve inside mountains."})
     hero.set_notes({"Languages": "You know the Common and Dwarvish Languages."})
     hero.languages.append('Dwarvish')
+    hero.languages.append('Common')
     hero.set_notes({"Stout": "Start with +2 HP Roll hit points per level with advantage."})
     print("\tApplying Dwarf Stout Modifier +2 to HP.")
     hero.set_hp(2)
@@ -20,6 +21,7 @@ def goblin(hero: object):
     hero.set_notes({"Goblin": "Green, clever beings who thrive in dark, cramped places. As fierce as they are tiny."})
     hero.set_notes({"Languages": "You know the Common and Goblin languages."})
     hero.languages.append("Goblin")
+    hero.languages.append('Common')
     hero.set_notes({"Keen Senses": "You can't be surprised"})
 
 
@@ -27,6 +29,7 @@ def elf(hero: object):
     hero.set_ancestry("Elf")
     hero.set_notes({"Elf: ": "Ethereal, graceful people whoever knowledge and beauty. Elves see far and live long."})
     hero.set_notes({"Languages": "You know the Common, Elvish, and Sylvan languages."})
+    hero.languages.append('Common')
     hero.languages.append('Elvish')
     hero.languages.append('Sylvan')
     hero.set_notes({"Farsight: ": "You get a +1 bonus to attack rolls with ranged weapons or a +1 bonus to "
@@ -38,6 +41,7 @@ def half_orc(hero: object):
     hero.set_notes({"Half Orc": "Towering, tusked warriors who are as daring as humans and as relentless as orcs."})
     hero.set_notes({"Languages": "You know the Common and Orcish languages."})
     hero.languages.append('Orcish')
+    hero.languages.append('Common')
     hero.set_notes({"Mighty:": "You have a +1 bonus to attack and damage rolls with melee weapons."})
     weapon = list(hero.weapon_notes)[0]
     hero.weapon_notes[weapon].append(" Half-Orc Boon Mighty: +1 attack and damage.")
@@ -59,6 +63,7 @@ def human(hero: object):
     hero.set_notes({"Human: ": "Bold, adaptable, and diverse people who learn quickly and accomplish mighty deeds."})
     hero.set_notes({"Languages": f"You know the Common language and {additional_language} languages."})
     hero.languages.append(additional_language)
+    hero.languages.append('Common')
     hero.set_notes({"Ambitious: ": "You gain one additional talent roll at 1st level"})
     print("\tRolling for additional talent (Human Perk Ambition!).")
     hero.talent_roll()
@@ -107,8 +112,10 @@ def add_language_notes(add_language, hero, rare_language):
     details = ' Wizard Language Bonus: '
     for language in add_language:
         details += f' {language},'
+        hero.languages.append(language)
     for language in rare_language:
         details += f' {language},'
+        hero.languages.append(language)
     hero.notes['Languages'] += details
 
 
@@ -122,3 +129,4 @@ def check_priest(available_languages, hero):
     add_language = random.choice(available_languages)
     print(f"\t{add_language} language added to notes.")
     hero.notes['Languages'] += f" ( Priest Bonus: {add_language})"
+    hero.languages.append(add_language)
