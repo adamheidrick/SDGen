@@ -1,4 +1,3 @@
-import random
 from magic_item_functions import choosing_qualities
 from personality import *
 
@@ -52,10 +51,9 @@ utility_curse = ["Slowly rots all other non-magical items that touch it"
                  "Item has horrid smell that makes all your CHA checks hard."]
 
 
-def make_magic_utility(qualities, personality, name, item_name):
+def make_magic_utility(qualities, name, item_name):
     feature = random.choice(utility_features)
     qualities = choosing_qualities(qualities, utility_curse, utility_benefit)
-    virtue = choosing_personalities(personality)
     magic_utility = {"Magical Utility": name, "Type": item_name, "Features": feature,
                      "Qualities": qualities}
     return magic_utility

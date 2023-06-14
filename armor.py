@@ -1,4 +1,3 @@
-import random
 from character import Character
 from personality import *
 
@@ -122,4 +121,3 @@ def choosing_qualities(qualities, armor, armor_type):
 def check_gear_slot_curse(curse):
     if curse == "Armor uses 5 gear slots and is extremely loud and clunky.":
         return True
-

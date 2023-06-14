@@ -56,7 +56,7 @@ def random_spell(sp_tier):
     return {r_spell: spell_details}
 
 
-def make_magic_scroll_wand(qualities, name, item_type, item_name):
+def make_magic_scroll_wand(qualities, name, item_type):
     r_feature = feature(item_type)
     qualities = benefit_curse(qualities)
     s_tier = spell_tier()
@@ -70,5 +70,3 @@ def make_magic_scroll_wand(qualities, name, item_type, item_name):
                   "Spell": spell}
 
     return magic_item
-
-

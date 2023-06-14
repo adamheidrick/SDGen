@@ -27,12 +27,12 @@ Alignment = [{"Chaotic": "You align yourself with destruction, ambition, and wic
 
 Deities = [{"Saint Terragnis (Lawful)": "A legendary knight who is the patron of most lawful humans. She ascended to "
                                         "godhood long ago and is the embodiment of righteousness and justice.",
-            "Gede (Neutural)": "The god of feasts, mirth, and the wilds. Gede is usually peaceful, but primal storms "
+            "Gede (Neutral)": "The god of feasts, mirth, and the wilds. Gede is usually peaceful, but primal storms "
                               "rage when her anger rises. Many elves and halflings worship her.",
             "Madeera The Covenant (Lawful)": "Madeera was the first manifestation of Law. She carries every law of "
                                              "reality, a dictate called the Covenant, written on her skin in precise"
                                              "symbols.",
-            "Ord (Neutral)": "Ord thhe Unbending, the Wise, the Secret-Keeper. He is the god of magic, knowledge, "
+            "Ord (Neutral)": "Ord the Unbending, the Wise, the Secret-Keeper. He is the god of magic, knowledge, "
                              "secrets, and equilibrium.",
             "Memnon (Chaotic)": "Memnon was the first manifestation of Chaos. He is Madeera’s twin, a red-maned, "
                                 "leonine being whose ultimate ambition is to rend the cosmic laws of the Covenant "

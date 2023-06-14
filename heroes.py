@@ -95,15 +95,12 @@ class Fighter(Character):
         self.set_notes(note)
 
     def talent_roll(self):
-        print("Rolling 2d6 for Talent.")
-        roll = self.roll_dice(6, 2)
-        total = sum(roll)
-        print(f"\tRoll Result: {roll} = {total}")
-        self.choose_talent(roll)
+        index = self.talent_index()
+        self.choose_talent(index)
 
-    def choose_talent(self, choice):
-        print(f"Choosing Talent Based on {choice} roll.")
-        choice = random.choice(self.talents)
+    def choose_talent(self, index):
+        print(f"Choosing Talent.")
+        choice = self.talents[index]
         choice()
         self.talents.remove(choice)
 
@@ -151,7 +148,6 @@ class Fighter(Character):
 
     def armor_boost(self):
         print("\tTalent: Armor Choice +1 to AC Boost Being Applied.")
-        dex_mod = self.dex_mod
         ac = self.ac
         gear_slots = self.gear_slots
 
@@ -279,15 +275,12 @@ class Priest(Character):
         self.gear.update({deity + "symbol": [{"Quantity": 1}, {"Gear Slot": 0}]})
 
     def talent_roll(self):
-        print("Rolling 2d6 for Talent.")
-        roll = self.roll_dice(6, 2)
-        total = sum(roll)
-        print(f"\tRoll Result: {roll} = {total}")
-        self.choose_talent(roll)
+        index = self.talent_index()
+        self.choose_talent(index)
 
-    def choose_talent(self, roll):
-        print(f"\tChoosing Talent Based on {roll} roll.")
-        choice = random.choice(self.talents)
+    def choose_talent(self, index):
+        print(f"\tChoosing Talent.")
+        choice = self.talents[index]
         choice()
         self.talents.remove(choice)
 
@@ -414,15 +407,12 @@ class Thief(Character):
                                              'Opening Locks.'})
 
     def talent_roll(self):
-        print("Rolling 2d6 for Talent.")
-        roll = self.roll_dice(6, 2)
-        total = sum(roll)
-        print(f"\tRoll Result: {roll} = {total}")
-        self.choose_talent(roll)
+        index = self.talent_index()
+        self.choose_talent(index)
 
-    def choose_talent(self, roll):
-        print(f"\tChoosing Talent Based on {roll} roll.")
-        choice = random.choice(self.talents)
+    def choose_talent(self, index):
+        print(f"\tChoosing Talent.")
+        choice = self.talents[index]
         choice()
         self.talents.remove(choice)
 
@@ -547,26 +537,22 @@ class Wizard(Character):
             print(f"\tWizard learned {spell}")
             print(f"\t\tAdding {spell} to Notes")
 
-        self.set_notes({"Spellcasting": "Each time you gain a level, you choose new wizard spells to learn "
-                                        "according to the Wizard Spells Known table."})
+        self.set_notes({"Spell-casting": "Each time you gain a level, you choose new wizard spells to learn according "
+                                         "to the Wizard Spells Known table."})
 
     def talent_roll(self):
-        print("Rolling 2d6 for Talent.")
-        roll = self.roll_dice(6, 2)
-        total = sum(roll)
-        print(f"\tRoll Result: {roll} = {total}")
-        self.choose_talent(roll)
+        index = self.talent_index()
+        self.choose_talent(index)
 
-    def choose_talent(self, roll):
-        print(f"\tChoosing Talent Based on {roll} roll.")
-        choice = random.choice(self.talents)
+    def choose_talent(self, index):
+        print(f"\tChoosing Talent.")
+        choice = self.talents[index]
         choice()
         self.talents.remove(choice)
 
     def magic_item(self):
         print("Crafting Magic Item")
-        # TODO Generate Magical Item
-        pass
+        # TODO Tie in magic item generator
 
     def spell_check_bonus(self):
         print("\tApplying Wizard Talent Intelligence or Spell-casting Check Bonus")

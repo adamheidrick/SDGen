@@ -24,10 +24,8 @@ def goblin(hero: object):
 
 
 def elf(hero: object):
-    # TODO: Dont forget the Farsight or Condition below. +1 or Spellcasting checks.
     hero.set_ancestry("Elf")
-    hero.set_notes({"Elf: ": "Ethereal, graceful people whoever knowledge and beauty. Elves see far "
-                                 "and live long."})
+    hero.set_notes({"Elf: ": "Ethereal, graceful people whoever knowledge and beauty. Elves see far and live long."})
     hero.set_notes({"Languages": "You know the Common, Elvish, and Sylvan languages."})
     hero.languages.append('Elvish')
     hero.languages.append('Sylvan')
@@ -124,4 +122,3 @@ def check_priest(available_languages, hero):
     add_language = random.choice(available_languages)
     print(f"\t{add_language} language added to notes.")
     hero.notes['Languages'] += f" ( Priest Bonus: {add_language})"
-

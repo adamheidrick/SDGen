@@ -1,4 +1,3 @@
-import random
 from background import Background, Alignment, Deities, Name
 from crawling_kit import Crawling_Kit
 from ancestry import *
@@ -205,7 +204,7 @@ class Character:
 
     @staticmethod
     def roll_dice(sided, times):
-        return [random.randint(1, sided) for num in range(times)]
+        return [random.randint(1, sided) for _ in range(times)]
 
     def roll_alignment(self):
         print("Rolling for Alignment.")
@@ -229,4 +228,19 @@ class Character:
         self.background = title
         self.set_notes({title: body})
 
+    def talent_index(self):
+        print("Rolling 2d6 for Talent.")
+        roll = self.roll_dice(6, 2)
+        total = sum(roll)
+        print(f"\tRoll Result: {roll} = {total}")
+        upper_bound = 7
 
+        if total == 2:
+            return 0
+
+        for index in range(1, 4):
+            if total <= upper_bound:
+                return index
+            upper_bound += 2
+
+        return 4

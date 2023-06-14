@@ -16,10 +16,10 @@ Priest_Spells = {"Light": ["Duration: 1 Hour Real Time",
                  "Protection from Evil": ["Duration: Focus",
                                           "Range: Close",
                                           "Details: For the spell's duration, chaotic beings have disadvantage on "
-                                          "attack rolls and hostile spellcasting checks against the target. these "
+                                          "attack rolls and hostile spell-casting checks against the target. these "
                                           "beings also can't possess, compel, or beguile  it. When cast on an already"
                                           "possessed target, the possessing entity makes a CHA check vs. the last"
-                                          "spellcasting check. On a failure, the entity is expelled."],
+                                          "spell-casting check. On a failure, the entity is expelled."],
 
                  "Shield of Faith": ["Duration: 5 Rounds",
                                      "Range: Self",
@@ -30,7 +30,7 @@ Priest_Spells = {"Light": ["Duration: 1 Hour Real Time",
                                  "Range: Near",
                                  "Details: You rebuke undead creatures, forcing them to flee. You must present"
                                  "a holy symbol to cast this spell. Undead creatures within near of you must make a"
-                                 "CHA check vs. your spellcasting check. If a creature fails by 10+ points and is "
+                                 "CHA check vs. your spell-casting check. If a creature fails by 10+ points and is "
                                  "equal to or less than your level, it is destroyed. Otherwise, on a fail, it flees"
                                  "from you for 5 rounds."]}
 
@@ -68,23 +68,23 @@ Tier_1_Spells = {
                       "Range: Near",
                       "Details: You create a floating, circular disk of force with a concave center. It can carry up "
                       "to 20 gear slots. It hovers at waist level and automatically stays within near of you. "
-                      "It can’t cross over dropoffs or pits taller than a human."],
+                      "It can’t cross over drop-offs or pits taller than a human."],
 
     "Hold Portal": ["Duration: 10 rounds",
                     "Range: Near",
                     "Details: You create a floating, circular disk of force with a concave center. It can carry up to "
                     "20 gear slots. It hovers at waist level and automatically stays within near of you. It can’t "
-                    "cross over dropoffs or pits taller than a human."],
+                    "cross over drop-offs or pits taller than a human."],
 
     "Light": ["Duration: 1 hour real time",
               "Range: Close",
-              "Details: One object you touch glows with bright, heatless light, illuminating out to a near distance "
+              "Details: One object you touch glows with bright, heat-less light, illuminating out to a near distance "
               "for 1 hour of real time."],
 
     "Mage Armor": ["Duration: 10 rounds",
                    "Range: Self",
                    "Details: An invisible layer of magical force protects your vitals. Your armor class becomes 14 "
-                   "(18 on a critical spellcasting check) for the spell’s duration."],
+                   "(18 on a critical spell-casting check) for the spell’s duration."],
 
     "Magic Missile": ["Duration: Instant",
                       "Range: Far",
@@ -94,9 +94,9 @@ Tier_1_Spells = {
     "Protection from Evil": ["Duration: Focus",
                              "Range: Close",
                              "Details: For the spell’s duration, chaotic beings have disadvantage on attack rolls "
-                             "and hostile spellcasting checks against the target. These beings also can’t possess, "
-                             "compel, or beguile it. When cast on an alread ypossessed target, the possessing entity "
-                             "makes a CHA check vs. the last spellcasting check. On a failure, the "
+                             "and hostile spell-casting checks against the target. These beings also can’t possess, "
+                             "compel, or beguile it. When cast on an already possessed target, the possessing entity "
+                             "makes a CHA check vs. the last spell-casting check. On a failure, the "
                              "entity is expelled."],
 
     "Sleep": ["Duration: Instant",
@@ -122,8 +122,8 @@ Tier_2_Spells = {
                         "Range: Near",
                         "Details: You peer into the mind of one creature you can see within range. Each round, you "
                         "learn the target’s immediate thoughts. On its turn, the target makes a Wisdom check vs. your "
-                        "last spellcasting check. If the target succeeds, it notices your presence in its mind and the "
-                        "spell ends."],
+                        "last spell-casting check. If the target succeeds, it notices your presence in its mind and the"
+                        " spell ends."],
 
     "Fixed Object": ["Duration: 5 Rounds",
                      "Range: Close",
@@ -168,7 +168,7 @@ Tier_2_Spells = {
     "Web": ["Duration: 5 Rounds",
             "Range: Near",
             "Details: You create a near-sized cube of sticky, dense spider web within the spell’s range. A creature "
-            "stuck in the web can’t move and must succeed on a Strength check vs. your spellcasting check to "
+            "stuck in the web can’t move and must succeed on a Strength check vs. your spell-casting check to "
             "free itself."]
 }
 
@@ -210,7 +210,7 @@ Tier_3_Spells = {
                  "Details: You create a convincing visible and audible illusion that fills up to a near-sized cube "
                  "in range. The illusion cannot cause harm, but creatures who believe the illusion is real react to it "
                  "as though it were. A creature who inspects the illusion from afar must pass a Wisdom check vs. your "
-                 "last spellcasting check to perceive the false nature of the illusion. Touching the illusion also "
+                 "last spell-casting check to perceive the false nature of the illusion. Touching the illusion also "
                  "reveals its false nature."],
 
     "Lightning Bolt": ["Duration: Instant ",
@@ -241,7 +241,7 @@ Tier_3_Spells = {
                         "Details: A dead body you touch answers your questions in a distant, wheezing voice. You can "
                         "ask the dead body up to three yes or no questions (one at a time). The GM truthfully answers "
                         "'yes' or 'no' to each. If you cast this spell more than once in 24 hours, treat a failed "
-                        "spellcasting check for it as a critical failure, instead."]
+                        "spell-casting check for it as a critical failure, instead."]
 }
 Tier_4_Spells = {
     "Arcane Eye": ["Duration: Focus",
@@ -260,7 +260,7 @@ Tier_4_Spells = {
                   "Range: Near",
                   "Details: You mesmerize one creature you can see in range. The target can't take actions, and it "
                   "moves in a random direction on its turn. If the target is LV 9+, it may make a WIS check vs. "
-                  "your last spellcasting check at the start of its turn to end the spell."],
+                  "your last spell-casting check at the start of its turn to end the spell."],
 
     "Control Water": ["Duration: Focus",
                       "Range: Far",
@@ -275,7 +275,7 @@ Tier_4_Spells = {
                    "Range: Self",
                    "Details: You throw the divining bones or peer into the blackness between the stars, seeking a "
                    "portent. You can ask the GM one yes or no question. The GM truthfully answers 'yes' or 'no.' If "
-                   "you cast this spell more than once in 24 hours, treat a failed spellcasting check for it as a "
+                   "you cast this spell more than once in 24 hours, treat a failed spell-casting check for it as a "
                    "critical failure, instead."],
 
     "Passwall": ["Duration: 5 Rounds",
@@ -301,7 +301,7 @@ Tier_4_Spells = {
     "Stoneskin": ["Duration: 10 Rounds",
                   "Range: Self",
                   "Details: Your skin becomes like granite. For the spell's duration, your armor class becomes 17 "
-                  "(20 on a critical spellcasting check)."],
+                  "(20 on a critical spell-casting check)."],
 
     "Telekinesis": ["Duration: Focus",
                     "Range: Far",
@@ -338,7 +338,7 @@ Tier_5_Spells = {
     "Hold Monster": ["Duration: Focus",
                      "Range: Near",
                      "Details: You paralyze one creature you can see within range. If the target is LV 9+, it may make "
-                     "a STR check vs. your last spellcasting check at the start of its turn to end the spell."],
+                     "a STR check vs. your last spell-casting check at the start of its turn to end the spell."],
 
     "Plane Shift": ["Duration: Instant",
                     "Range: Close",
@@ -349,7 +349,7 @@ Tier_5_Spells = {
     "Power Word Kill": ["Duration: Instant",
                         "Range: Near",
                         "Details: You utter the Word of Doom. One creature you target of LV 9 or less dies if it "
-                        "hears you. Treat a failed spellcasting check for this spell as a critical failure, and roll "
+                        "hears you. Treat a failed spell-casting check for this spell as a critical failure, and roll "
                         "the mishap with disadvantage."],
 
     "Prismatic Orb": ["Duration: Instant",
@@ -364,7 +364,7 @@ Tier_5_Spells = {
                 "Details: You look into a crystal ball or reflecting pool, calling up images of a distant place. For "
                 "the spell's duration, you can see and hear a creature or location you choose that is on the same "
                 "plane. This spell is DC 18 to cast if you try to scry on a creature or location that is unfamiliar "
-                "to you. Each round, creatures you view may make a Wisdom check vs. your last spellcasting check. On "
+                "to you. Each round, creatures you view may make a Wisdom check vs. your last spell-casting check. On "
                 "a success, they become aware of your magical observation."],
 
     "Shapechange": ["Duration: Focus",
@@ -379,7 +379,7 @@ Tier_5_Spells = {
                            "Details: You reach into the outer planes, summoning forth a creature. You summon an "
                            "elemental or outsider of LV 7 or less. The creature is under your control and acts on "
                            "your turn. If you lose focus on this spell, you lose control of the creature and it "
-                           "becomes hostile toward you and your allies. You must pass a spellcasting check on your "
+                           "becomes hostile toward you and your allies. You must pass a spell-casting check on your "
                            "turn to return the creature to the outer planes."],
 
     "Teleport": ["Duration: Instant",
@@ -391,6 +391,6 @@ Tier_5_Spells = {
     "Wish": ["Duration: Instant",
              "Range: Self",
              "Details: This mighty spell alters reality. Make a single wish, stating it as exactly as possible. "
-             "Your wish occurs, as interpreted by the GM. Treat a failed spellcasting check for this spell as a "
+             "Your wish occurs, as interpreted by the GM. Treat a failed spell-casting check for this spell as a "
              "critical failure, and roll the mishap with disadvantage."]
 }

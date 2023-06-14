@@ -1,4 +1,3 @@
-import random
 from character import Character
 from magic_item_functions import choosing_qualities
 from personality import *
@@ -58,7 +57,7 @@ Weapon_benefits = ["Cut or smash through any material.",
                    "You have advantage on initiative rolls.",
                    "Has thrown property, near distance, returns to you.",
                    f"Double damage to {random.choice(foes)}.",
-                   "Reroll natural 1s once each when attacking with this weapon."]
+                   "Re-roll natural 1s once each when attacking with this weapon."]
 
 Weapon_curses = [f"You can't see {random.choice(unseen_foes)}.",
                  "You are compelled to swallow all gemstones at first sight.",
@@ -81,13 +80,12 @@ def magical_weapon(qualities, personality, name, item_name):
     virtue = choosing_personalities(personality)
     category, details = base_weapon(item_name)
     magic_weapon = {'Magical Weapon': name, 'Category': category, 'Details': details, "Bonus": '+ ' + str(bonus),
-                    "Features": feature,"Qualities": qualities, "Personality": virtue}
+                    "Features": feature, "Qualities": qualities, "Personality": virtue}
     return magic_weapon
 
 
 def base_weapon(item_name):
     weapons = list(Weapons)
-    arrows = list(Arrows)
     if item_name in weapons:
         return item_name, Weapons[item_name]
     return item_name, Arrows[item_name]
@@ -105,4 +103,3 @@ def calculate_weapon_bonus():
         bonus = 3
 
     return bonus
-
