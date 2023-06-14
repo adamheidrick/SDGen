@@ -18,4 +18,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    for _ in range(10):
+        main()

@@ -2,7 +2,7 @@
 def parse_hero(hero):
     hero_dict = hero.__dict__
     hero_attributes = list(hero.__dict__)
-    print(hero_attributes)
+    # print(hero_attributes)
     print(f"{'Name:':<15} {hero_dict['name']}")
     print(f"{'Ancestry:':<15} {hero_dict['ancestry']}")
     print(f"{'Class:':<15} {hero_dict['hero_class']}")
@@ -30,26 +30,36 @@ def parse_hero(hero):
         for index, spell in enumerate(spells):
             print(f"{'spell ' + str(index +1) +':':<15}{spell}")
 
-
+    print("\n")
     print("Talents")
-    print(''.join("{}: {}".format(k, v) for k, v in hero_dict['learned_talents'].items()))
+    print('\n'.join("{} {}".format(k, v) for k, v in hero_dict['learned_talents'].items()))
 
     print("\n")
     weapon = hero_dict['weapon']
-    print("Weapons")
-    print(f"{hero_dict['weapon']:<15}{', '.join(hero_dict['weapon_notes'][weapon])}")
+    print(f"{'Weapon':<25}{'Description'}")
+    print(f"{hero_dict['weapon']:<25}{', '.join(hero_dict['weapon_notes'][weapon])}")
 
     print("\n")
-    print('Armor')
+    print(f"{'Armor':<25}{'Description'}")
     if hero_dict['armor'] is not None:
-        print(hero_dict['armor']['type'].capitalize())
+        # print(f"{hero_dict['armor']['type'].capitalize():<25}{hero_dict['armor_notes']['Armor Properties']}")
+        print(f"{hero_dict['armor']['type'].capitalize():<25}{hero_dict['armor_notes']}")
 
     else:
         print("Glass Cannon's Can't Wear Armor.")
 
     print("\n")
+    print(f"{'Gear':<25}{'Quantity'}")
+    print('\n'.join(f"{k:<25} {(list(v[0].values())[0])}" for k, v in hero_dict['gear'].items()))
+
+    print("\n")
     print("Additional Notes")
-    print('\n'.join("{}: {}".format(k, v) for k, v in hero_dict['notes'].items()))
+    print(f'\n'.join(f"{k:<25} {v}"for k, v in hero_dict['notes'].items()))
+
+    if hero_dict['hero_class'] == 'Wizard' or hero_dict['hero_class'] == "Priest":
+        print("\n")
+        print(f"{'Spells':<25}{'Description'}")
+        print('\n'.join(f"{k:<25}{','.join(v)}" for k, v in hero_dict['spells'].items()))
 
 
 
