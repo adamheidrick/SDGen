@@ -4,6 +4,7 @@ from armor import magical_armor
 from potion_crafting import make_potion
 from weapons import magical_weapon
 from magic_ulitity import make_magic_utility
+from scroll_crafting import make_magic_scroll_wand
 from character import Character
 
 Curse = "curse"
@@ -58,13 +59,13 @@ def craft_item(item_type, quality, personality, name, item_name):
             return {"Magical Potion Item": potion_details}
         case 'Scroll':
             print("Scroll")
-            return 'Scroll'
+            return make_magic_scroll_wand(quality, name, item_type, item_name)
         case "Utility":
             print("Utility")
             return make_magic_utility(quality, personality, name, item_name)
         case "Wand":
             print("Wand")
-            return 'Wand'
+            return make_magic_scroll_wand(quality, name, item_type, item_name)
         case "Weapon":
             print("Weapon")
             return magical_weapon(quality, personality, name, item_name)

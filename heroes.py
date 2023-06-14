@@ -2,7 +2,7 @@ from character import Character
 from background import Titles, Deities
 from weapons import Weapons
 from armor import Armor
-from spells import Priest_Spells, Wizard_Spells
+from spells import Priest_Spells, Tier_1_Spells
 import random
 
 
@@ -540,10 +540,10 @@ class Wizard(Character):
 
     def set_spell_casting(self):
         print("Wizard is Learning Three Spells.")
-        spells = [item for item in Wizard_Spells.keys()]
+        spells = [item for item in Tier_1_Spells.keys()]
         choices = random.sample(set(spells), 3)
         for spell in choices:
-            self.spells.update({spell: Wizard_Spells[spell]})
+            self.spells.update({spell: Tier_1_Spells[spell]})
             print(f"\tWizard learned {spell}")
             print(f"\t\tAdding {spell} to Notes")
 
@@ -602,12 +602,12 @@ class Wizard(Character):
     def add_spell(self):
         print("\tApplying Wizard Talent Learning Additional Spell.")
         print("\tRandomly Choosing Available Spell to Learn.")
-        wizard_spells = set(list(Wizard_Spells))
+        wizard_spells = set(list(Tier_1_Spells))
         known_spells = set(list(self.spells))
         symmetric_difference = list(known_spells.symmetric_difference(wizard_spells))
         random_choice = random.choice(symmetric_difference)
         print(f"\tWizard Learning {random_choice}.")
-        spell_notes = Wizard_Spells[random_choice]
+        spell_notes = Tier_1_Spells[random_choice]
         self.spells.update({random_choice: spell_notes})
 
 

@@ -29,7 +29,7 @@ Priest_Spells = {"Light": ["Duration: 1 Hour Real Time",
                                  "equal to or less than your level, it is destroyed. Otherwise, on a fail, it flees"
                                  "from you for 5 rounds."]}
 
-Wizard_Spells = {
+Tier_1_Spells = {
     "Alarm": ["Duration: 1 Day",
               "Range: Close",
               "Details: You touch one object, such as a door threshold, setting a magical alarm on it. "
@@ -78,7 +78,7 @@ Wizard_Spells = {
                              "Range: Close",
                              "Details: For the spell’s duration, chaotic beings have disadvantage on attack rolls "
                              "and hostile spellcasting checks against the target. These beings also can’t possess, "
-                             "compel, or beguile it. When cast on an alreadypossessed target, the possessing entity "
+                             "compel, or beguile it. When cast on an alread ypossessed target, the possessing entity "
                              "makes a CHA check vs. the last spellcasting check. On a failure, the "
                              "entity is expelled."],
     "Sleep": ["Duration: Instant",
@@ -86,4 +86,63 @@ Wizard_Spells = {
               "Details: You weave a lulling spell that fills a near-sized cube extending from you. Choose a number of "
               "living creatures in the area up to to your level. Those creatures fall into a deep sleep if they are "
               "LV 2 or less. Vigorous shaking or being injured wakes them."],
+}
+
+Tier_2_Spells = {
+    "Acid Arrow": ["Duration: ", "Range: ", "Details: "],
+    "Alter Self": ["Duration: ", "Range: ", "Details: "],
+    "Detect Thoughts": ["Duration: ", "Range: ", "Details: "],
+    "Fixed Object": ["Duration: ", "Range: ", "Details: "],
+    "Hold Person": ["Duration: ", "Range: ", "Details: "],
+    "Invisibility": ["Duration: ", "Range: ", "Details: "],
+    "Knock": ["Duration: ", "Range: ", "Details: "],
+    "Levitate": ["Duration: ", "Range: ", "Details: "],
+    "Mirror Image": ["Duration: ", "Range: ", "Details: "],
+    "Misty Step": ["Duration: ", "Range: ", "Details: "],
+    "Silence": ["Duration: ", "Range: ", "Details: "],
+    "Web": ["Duration: ", "Range: ", "Details: "]
+}
+
+Tier_3_Spells = {
+    "Animate Dead": ["Duration: ", "Range: ", "Details: "],
+    "Dispel Magic": ["Duration: ", "Range: ", "Details: "],
+    "Fabricate": ["Duration: ", "Range: ", "Details: "],
+    "Fireball": ["Duration: ", "Range: ", "Details: "],
+    "Fly": ["Duration: ", "Range: ", "Details: "],
+    "Gaseous Form": ["Duration: ", "Range: ", "Details: "],
+    "Illusion": ["Duration: ", "Range: ", "Details: "],
+    "Lightning Bolt": ["Duration: ", "Range: ", "Details: "],
+    "Magic Circle": ["Duration: ", "Range: ", "Details: "],
+    "Protection from Energy": ["Duration: ", "Range: ", "Details: "],
+    "Sending": ["Duration: ", "Range: ", "Details: "],
+    "Speak with Dead": ["Duration: ", "Range: ", "Details: "]
+}
+Tier_4_Spells = {
+    "Arcane Eye": ["Duration: ", "Range: ", "Details: "],
+    "Cloudkill": ["Duration: ", "Range: ", "Details: "],
+    "Confusion": ["Duration: ", "Range: ", "Details: "],
+    "Control Water": ["Duration: ", "Range: ", "Details: "],
+    "Dimension Door": ["Duration: ", "Range: ", "Details: "],
+    "Divination": ["Duration: ", "Range: ", "Details: "],
+    "Passwall": ["Duration: ", "Range: ", "Details: "],
+    "Polymorph": ["Duration: ", "Range: ", "Details: "],
+    "Resilient Sphere": ["Duration: ", "Range: ", "Details: "],
+    "Stoneskin": ["Duration: ", "Range: ", "Details: "],
+    "Telekinesis": ["Duration: ", "Range: ", "Details: "],
+    "Wall of Force": ["Duration: ", "Range: ", "Details: "]
+}
+
+Tier_5_Spells = {
+    "Antimagic Shell": ["Duration: ", "Range: ", "Details: "],
+    "Create Undead": ["Duration: ", "Range: ", "Details: "],
+    "Disintegrate": ["Duration: ", "Range: ", "Details: "],
+    "Hold Monster": ["Duration: ", "Range: ", "Details: "],
+    "Plane Shift": ["Duration: ", "Range: ", "Details: "],
+    "Power Word Kill": ["Duration: ", "Range: ", "Details: "],
+    "Prismatic Orb": ["Duration: ", "Range: ", "Details: "],
+    "Scrying": ["Duration: ", "Range: ", "Details: "],
+    "Shapechange": ["Duration: ", "Range: ", "Details: "],
+    "Summon Extraplanar": ["Duration: ", "Range: ", "Details: "],
+    "Teleport": ["Duration: ", "Range: ", "Details: "],
+    "Wish": ["Duration: ", "Range: ", "Details: "]
 }
