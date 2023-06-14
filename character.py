@@ -1,6 +1,9 @@
 from background import Background, Alignment, Deities, Name
 from crawling_kit import Crawling_Kit
 from ancestry import *
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class Character:
@@ -45,7 +48,7 @@ class Character:
         self.name = name
 
     def set_hp(self, num):
-        print(f"\tIncreasing HP from {self.hp} + {num} = {self.hp + num}.")
+        logger.info(f"\tIncreasing HP from {self.hp} + {num} = {self.hp + num}.")
         self.hp += num
 
     def set_ac(self, num):
@@ -91,16 +94,16 @@ class Character:
         self.con_mod = num
 
     def set_notes(self, note):
-        print(f"\tAdding to Notes {note}")
+        logger.info(f"\tAdding to Notes {note}")
         self.notes.update(note)
 
     def set_weapon_notes(self, note):
-        print(f"\tAdding {list(note)[0]} Details to Weapon Notes.")
+        logger.info(f"\tAdding {list(note)[0]} Details to Weapon Notes.")
         self.weapon_notes.update(note)
 
     def set_armor_notes(self, note):
         self.armor_notes = {}
-        print(f"\tAdding {list(note)[0]} Details to Armor Notes.")
+        logger.info(f"\tAdding {list(note)[0]} Details to Armor Notes.")
         self.armor_notes.update(note)
 
     def get_dex_mod(self):
@@ -113,7 +116,7 @@ class Character:
         return self.con_mod
 
     def apply_stats(self, stats):
-        print("Applying Base Stats to Character.")
+        logger.info("Applying Base Stats to Character.")
         self.str, self.str_mod = stats[0]
         self.int, self.int_mod = stats[1]
         self.dex, self.dex_mod = stats[2]
@@ -122,7 +125,7 @@ class Character:
         self.cha, self.cha_mod = stats[5]
 
     def calculate_modifiers(self, rolls):
-        print("Calculating Modifiers.")
+        logger.info("Calculating Modifiers.")
         modifiers = self.modifier_check(rolls)
         stats = list(zip(rolls, modifiers))
         self.apply_stats(stats)
@@ -136,16 +139,16 @@ class Character:
             for check in range(3, 18, 2):
                 if num <= check:
                     modifiers.append(mod_dict[check])
-                    print(f"\tApplying {stats[index]} : {num} a modifier of {mod_dict[check]}.")
+                    logger.info(f"\tApplying {stats[index]} : {num} a modifier of {mod_dict[check]}.")
                     break
                 elif num >= 18:
                     modifiers.append(4)
-                    print(f"\tApplying {stats[index]} : {num} a modifier of {mod_dict[check]}.")
+                    logger.info(f"\tApplying {stats[index]} : {num} a modifier of {mod_dict[check]}.")
                     break
         return modifiers
 
     def stat_distribute(self):
-        print("\tStat Distribution Talent Being Applied.")
+        logger.info("\tStat Distribution Talent Being Applied.")
         stat_names = ["Str", "Int", "Dex", "Wis", "Con", "Cha"]
         stats = [self.str, self.int, self.dex, self.wis, self.con, self.cha]
         mods = [self.str_mod, self.int_mod, self.dex_mod, self.wis_mod, self.con_mod, self.cha_mod]
@@ -159,17 +162,17 @@ class Character:
     def find_min(self, minimum, stats, funcs, mod_funcs, mods, stat_names):
         for index, stat in enumerate(stats):
             if stat == minimum:
-                print(f"\tIncreasing {stat_names[index]} {stats[index]} + 1 = {stats[index] + 1}")
+                logger.info(f"\tIncreasing {stat_names[index]} {stats[index]} + 1 = {stats[index] + 1}")
                 funcs[index](1)
                 mod = self.modifier_check([stats[index] + 1], [stat_names[index]])
                 if mod[0] > mods[index]:
                     new_mod = mod[0]
                     old_mod = mods[index]
-                    print(f"\tAdjusting {stat_names[index]} Modifier")
+                    logger.info(f"\tAdjusting {stat_names[index]} Modifier")
                     mod_funcs[index](new_mod)
                     if index == 2:
                         difference = abs(new_mod - old_mod)
-                        print(f"\tAdjusting AC based on difference between {new_mod} and {old_mod} = {difference}")
+                        logger.info(f"\tAdjusting AC based on difference between {new_mod} and {old_mod} = {difference}")
                         self.ac += difference
                 note = {"Talent Point Distribution": f"Increased {stat_names[index]} from {stats[index]}"
                                                      f" to {stats[index] + 1} and adjusted the {stat_names[index]}"
@@ -184,11 +187,11 @@ class Character:
                 break
 
     def roll_stats(self):
-        print("Rolling for stats.")
+        logger.info("Rolling for stats.")
         rolls = self.stat_builder()
         while max(rolls) < 14:
             max_rolled = max(rolls)
-            print(f"Stats were insufficient. Max roll was {max_rolled}. Need 14 or higher. Re-rolling.")
+            logger.info(f"Stats were insufficient. Max roll was {max_rolled}. Need 14 or higher. Re-rolling.")
             rolls = self.stat_builder()
 
         self.calculate_modifiers(rolls)
@@ -198,7 +201,7 @@ class Character:
         for num in range(len(self.stats)):
             results = self.roll_dice(6, 3)
             total = sum(results)
-            print(f"\tRolling 3d6 for {self.stats[num]}: Dice Results = {results} Total = {total}.")
+            logger.info(f"\tRolling 3d6 for {self.stats[num]}: Dice Results = {results} Total = {total}.")
             rolls.append(total)
         return rolls
 
@@ -207,21 +210,21 @@ class Character:
         return [random.randint(1, sided) for _ in range(times)]
 
     def roll_alignment(self):
-        print("Rolling for Alignment.")
+        logger.info("Rolling for Alignment.")
         self.alignment = random.choice(Alignment)
-        print(f"\tAlignment = {list(self.alignment)[0]}")
+        logger.info(f"\tAlignment = {list(self.alignment)[0]}")
 
     def roll_religion(self):
-        print("Rolling for Religion.")
+        logger.info("Rolling for Religion.")
         coin_toss = random.randint(0, 1)
         if coin_toss == 1:
             self.deity = random.choice(list(Deities[0].items()))
-            print(f"\tDeity = {list(self.deity)[0]}")
+            logger.info(f"\tDeity = {list(self.deity)[0]}")
         else:
-            print("\tThis character as of now does not believe in God.")
+            logger.info("\tThis character as of now does not believe in God.")
 
     def set_background(self):
-        print("Rolling for Background.")
+        logger.info("Rolling for Background.")
         result = random.choice(Background)
         title = result.split(':')[0]
         body = result.split(':')[1]
@@ -229,10 +232,10 @@ class Character:
         self.set_notes({title: body})
 
     def talent_index(self):
-        print("Rolling 2d6 for Talent.")
+        logger.info("Rolling 2d6 for Talent.")
         roll = self.roll_dice(6, 2)
         total = sum(roll)
-        print(f"\tRoll Result: {roll} = {total}")
+        logger.info(f"\tRoll Result: {roll} = {total}")
         upper_bound = 7
 
         if total == 2:
