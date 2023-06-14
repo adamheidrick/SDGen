@@ -552,7 +552,7 @@ class Wizard(Character):
 
     def choose_talent(self, index):
         print(f"\tChoosing Talent.")
-        choice = self.talents[0]
+        choice = self.talents[index]
         choice()
         self.talents.remove(choice)
 
@@ -609,7 +609,6 @@ def random_class():
     print(f"Rolling for Random Class = {num}")
     print("Generating Random Class.")
     new_hero = None
-    num = 3
     match num:
         case 0:
             print("\tFighter Class Chosen")
