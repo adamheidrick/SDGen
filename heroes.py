@@ -3,6 +3,7 @@ from background import Titles, Deities
 from weapons import Weapons
 from armor import Armor
 from spells import Priest_Spells, Tier_1_Spells
+from magic_item_gen import magical_item
 import random
 
 
@@ -187,10 +188,15 @@ class Fighter(Character):
                 print(f"\tAdjusting Gear Slots {gear_slots} to {gear_slots - 1} ")
                 self.set_gear_slot(gear_slots - 1)
 
+            case "Mithral PM":
+                print(f"\tAdjusting AC {ac} to 15")
+                self.ac = 15
+                print(f"\tAdjusting Gear Slots {gear_slots} to {gear_slots - 1} ")
+                self.set_gear_slot(gear_slots - 1)
+
         print("\tApplying Talent +1 to AC bonus")
         self.ac += 1
         print(f"\tFinal AC = {self.ac}")
-        # TODO: Can there be Mithral PM? YES! IMPLEMENT IT.
 
 
 class Priest(Character):
@@ -546,13 +552,14 @@ class Wizard(Character):
 
     def choose_talent(self, index):
         print(f"\tChoosing Talent.")
-        choice = self.talents[index]
+        choice = self.talents[0]
         choice()
         self.talents.remove(choice)
 
     def magic_item(self):
         print("Crafting Magic Item")
-        # TODO Tie in magic item generator
+        m_item = magical_item()
+        self.set_notes(m_item)
 
     def spell_check_bonus(self):
         print("\tApplying Wizard Talent Intelligence or Spell-casting Check Bonus")
@@ -602,6 +609,7 @@ def random_class():
     print(f"Rolling for Random Class = {num}")
     print("Generating Random Class.")
     new_hero = None
+    num = 3
     match num:
         case 0:
             print("\tFighter Class Chosen")

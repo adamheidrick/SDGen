@@ -57,17 +57,14 @@ def craft_item(item_type, quality, personality, name, item_name):
             potion_details = make_potion(quality, name)
             return {"Magical Potion Item": potion_details}
         case 'Scroll':
-            print("Scroll")
             return make_magic_scroll_wand(quality, name, item_type)
         case "Utility":
-            print("Utility")
             return make_magic_utility(quality, name, item_name)
         case "Wand":
-            print("Wand")
             return make_magic_scroll_wand(quality, name, item_type)
         case "Weapon":
-            print("Weapon")
             return magical_weapon(quality, personality, name, item_name)
 
 
-print(generate_magical_item())
+def magical_item():
+    return generate_magical_item()
