@@ -17,6 +17,7 @@ class Character:
         self.languages = []
         self.deity = None
         self.alignment = {}
+        self.learned_talents = {}
         self.hp = 0
         self.ac = 0
         self.str = 0
@@ -115,6 +116,9 @@ class Character:
     def get_con_mod(self):
         return self.con_mod
 
+    def set_learned_talents(self, talent):
+        self.learned_talents.update(talent)
+
     def apply_stats(self, stats):
         logger.info("Applying Base Stats to Character.")
         self.str, self.str_mod = stats[0]
@@ -149,6 +153,7 @@ class Character:
 
     def stat_distribute(self):
         logger.info("\tStat Distribution Talent Being Applied.")
+        self.set_learned_talents({"Stat Distribution Talent": "Lowest Two Stats Received + 1"})
         stat_names = ["Str", "Int", "Dex", "Wis", "Con", "Cha"]
         stats = [self.str, self.int, self.dex, self.wis, self.con, self.cha]
         mods = [self.str_mod, self.int_mod, self.dex_mod, self.wis_mod, self.con_mod, self.cha_mod]
