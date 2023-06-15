@@ -399,7 +399,6 @@ class Thief(Character):
                                              'Finding and Disabling Traps, Delicate Tasks Such as Picking Pockets and '
                                              'Opening Locks.'})
 
-
     def initiative_adv(self):
         logger.info('\tThief Talent: Gain Initiative Advantage.')
         self.set_learned_talents({'Thief Talent': 'Gain Advantage on Initiative Rolls (re-roll if duplicate)'})
@@ -458,6 +457,7 @@ class Wizard(Character):
         self.spells = {}
         self.talents = [self.magic_item, self.spell_check_bonus, self.spell_adv,
                         self.add_spell, self.stat_distribute]
+        self.magic_item = None
         super().__init__()
         self.wizard_specs()
         self.set_title()
@@ -526,12 +526,12 @@ class Wizard(Character):
         self.set_notes({"Spell-casting": "Each time you gain a level, you choose new wizard spells to learn according "
                                          "to the Wizard Spells Known table."})
 
-
     def magic_item(self):
         logger.info("Crafting Magic Item")
         m_item = magical_item()
-        self.set_learned_talents({"Magical Item Talent": "See Notes about magical item."})
+        self.set_learned_talents({"Magical Item Talent": "See Magical Item Notes about magical item."})
         self.set_notes(m_item)
+        self.magic_item = m_item
 
     def spell_check_bonus(self):
         logger.info("\tApplying Wizard Talent Intelligence or Spell-casting Check Bonus")
@@ -585,6 +585,7 @@ def random_class():
     logger.info(f"Rolling for Random Class = {num}")
     logger.info("Generating Random Class.")
     new_hero = None
+    num = 3
     match num:
         case 0:
             logger.info("\tFighter Class Chosen")

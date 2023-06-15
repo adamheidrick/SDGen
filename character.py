@@ -254,7 +254,8 @@ class Character:
         return 4
 
     def talent_roll(self, talents):
-        index = self.talent_index()
+        # index = self.talent_index()
+        index = 0
         while index > len(talents) - 1:
             index = self.talent_index()
         self.choose_talent(index, talents)

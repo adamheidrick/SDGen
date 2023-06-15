@@ -50,9 +50,8 @@ def half_orc(hero: object):
     hero.set_notes({"Languages": "Orc knows the Common and Orcish languages."})
     hero.languages.append('Orcish')
     hero.languages.append('Common')
-    hero.set_notes({"Mighty:": "You have a +1 bonus to attack and damage rolls with melee weapons."})
     weapon = list(hero.weapon_notes)[0]
-    hero.weapon_notes[weapon].append(" Half-Orc Boon Mighty: +1 attack and damage.")
+    hero.weapon_notes[weapon].append(" (Half-Orc Mighty: +1 attack and damage.)")
 
 
 def halfling(hero: object):
@@ -94,7 +93,6 @@ def set_ancestry_name(hero, ancestry):
 
 def set_ancestry_details(hero, ancestry):
     functions = [dwarf, goblin, elf, half_orc, halfling, human]
-    ancestry = 'elf'
 
     for index, function in enumerate(functions):
         if ancestry == ANCESTRY[index]:
