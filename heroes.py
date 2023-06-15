@@ -22,7 +22,7 @@ class Fighter(Character):
         self.set_armor()
         self.weapon_mastery()
         self.grit()
-        self.talent_roll()
+        self.talent_roll(self.talents)
 
     def __repr__(self):
         return "This is the Fighter Class Object."
@@ -71,7 +71,6 @@ class Fighter(Character):
 
     def weapon_mastery(self):
         self.weapon_notes[self.weapon].append("Weapon Mastery: +1 Attack and Damage + Half your level rounding down.")
-        # Just a descriptor to notes regarding the random weapon chosen of a +1 attack
 
     def weapon_mastery_talent(self):
         note = {"Weapon Mastery": "+1 Attack and Damage + Half your level rounding down."}
@@ -96,15 +95,6 @@ class Fighter(Character):
         logger.info(f"\tGrit Result: {chosen} chosen.")
         note = {chosen: f"True Grit: Advantage on {chosen} checks."}
         self.set_notes(note)
-
-    def talent_roll(self):
-        index = self.talent_index()
-        self.choose_talent(index)
-
-    def choose_talent(self, index):
-        logger.info(f"Choosing Talent.")
-        choice = self.talents[index]
-        choice()
 
     def extra_weapon_dmg(self):
         note = {"Fighter Talent": "+1 Attack to Melee and Ranged."}
@@ -158,42 +148,43 @@ class Fighter(Character):
 
         logger.info("\tRolling for Armor.")
         choice = random.choice(list(Armor))
+        choice = 'Shield'
         self.set_armor(choice)
 
-        note = {"Fighter Talent Armor Properties": Armor[choice]["Properties"] + "+1 to AC is already set."}
+        note = {"Armor Properties": Armor[choice]["Properties"] + " +1 to AC is already applied."}
         self.set_armor_notes(note)
 
         logger.info(f"\tAdjusting AC and Gear Slots Based on {choice}.")
         match choice:
             case "Leather":
-                logger.info(f"\tLeather armor was already equipped. "
-                      f"\n\tAC of {ac} and Gear Slot of {gear_slots} remains the same.")
+                logger.info(f"\tLeather armor was already equipped."
+                            f"\n\tAC of {ac} and Gear Slot of {gear_slots} remains the same.")
             case "Chainmail":
-                logger.info(f"\tAdjusting AC {ac} to {ac + 2}")
+                logger.info(f"\tChainmail Chosen Adjusting AC {ac} to {ac + 2}")
                 self.ac += 2
                 logger.info(f"\tAdjusting Gear Slots {gear_slots} to {gear_slots - 1} ")
                 self.set_gear_slot(gear_slots - 1)
 
             case "Plate Mail":
                 adjusted_ac = Armor["Plate Mail"]["AC"]
-                logger.info(f"\tAdjusting AC {ac} to {adjusted_ac}")
+                logger.info(f"\tPlate Mail Chosen: Adjusting AC {ac} to {adjusted_ac}")
                 self.ac += 3
                 logger.info(f"\tAdjusting Gear Slots {gear_slots} to {gear_slots - 2} ")
                 self.set_gear_slot(gear_slots - 2)
 
             case "Shield":
-                logger.info(f"\tAdjusting AC {ac} to 2.")
-                self.ac = 2
+                logger.info(f"\tShield Chosen: Adjusting AC {ac} to + 2.")
+                self.ac += 2
                 logger.info(f"\tGear Slot of  {gear_slots} does not need to be adjusted.")
 
             case "Mithral CM":
-                logger.info(f"\tAdjusting AC {ac} to {ac + 2}")
+                logger.info(f"\tMithral Chain Mail Chosen: Adjusting AC {ac} to {ac + 2}")
                 self.ac += 2
                 logger.info(f"\tAdjusting Gear Slots {gear_slots} to {gear_slots - 1} ")
                 self.set_gear_slot(gear_slots - 1)
 
             case "Mithral PM":
-                logger.info(f"\tAdjusting AC {ac} to 15")
+                logger.info(f"\tMithral Plate Mail Chosen: Adjusting AC {ac} to 15")
                 self.ac = 15
                 logger.info(f"\tAdjusting Gear Slots {gear_slots} to {gear_slots - 1} ")
                 self.set_gear_slot(gear_slots - 1)
@@ -216,7 +207,7 @@ class Priest(Character):
         self.set_armor()
         self.set_spells()
         self.check_religion()
-        self.talent_roll()
+        self.talent_roll(self.talents)
 
     def __repr__(self):
         return "This is the Priest Class Object."
@@ -284,15 +275,6 @@ class Priest(Character):
         logger.info(f"\tAdding {deity} Symbol to Gear.")
         self.gear.update({deity + "symbol": [{"Quantity": 1}, {"Gear Slot": 0}]})
 
-    def talent_roll(self):
-        index = self.talent_index()
-        self.choose_talent(index)
-
-    def choose_talent(self, index):
-        logger.info(f"\tChoosing Talent.")
-        choice = self.talents[index]
-        choice()
-
     def advantage_on_spell(self):
         spell_key = list(self.spells)
         choice = random.choice(spell_key)
@@ -310,7 +292,6 @@ class Priest(Character):
     def cast_bonus(self):
         logger.info(f"\tTalent: +1 to spell-casting checks.")
         self.set_learned_talents({"Spell Check Talent": "+1 to spell-casting checks."})
-        self.set_notes({'Priest Talent': '+1 to spell-casting checks'})
 
     def str_wis_boost(self):
         logger.info("\tTalent Strength or Wisdom Boost Being Applied")
@@ -355,7 +336,7 @@ class Thief(Character):
         self.set_armor()
         self.set_back_stab()
         self.set_thievery()
-        self.talent_roll()
+        self.talent_roll(self.talents)
 
     def __repr__(self):
         return "This is the Thief Class Object."
@@ -419,14 +400,6 @@ class Thief(Character):
                                              'Finding and Disabling Traps, Delicate Tasks Such as Picking Pockets and '
                                              'Opening Locks.'})
 
-    def talent_roll(self):
-        index = self.talent_index()
-        self.choose_talent(index)
-
-    def choose_talent(self, index):
-        logger.info(f"\tChoosing Talent.")
-        choice = self.talents[index]
-        choice()
 
     def initiative_adv(self):
         logger.info('\tThief Talent: Gain Initiative Advantage.')
@@ -493,7 +466,7 @@ class Wizard(Character):
         self.set_armor()
         self.set_learn_spells()
         self.set_spell_casting()
-        self.talent_roll()
+        self.talent_roll(self.talents)
 
     def __repr__(self):
         return "This is the Wizard Class Object."
@@ -554,14 +527,6 @@ class Wizard(Character):
         self.set_notes({"Spell-casting": "Each time you gain a level, you choose new wizard spells to learn according "
                                          "to the Wizard Spells Known table."})
 
-    def talent_roll(self):
-        index = self.talent_index()
-        self.choose_talent(index)
-
-    def choose_talent(self, index):
-        logger.info(f"\tChoosing Talent.")
-        choice = self.talents[index]
-        choice()
 
     def magic_item(self):
         logger.info("Crafting Magic Item")

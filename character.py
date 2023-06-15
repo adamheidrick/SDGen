@@ -1,5 +1,5 @@
 from background import Background, Alignment, Deities, Name
-from crawling_kit import Crawling_Kit
+from crawling_kit import equip_kit
 from ancestry import *
 import logging
 
@@ -34,7 +34,7 @@ class Character:
         self.cha_mod = 0
         self.gold = 5
         self.gear_slots = 3
-        self.gear = Crawling_Kit
+        self.gear = equip_kit()
         self.notes = {}
         self.weapon_notes = {}
         self.armor_notes = {}
@@ -252,3 +252,16 @@ class Character:
             upper_bound += 2
 
         return 4
+
+    def talent_roll(self, talents):
+        index = self.talent_index()
+        while index > len(talents) - 1:
+            index = self.talent_index()
+        self.choose_talent(index, talents)
+
+    def choose_talent(self, index, talents):
+        logger.info(f"\tChoosing Talent.")
+
+        choice = talents[index]
+        choice()
+        talents.remove(choice)

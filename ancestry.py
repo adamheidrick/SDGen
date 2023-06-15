@@ -15,7 +15,7 @@ def dwarf(hero: object):
     hero.set_notes({"Languages": "Dwarf knows the Common and Dwarvish Languages."})
     hero.languages.append('Dwarvish')
     hero.languages.append('Common')
-    hero.set_notes({"Stout": "Start with +2 HP Roll hit points per level with advantage."})
+    hero.set_notes({"Stout": "Start with +2 HP Roll hit points per level with advantage (Already Applied)."})
     logger.info("\tApplying Dwarf Stout Modifier +2 to HP.")
     hero.set_hp(2)
 
@@ -68,9 +68,9 @@ def human(hero: object):
     hero.set_notes({"Languages": f"Human knows the Common language and {additional_language} languages."})
     hero.languages.append(additional_language)
     hero.languages.append('Common')
-    hero.set_notes({"Ambitious: ": "You gain one additional talent roll at 1st level"})
+    hero.set_notes({"Ambitious: ": "Hero gained one additional talent roll at 1st level. Already Applied."})
     logger.info("\tRolling for additional talent (Human Perk Ambition!).")
-    hero.talent_roll()
+    hero.talent_roll(hero.talents)
 
 
 def set_ancestry(hero):
@@ -90,6 +90,7 @@ def set_ancestry_name(hero, ancestry):
 
 def set_ancestry_details(hero, ancestry):
     functions = [dwarf, goblin, elf, half_orc, halfling, human]
+    ancestry = 'human'
 
     for index, function in enumerate(functions):
         if ancestry == ANCESTRY[index]:
