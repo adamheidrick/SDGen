@@ -2,7 +2,6 @@
 def parse_hero(hero):
     hero_dict = hero.__dict__
     hero_attributes = list(hero.__dict__)
-    print(hero_dict['ac'])
     print(f"{'Name:':<15} {hero_dict['name']}")
     print(f"{'Ancestry:':<15} {hero_dict['ancestry']}")
     print(f"{'Class:':<15} {hero_dict['hero_class']}")

@@ -150,7 +150,6 @@ class Fighter(Character):
         choice = random.choice(list(Armor))
         choice = 'Shield'
         self.set_armor(choice)
-
         note = {"Armor Properties": Armor[choice]["Properties"] + " +1 to AC is already applied."}
         self.set_armor_notes(note)
 

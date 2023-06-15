@@ -30,14 +30,18 @@ def goblin(hero: object):
 
 
 def elf(hero: object):
+    ranged = ["Longbow", "Javelin", "Crossbow"]
     hero.set_ancestry("Elf")
     hero.set_notes({"Elf: ": "Ethereal, graceful people whoever knowledge and beauty. Elves see far and live long."})
     hero.set_notes({"Languages": "Elf knows Common, Elvish, and Sylvan languages."})
     hero.languages.append('Common')
     hero.languages.append('Elvish')
     hero.languages.append('Sylvan')
-    hero.set_notes({"Farsight: ": "You get a +1 bonus to attack rolls with ranged weapons or a +1 bonus to "
-                                  "spell-casting checks."})
+    weapon = list(hero.weapon_notes)[0]
+    if weapon in ranged:
+        hero.weapon_notes[weapon].append(" (Elf Farsight: +1 to attack roll.)")
+    else:
+        hero.set_notes({"Farsight: ": " +1 bonus to spell-casting checks."})
 
 
 def half_orc(hero: object):
@@ -90,7 +94,7 @@ def set_ancestry_name(hero, ancestry):
 
 def set_ancestry_details(hero, ancestry):
     functions = [dwarf, goblin, elf, half_orc, halfling, human]
-    ancestry = 'human'
+    ancestry = 'elf'
 
     for index, function in enumerate(functions):
         if ancestry == ANCESTRY[index]:

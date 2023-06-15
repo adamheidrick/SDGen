@@ -1,9 +1,9 @@
 import logging
 
-from hero_logger import start_logger
-from heroes import random_class
 from ancestry import set_ancestry
 from backpack import pack_backpack
+from heroes import random_class
+from hero_logger import start_logger
 from hero_parser import parse_hero
 
 logger = logging.getLogger(__name__)
@@ -18,5 +18,7 @@ def main():
 
 
 if __name__ == "__main__":
-    for _ in range(100):
-        main()
+    main()
+
+    # for _ in range(100):
+    #     main()
