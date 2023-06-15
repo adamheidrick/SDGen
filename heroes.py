@@ -530,7 +530,6 @@ class Wizard(Character):
         logger.info("Crafting Magic Item")
         m_item = magical_item()
         self.set_learned_talents({"Magical Item Talent": "See Magical Item Notes about magical item."})
-        self.set_notes(m_item)
         self.magic_item = m_item
 
     def spell_check_bonus(self):

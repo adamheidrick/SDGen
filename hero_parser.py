@@ -10,7 +10,6 @@ def parse_hero(hero):
     print(f"{'Background:':<15} {hero_dict['background']}")
     print(f"{'Deity:':<15} {'Does not believe in God.' if hero_dict['deity'] is None else list(hero_dict['deity'])[0]}")
 
-
     print("\n")
     print("Stats")
     print(f"{'Level:':<15} {1}")
@@ -59,6 +58,12 @@ def parse_hero(hero):
         print("\n")
         print(f"{'Spells':<25}{'Description'}")
         print('\n'.join(f"{k:<25}{','.join(v)}" for k, v in hero_dict['spells'].items()))
+
+    if hero_dict['hero_class'] == 'Wizard':
+        if hero_dict['magic_item'] is not None:
+            print("\n")
+            print("Magical Item Notes")
+            print('\n'.join(f"{k:<25}{v}" for k, v in hero_dict['magic_item'].items()))
 
 
 
