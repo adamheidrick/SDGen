@@ -35,10 +35,10 @@ item_virtue = ["Insists on protecting people and creatures it likes.",
 item_flaw = [f"Afraid of {random.choice(fears)}.",
              "Preferred a past owner and always draws comparisons.",
              "Chatters while wielder is trying to concentrate.",
-             f"Dislikes{random.choice(dislikes)}.",
+             f"Dislikes {random.choice(dislikes)}.",
              "Tries to get wielder into fights so it has 'something to do.'",
              "Does not want to be separated from wielder for any reason.",
-             f"Objects to{Objections}.",
+             f"Objects to {random.choice(Objections)}.",
              "Accuses everyone of lying; is correct once in a while.",
              f"Won't harm {random.choice(Wont_harm)}.",
              "Believes its wielder is a pawn in its apocalyptic scheme.",
@@ -66,7 +66,7 @@ def choosing_personalities(personality):
     personality = random.choice(personality_trait)
 
     if personality_1 is None and personality_2 == "flaw":
-        return "Flaw: " + flaw, "Personality:" + personality
+        return "Flaw: " + flaw, "Personality: " + personality
 
     if personality_1 is None and personality_2 is None:
         return 'Not Sentient'
