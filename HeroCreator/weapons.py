@@ -1,6 +1,6 @@
-from character import Character
-from magic_item_functions import choosing_qualities
-from personality import *
+from HeroCreator.character import Character
+from HeroCreator.magic_item_functions import choosing_qualities
+from HeroCreator.personality import *
 
 animals = ['Wolf', 'Raven', 'Dragon', 'Bear', 'Sloth', 'Rabbit', 'Tiger', 'Cat', 'Horse']
 foes = ["Undead", "Demons", "Dragons", "Undead"]

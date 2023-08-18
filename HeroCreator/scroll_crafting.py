@@ -1,12 +1,12 @@
 import random
 
-from magic_item_functions import choosing_qualities
-from magic_ulitity import utility_benefit, utility_curse
-from potion_crafting import potion_benefit, potion_curse
-from armor import magical_armor_benefits, magical_armor_curse
-from weapons import Weapon_benefits, Weapon_curses
-from character import Character
-from spells import Tier_1_Spells, Tier_2_Spells, Tier_3_Spells, Tier_4_Spells, Tier_5_Spells
+from HeroCreator.magic_item_functions import choosing_qualities
+from HeroCreator.magic_ulitity import utility_benefit, utility_curse
+from HeroCreator.potion_crafting import potion_benefit, potion_curse
+from HeroCreator.armor import magical_armor_benefits, magical_armor_curse
+from HeroCreator.weapons import Weapon_benefits, Weapon_curses
+from HeroCreator.character import Character
+from HeroCreator.spells import Tier_1_Spells, Tier_2_Spells, Tier_3_Spells, Tier_4_Spells, Tier_5_Spells
 
 scroll_features = ["Branded on Leather.",
                    "Etched on Copper Leaf.,"

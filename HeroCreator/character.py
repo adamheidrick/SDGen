@@ -1,6 +1,6 @@
-from background import Background, Alignment, Deities, Name
-from crawling_kit import equip_kit
-from ancestry import *
+from HeroCreator.background import Background, Alignment, Deities, Name
+from HeroCreator.crawling_kit import equip_kit
+from HeroCreator.ancestry import *
 import logging
 
 logger = logging.getLogger(__name__)

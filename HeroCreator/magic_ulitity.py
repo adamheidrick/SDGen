@@ -1,5 +1,5 @@
-from magic_item_functions import choosing_qualities
-from personality import *
+from HeroCreator.magic_item_functions import choosing_qualities
+from HeroCreator.personality import *
 
 elements = ["Fire", "Cold", "Electricity", "Poison"]
 

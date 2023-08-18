@@ -1,13 +1,13 @@
 import logging
 # from hero_logger import start_logger  # Remove this after tied into rest of program
 
-from magic_item_names import generate_name
-from armor import magical_armor
-from potion_crafting import make_potion
-from weapons import magical_weapon
-from magic_ulitity import make_magic_utility
-from scroll_crafting import make_magic_scroll_wand
-from character import Character
+from HeroCreator.magic_item_names import generate_name
+from HeroCreator.armor import magical_armor
+from HeroCreator.potion_crafting import make_potion
+from HeroCreator.weapons import magical_weapon
+from HeroCreator.magic_ulitity import make_magic_utility
+from HeroCreator.scroll_crafting import make_magic_scroll_wand
+from HeroCreator.character import Character
 
 logger = logging.getLogger(__name__)
 # start_logger()  # Remove this after tied into rest of program

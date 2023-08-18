@@ -1,5 +1,5 @@
 import random
-from magic_item_functions import choosing_qualities
+from HeroCreator.magic_item_functions import choosing_qualities
 
 feature_1 = ["Spicy", "Clear as water", "Deep Blue", "Citrus Smell", "Sulfurous", "Fizzy", "Chilly", "Blood red"]
 feature_2 = [" a pickled spider inside", "green fumes", "tiny stars and a moon", "gold flakes in liquid",

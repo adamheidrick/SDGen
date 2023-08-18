@@ -1,5 +1,5 @@
 import random
-from background import Deities
+from HeroCreator.background import Deities
 
 owes_favor = ["Unicorn", "Dragon", "Noble"]
 animals = ["dogs", "horses", "cats", "birds"]

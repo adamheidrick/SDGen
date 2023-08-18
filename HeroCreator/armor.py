@@ -1,5 +1,5 @@
-from character import Character
-from personality import *
+from HeroCreator.character import Character
+from HeroCreator.personality import *
 
 Armor = {"Leather": {"type": "leather", "gear_slot": 1, "AC": 11,
                      "Properties": "Just a bit of leather."},

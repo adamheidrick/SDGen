@@ -1,5 +1,5 @@
 import random
-from weapons import Weapons, Arrows
+from HeroCreator.weapons import Weapons, Arrows
 
 names = ["The Crimson", "The Ashen", "Ortival's", "The Doom", "The Twilight", "The Astral",
          "Krull's", "The Vicious", "Memmon's", "The Blessed", "The Infernal", "Madeera's",

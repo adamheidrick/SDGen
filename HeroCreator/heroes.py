@@ -1,9 +1,10 @@
-from character import Character
-from background import Titles, Deities
-from weapons import Weapons
-from armor import Armor
-from spells import Priest_Spells, Tier_1_Spells
-from magic_item_gen import magical_item
+from HeroCreator.character import Character
+from HeroCreator.background import Titles, Deities
+from HeroCreator.weapons import Weapons
+from HeroCreator.armor import Armor
+from HeroCreator.spells import Priest_Spells, Tier_1_Spells
+from HeroCreator.magic_item_gen import magical_item
+
 import random
 import logging
 

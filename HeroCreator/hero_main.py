@@ -1,10 +1,10 @@
 import logging
 
-from ancestry import set_ancestry
-from backpack import pack_backpack
-from heroes import random_class
-from hero_logger import start_logger
-from hero_parser import parse_hero
+from HeroCreator.ancestry import set_ancestry
+from HeroCreator.backpack import pack_backpack
+from HeroCreator.heroes import random_class
+from HeroCreator.hero_logger import start_logger
+from HeroCreator.hero_parser import parse_hero
 
 logger = logging.getLogger(__name__)
 
