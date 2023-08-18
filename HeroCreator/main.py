@@ -16,6 +16,4 @@ def main():
     pack_backpack(hero)
     parse_hero(hero)
 
-
-if __name__ == "__main__":
-    main()
+main()

@@ -584,7 +584,6 @@ def random_class():
     logger.info(f"Rolling for Random Class = {num}")
     logger.info("Generating Random Class.")
     new_hero = None
-    num = 3
     match num:
         case 0:
             logger.info("\tFighter Class Chosen")

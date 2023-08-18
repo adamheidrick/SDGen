@@ -81,4 +81,3 @@ def craft_item(item_type, quality, personality, name, item_name):
 
 def magical_item():
     return generate_magical_item()
-
