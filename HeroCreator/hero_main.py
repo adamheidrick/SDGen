@@ -9,11 +9,9 @@ from hero_parser import parse_hero
 logger = logging.getLogger(__name__)
 
 
-def main():
+def create_hero():
     start_logger()
     hero = random_class()
     set_ancestry(hero)
     pack_backpack(hero)
     parse_hero(hero)
-
-main()
