@@ -66,4 +66,6 @@ def parse_hero(hero):
             print('\n'.join(f"{k:<25}{v}" for k, v in hero_dict['magic_item'].items()))
 
 
+    return hero_dict
+
 

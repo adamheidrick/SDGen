@@ -14,4 +14,5 @@ def create_hero():
     hero = random_class()
     set_ancestry(hero)
     pack_backpack(hero)
-    parse_hero(hero)
+    finished_hero = parse_hero(hero)
+    return finished_hero
