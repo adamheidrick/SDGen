@@ -122,11 +122,17 @@ class Character:
     def apply_stats(self, stats):
         logger.info("Applying Base Stats to Character.")
         self.str, self.str_mod = stats[0]
+        logger.info(f"\tStr: {self.str} Str Mod {self.str_mod}")
         self.int, self.int_mod = stats[1]
+        logger.info(f"\tInt: {self.int} Int Mod {self.int_mod}")
         self.dex, self.dex_mod = stats[2]
+        logger.info(f"\tDex: {self.dex} Dex Mod {self.dex_mod}")
         self.wis, self.wis_mod = stats[3]
+        logger.info(f"\tWis: {self.wis} Wis Mod {self.wis_mod}")
         self.con, self.con_mod = stats[4]
+        logger.info(f"\tCon: {self.con} Con Mod {self.con_mod}")
         self.cha, self.cha_mod = stats[5]
+        logger.info(f"\tCha: {self.cha} Cha Mod {self.cha_mod}")
 
     def calculate_modifiers(self, rolls):
         logger.info("Calculating Modifiers.")
