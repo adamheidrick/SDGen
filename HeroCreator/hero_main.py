@@ -1,4 +1,6 @@
 import logging
+import json
+
 
 from HeroCreator.ancestry import set_ancestry
 from HeroCreator.backpack import pack_backpack
@@ -14,5 +16,14 @@ def create_hero():
     hero = random_class()
     set_ancestry(hero)
     pack_backpack(hero)
-    finished_hero = parse_hero(hero)
-    return finished_hero
+    parsed_hero = parse_hero(hero)
+    json_hero = jsonify_hero(parsed_hero)
+    return json_hero
+
+
+def jsonify_hero(hero):
+    hero.pop('talents')
+    hero.pop('stats')
+    hero.pop('learned_talents')
+    hero = json.dumps(hero)
+    return hero
