@@ -17,8 +17,8 @@ def create_hero():
     set_ancestry(hero)
     pack_backpack(hero)
     parsed_hero = parse_hero(hero)
-    json_hero = jsonify_hero(parsed_hero)
-    return json_hero
+    # json_hero = jsonify_hero(parsed_hero)
+    return parsed_hero
 
 
 def jsonify_hero(hero):

@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+{% block content %}
+<br>
+    <table>
+<!--      <caption>Character</caption>-->
+<!--      <p>{{ hero }}</p>-->
+      <tr>
+        <td>Name</td>
+        <td>{{ hero['name'] }}</td>
+      </tr>
+      <tr>
+        <td>Ancestry</td>
+        <td>{{ hero['ancestry'] }}</td>
+      </tr>
+      <tr>
+        <td>Class</td>
+        <td>{{ hero['hero_class'] }}</td>
+      </tr>
+      <tr>
+        <td>Title</td>
+        <td>{{ hero['title'] }}</td>
+      </tr>
+       <tr>
+        <td>Alignment</td>
+         {% for key,value in hero['alignment'].items() %}
+         <td>{{ key }}: {{ value }}</td>
+        {% endfor %}
+<!--        <td>{{ hero['alignment'][0] }}</td>-->
+      </tr>
+       <tr>
+        <td>Background</td>
+        <td>{{ hero['background'] }}</td>
+      </tr>
+    </table>
+<br>
+
+    <table>
+<!--      <caption>HP and AC</caption>-->
+      <tr>
+        <td>Health Points</td>
+        <td>{{ hero['hp'] }}</td>
+      </tr>
+      <tr>
+        <td>Armor Class</td>
+        <td>{{ hero['ac'] }}</td>
+      </tr>
+    </table>
+
+<br>
+    <table>
+<!--      <caption>Stats</caption>-->
+      <tr>
+        <td>Strength: </td>
+        <td>{{ hero['str']}}</td>
+        <td>Mod: {{ hero['str_mod'] }}</td>
+      </tr>
+      <tr>
+        <td>Intelligence: </td>
+        <td>{{ hero['int']}}</td>
+        <td>Mod: {{ hero['int_mod'] }}</td>
+      </tr>
+      <tr>
+        <td>Dexterity: </td>
+        <td>{{ hero['dex']}}</td>
+        <td>Mod: {{ hero['dex_mod'] }}</td>
+      </tr>
+      <tr>
+        <td>Wisdom: </td>
+        <td>{{ hero['wis']}}</td>
+        <td>Mod: {{ hero['wis_mod'] }}</td>
+      </tr>
+      <tr>
+        <td>Constitution: </td>
+        <td>{{ hero['con']}}</td>
+        <td>Mod: {{ hero['con_mod'] }}</td>
+      </tr>
+      <tr>
+        <td>Charisma: </td>
+        <td>{{ hero['cha']}}</td>
+        <td>Mod: {{ hero['cha_mod'] }}</td>
+      </tr>
+    </table>
+<br>
+ <table>
+<!--      <caption>Additional Notes</caption>-->
+   {% for key,value in hero['notes'].items() %}
+       <tr>
+         <td>{{ key }}:</td>
+        <td>  {{ value }} </td>
+        </tr>
+   {% endfor %}
+
+    </table>
+
+
+{% endblock %}
