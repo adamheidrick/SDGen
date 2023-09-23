@@ -149,23 +149,49 @@ class Character:
             for check in range(3, 18, 2):
                 if num <= check:
                     modifiers.append(mod_dict[check])
-                    logger.info(f"\tApplying {stats[index]} : {num} a modifier of {mod_dict[check]}.")
+                    logger.info(
+                        f"\tApplying {stats[index]} : {num} a modifier of {mod_dict[check]}."
+                    )
                     break
                 elif num >= 18:
                     modifiers.append(4)
-                    logger.info(f"\tApplying {stats[index]} : {num} a modifier of {mod_dict[check]}.")
+                    logger.info(
+                        f"\tApplying {stats[index]} : {num} a modifier of {mod_dict[check]}."
+                    )
                     break
         return modifiers
 
     def stat_distribute(self):
         logger.info("\tStat Distribution Talent Being Applied.")
-        self.set_learned_talents({"Stat Distribution Talent": "Lowest Two Stats Received + 1"})
+        self.set_learned_talents(
+            {"Stat Distribution Talent": "Lowest Two Stats Received + 1"}
+        )
         stat_names = ["Str", "Int", "Dex", "Wis", "Con", "Cha"]
         stats = [self.str, self.int, self.dex, self.wis, self.con, self.cha]
-        mods = [self.str_mod, self.int_mod, self.dex_mod, self.wis_mod, self.con_mod, self.cha_mod]
-        mod_funcs = [self.set_str_mod, self.set_int_mod, self.set_dex_mod, self.set_wis_mod, self.set_con_mod,
-                     self.set_cha_mod]
-        funcs = [self.set_str, self.set_int, self.set_dex, self.set_wis, self.set_con, self.set_cha]
+        mods = [
+            self.str_mod,
+            self.int_mod,
+            self.dex_mod,
+            self.wis_mod,
+            self.con_mod,
+            self.cha_mod,
+        ]
+        mod_funcs = [
+            self.set_str_mod,
+            self.set_int_mod,
+            self.set_dex_mod,
+            self.set_wis_mod,
+            self.set_con_mod,
+            self.set_cha_mod,
+        ]
+        funcs = [
+            self.set_str,
+            self.set_int,
+            self.set_dex,
+            self.set_wis,
+            self.set_con,
+            self.set_cha,
+        ]
         for _ in range(2):
             minimum = min(stats)
             self.find_min(minimum, stats, funcs, mod_funcs, mods, stat_names)
@@ -173,7 +199,9 @@ class Character:
     def find_min(self, minimum, stats, funcs, mod_funcs, mods, stat_names):
         for index, stat in enumerate(stats):
             if stat == minimum:
-                logger.info(f"\tIncreasing {stat_names[index]} {stats[index]} + 1 = {stats[index] + 1}")
+                logger.info(
+                    f"\tIncreasing {stat_names[index]} {stats[index]} + 1 = {stats[index] + 1}"
+                )
                 funcs[index](1)
                 mod = self.modifier_check([stats[index] + 1], [stat_names[index]])
                 if mod[0] > mods[index]:
@@ -183,11 +211,15 @@ class Character:
                     mod_funcs[index](new_mod)
                     if index == 2:
                         difference = abs(new_mod - old_mod)
-                        logger.info(f"\tAdjusting AC based on difference between {new_mod} and {old_mod} = {difference}")
+                        logger.info(
+                            f"\tAdjusting AC based on difference between {new_mod} and {old_mod} = {difference}"
+                        )
                         self.ac += difference
-                note = {"Talent Point Distribution": f"Increased {stat_names[index]} from {stats[index]}"
-                                                     f" to {stats[index] + 1} and adjusted the {stat_names[index]}"
-                                                     f" modifier accordingly."}
+                note = {
+                    "Talent Point Distribution": f"Increased {stat_names[index]} from {stats[index]}"
+                    f" to {stats[index] + 1} and adjusted the {stat_names[index]}"
+                    f" modifier accordingly."
+                }
                 self.set_notes(note)
 
                 del mod_funcs[index]
@@ -202,7 +234,9 @@ class Character:
         rolls = self.stat_builder()
         while max(rolls) < 14:
             max_rolled = max(rolls)
-            logger.info(f"Stats were insufficient. Max roll was {max_rolled}. Need 14 or higher. Re-rolling.")
+            logger.info(
+                f"Stats were insufficient. Max roll was {max_rolled}. Need 14 or higher. Re-rolling."
+            )
             rolls = self.stat_builder()
 
         self.calculate_modifiers(rolls)
@@ -212,7 +246,9 @@ class Character:
         for num in range(len(self.stats)):
             results = self.roll_dice(6, 3)
             total = sum(results)
-            logger.info(f"\tRolling 3d6 for {self.stats[num]}: Dice Results = {results} Total = {total}.")
+            logger.info(
+                f"\tRolling 3d6 for {self.stats[num]}: Dice Results = {results} Total = {total}."
+            )
             rolls.append(total)
         return rolls
 
@@ -237,8 +273,8 @@ class Character:
     def set_background(self):
         logger.info("Rolling for Background.")
         result = random.choice(Background)
-        title = result.split(':')[0]
-        body = result.split(':')[1]
+        title = result.split(":")[0]
+        body = result.split(":")[1]
         self.background = title
         self.set_notes({title: body})
 

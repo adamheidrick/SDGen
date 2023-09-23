@@ -14,8 +14,13 @@ logger = logging.getLogger(__name__)
 class Fighter(Character):
     def __init__(self):
         self.hero_class = "Fighter"
-        self.talents = [self.weapon_mastery_talent, self.extra_weapon_dmg, self.stat_boost, self.armor_boost,
-                        self.stat_distribute]
+        self.talents = [
+            self.weapon_mastery_talent,
+            self.extra_weapon_dmg,
+            self.stat_boost,
+            self.armor_boost,
+            self.stat_distribute,
+        ]
         super().__init__()
         self.fighter_specs()
         self.set_title()
@@ -71,11 +76,17 @@ class Fighter(Character):
         self.set_weapon_notes(note)
 
     def weapon_mastery(self):
-        self.weapon_notes[self.weapon].append("Weapon Mastery: +1 Attack and Damage + Half your level rounding down.")
+        self.weapon_notes[self.weapon].append(
+            "Weapon Mastery: +1 Attack and Damage + Half your level rounding down."
+        )
 
     def weapon_mastery_talent(self):
-        note = {"Weapon Mastery": "+1 Attack and Damage + Half your level rounding down."}
-        logger.info("\tTalent: Weapon Mastery Chosen: Weapon Mastery with One Additional Weapon.")
+        note = {
+            "Weapon Mastery": "+1 Attack and Damage + Half your level rounding down."
+        }
+        logger.info(
+            "\tTalent: Weapon Mastery Chosen: Weapon Mastery with One Additional Weapon."
+        )
         self.set_learned_talents(note)
         self.set_weapon_notes(note)
 
@@ -112,7 +123,9 @@ class Fighter(Character):
         logger.info(f"\t{random_stat[ran_choice]} Chosen.")
         logger.info(f"\tAdjusting {random_stat[ran_choice]} by + 2.")
         logger.info("\tChecking if Modifier Needs Adjusting.")
-        self.set_learned_talents({f"Talent Str, Dex, or Con boost": f"{random_stat[ran_choice]} chosen."})
+        self.set_learned_talents(
+            {f"Talent Str, Dex, or Con boost": f"{random_stat[ran_choice]} chosen."}
+        )
         choice = None
         match ran_choice:
             case 0:
@@ -139,26 +152,35 @@ class Fighter(Character):
                 if mod[0] > self.con_mod:
                     logger.info("\tAdjusting Constitution Modifier.")
                     self.set_con_mod(mod[0])
-        self.set_notes({"Fighter Talent": f"+2 Added to {choice} and Modifier Adjusted."})
+        self.set_notes(
+            {"Fighter Talent": f"+2 Added to {choice} and Modifier Adjusted."}
+        )
 
     def armor_boost(self):
         logger.info("\tTalent: Armor Choice +1 to AC Boost Being Applied.")
-        self.set_learned_talents({"Armor Boost Talent": {"Armor Choice +1 to AC Boost Applied."}})
+        self.set_learned_talents(
+            {"Armor Boost Talent": {"Armor Choice +1 to AC Boost Applied."}}
+        )
         ac = self.ac
         gear_slots = self.gear_slots
 
         logger.info("\tRolling for Armor.")
         choice = random.choice(list(Armor))
-        choice = 'Shield'
+        choice = "Shield"
         self.set_armor(choice)
-        note = {"Armor Properties": Armor[choice]["Properties"] + " +1 to AC is already applied."}
+        note = {
+            "Armor Properties": Armor[choice]["Properties"]
+            + " +1 to AC is already applied."
+        }
         self.set_armor_notes(note)
 
         logger.info(f"\tAdjusting AC and Gear Slots Based on {choice}.")
         match choice:
             case "Leather":
-                logger.info(f"\tLeather armor was already equipped."
-                            f"\n\tAC of {ac} and Gear Slot of {gear_slots} remains the same.")
+                logger.info(
+                    f"\tLeather armor was already equipped."
+                    f"\n\tAC of {ac} and Gear Slot of {gear_slots} remains the same."
+                )
             case "Chainmail":
                 logger.info(f"\tChainmail Chosen Adjusting AC {ac} to {ac + 2}")
                 self.ac += 2
@@ -175,10 +197,14 @@ class Fighter(Character):
             case "Shield":
                 logger.info(f"\tShield Chosen: Adjusting AC {ac} to + 2.")
                 self.ac += 2
-                logger.info(f"\tGear Slot of  {gear_slots} does not need to be adjusted.")
+                logger.info(
+                    f"\tGear Slot of  {gear_slots} does not need to be adjusted."
+                )
 
             case "Mithral CM":
-                logger.info(f"\tMithral Chain Mail Chosen: Adjusting AC {ac} to {ac + 2}")
+                logger.info(
+                    f"\tMithral Chain Mail Chosen: Adjusting AC {ac} to {ac + 2}"
+                )
                 self.ac += 2
                 logger.info(f"\tAdjusting Gear Slots {gear_slots} to {gear_slots - 1} ")
                 self.set_gear_slot(gear_slots - 1)
@@ -198,8 +224,13 @@ class Priest(Character):
     def __init__(self):
         self.hero_class = "Priest"
         self.spells = {}
-        self.talents = [self.advantage_on_spell, self.attack_bonus, self.cast_bonus, self.str_wis_boost,
-                        self.stat_distribute]
+        self.talents = [
+            self.advantage_on_spell,
+            self.attack_bonus,
+            self.cast_bonus,
+            self.str_wis_boost,
+            self.stat_distribute,
+        ]
         super().__init__()
         self.priest_specs()
         self.set_title()
@@ -237,7 +268,15 @@ class Priest(Character):
 
     def random_weapon(self):
         logger.info("Choosing Random Weapon.")
-        priest_weapons = ["Club", "Crossbow", "Dagger", "Mace", "Longsword", "Staff", "Warhammer"]
+        priest_weapons = [
+            "Club",
+            "Crossbow",
+            "Dagger",
+            "Mace",
+            "Longsword",
+            "Staff",
+            "Warhammer",
+        ]
         random_weapon = random.choice(priest_weapons)
         logger.info(f"\t{random_weapon} chosen.")
         self.weapon = random_weapon
@@ -279,8 +318,10 @@ class Priest(Character):
         spell_key = list(self.spells)
         choice = random.choice(spell_key)
         logger.info(f"\tTalent: Advantage on casting spell {choice}.")
-        self.set_learned_talents({"Spell Casting Talent": "Advantage on Casting Spells"})
-        self.spells[choice].append('Priest Talent: Advantage')
+        self.set_learned_talents(
+            {"Spell Casting Talent": "Advantage on Casting Spells"}
+        )
+        self.spells[choice].append("Priest Talent: Advantage")
         logger.info("\tUpdating Spell Book.")
 
     def attack_bonus(self):
@@ -301,7 +342,9 @@ class Priest(Character):
         logger.info(f"\t{random_stat[ran_choice]} Chosen.")
         logger.info(f"\tAdjusting {random_stat[ran_choice]} by + 2.")
         logger.info("\tChecking if Modifier Needs Adjusting.")
-        self.set_learned_talents({"Str or Wis Boost Talent": f"+2 to {random_stat[ran_choice]}"})
+        self.set_learned_talents(
+            {"Str or Wis Boost Talent": f"+2 to {random_stat[ran_choice]}"}
+        )
         choice = None
         match ran_choice:
             case 0:
@@ -321,14 +364,21 @@ class Priest(Character):
                     logger.info("\tAdjusting Wisdom Modifier.")
                     self.set_wis_mod(mod[0])
 
-        self.set_notes({"Priest Talent": f"+2 Added to {choice} and Modifier Adjusted."})
+        self.set_notes(
+            {"Priest Talent": f"+2 Added to {choice} and Modifier Adjusted."}
+        )
 
 
 class Thief(Character):
     def __init__(self):
         self.hero_class = "Thief"
-        self.talents = [self.initiative_adv, self.back_stab_bonus, self.str_dex_cha,
-                        self.attack_bonus, self.stat_distribute]
+        self.talents = [
+            self.initiative_adv,
+            self.back_stab_bonus,
+            self.str_dex_cha,
+            self.attack_bonus,
+            self.stat_distribute,
+        ]
         super().__init__()
         self.thief_specs()
         self.set_title()
@@ -385,29 +435,47 @@ class Thief(Character):
 
     def set_back_stab(self):
         logger.info("Applying Back Stab.")
-        self.set_notes({'Backstab': 'If you hit a creature who is unaware of your attack, you deal'
-                                    'an extra weapon die of damage. Add additional weapon dice of damage'
-                                    'equal to half your level(round down).'})
+        self.set_notes(
+            {
+                "Backstab": "If you hit a creature who is unaware of your attack, you deal"
+                "an extra weapon die of damage. Add additional weapon dice of damage"
+                "equal to half your level(round down)."
+            }
+        )
 
     def set_thievery(self):
-        logger.info('Applying Thievery Class Attributes')
-        self.set_notes({'Thievery': 'You are adept at thieving skills and have the necessary tools of the trade'
-                                    'secreted on your person (they take up no gear slots).'})
+        logger.info("Applying Thievery Class Attributes")
+        self.set_notes(
+            {
+                "Thievery": "You are adept at thieving skills and have the necessary tools of the trade"
+                "secreted on your person (they take up no gear slots)."
+            }
+        )
 
         logger.info("\tUpdating Gear.")
-        self.gear.update({"Thief Tools": [{"Quantity": 'inf'}, {"Gear Slot": 0}]})
-        self.set_notes({'Thievery Training': 'You have advantage on Climbing, Sneaking and Hiding, Applying Disguises,'
-                                             'Finding and Disabling Traps, Delicate Tasks Such as Picking Pockets and '
-                                             'Opening Locks.'})
+        self.gear.update({"Thief Tools": [{"Quantity": "inf"}, {"Gear Slot": 0}]})
+        self.set_notes(
+            {
+                "Thievery Training": "You have advantage on Climbing, Sneaking and Hiding, Applying Disguises,"
+                "Finding and Disabling Traps, Delicate Tasks Such as Picking Pockets and "
+                "Opening Locks."
+            }
+        )
 
     def initiative_adv(self):
-        logger.info('\tThief Talent: Gain Initiative Advantage.')
-        self.set_learned_talents({'Thief Talent': 'Gain Advantage on Initiative Rolls (re-roll if duplicate)'})
+        logger.info("\tThief Talent: Gain Initiative Advantage.")
+        self.set_learned_talents(
+            {
+                "Thief Talent": "Gain Advantage on Initiative Rolls (re-roll if duplicate)"
+            }
+        )
 
     def back_stab_bonus(self):
         logger.info("\t Adding Backstab Talent Bonus to notes.")
-        self.set_learned_talents({"Backstab Talent Bonus": "+1 dice of damage to backstab."})
-        self.notes['Backstab'] += ' (Thief Talent: +1 dice of damage)'
+        self.set_learned_talents(
+            {"Backstab Talent Bonus": "+1 dice of damage to backstab."}
+        )
+        self.notes["Backstab"] += " (Thief Talent: +1 dice of damage)"
 
     def str_dex_cha(self):
         logger.info("\tTalent Strength, Dexterity, or Charisma Boost Being Applied")
@@ -443,7 +511,9 @@ class Thief(Character):
                 if mod[0] > self.cha_mod:
                     logger.info("\tAdjusting Charisma Modifier.")
                     self.set_cha_mod(mod[0])
-        self.set_learned_talents({"Fighter Talent": f"+2 Added to {choice} and Modifier Adjusted."})
+        self.set_learned_talents(
+            {"Fighter Talent": f"+2 Added to {choice} and Modifier Adjusted."}
+        )
 
     def attack_bonus(self):
         logger.info(f"\tTalent: +1 Attack to {self.weapon}")
@@ -456,8 +526,13 @@ class Wizard(Character):
     def __init__(self):
         self.hero_class = "Wizard"
         self.spells = {}
-        self.talents = [self.magic_item, self.spell_check_bonus, self.spell_adv,
-                        self.add_spell, self.stat_distribute]
+        self.talents = [
+            self.magic_item,
+            self.spell_check_bonus,
+            self.spell_adv,
+            self.add_spell,
+            self.stat_distribute,
+        ]
         self.magic_item = None
         super().__init__()
         self.wizard_specs()
@@ -504,16 +579,20 @@ class Wizard(Character):
         self.set_weapon_notes(note)
 
     def set_armor(self):
-        logger.info('Setting Armor.')
-        logger.info('\tWizards Cannot Wear Armor.')
+        logger.info("Setting Armor.")
+        logger.info("\tWizards Cannot Wear Armor.")
         self.armor = None
 
     def set_learn_spells(self):
         logger.info("Adding Learning Spells Wizard Attribute.")
-        self.set_notes({'Learning Spells': "You can permanently learn a wizard spell from a spell scroll "
-                                           "by studying  it for a day and succeeding on a DC 15 Intelligence Check. "
-                                           "Whether you succeed or fail, you expend the spell scroll. Spells you learn"
-                                           " in this way don't count toward your known spells."})
+        self.set_notes(
+            {
+                "Learning Spells": "You can permanently learn a wizard spell from a spell scroll "
+                "by studying  it for a day and succeeding on a DC 15 Intelligence Check. "
+                "Whether you succeed or fail, you expend the spell scroll. Spells you learn"
+                " in this way don't count toward your known spells."
+            }
+        )
 
     def set_spell_casting(self):
         logger.info("Wizard is Learning Three Spells.")
@@ -524,22 +603,32 @@ class Wizard(Character):
             logger.info(f"\tWizard learned {spell}")
             logger.info(f"\t\tAdding {spell} to Notes")
 
-        self.set_notes({"Spell-casting": "Each time you gain a level, you choose new wizard spells to learn according "
-                                         "to the Wizard Spells Known table."})
+        self.set_notes(
+            {
+                "Spell-casting": "Each time you gain a level, you choose new wizard spells to learn according "
+                "to the Wizard Spells Known table."
+            }
+        )
 
     def magic_item(self):
         logger.info("Crafting Magic Item")
         m_item = magical_item()
-        self.set_learned_talents({"Magical Item Talent": "See Magical Item Notes about magical item."})
+        self.set_learned_talents(
+            {"Magical Item Talent": "See Magical Item Notes about magical item."}
+        )
         self.magic_item = m_item
 
     def spell_check_bonus(self):
-        logger.info("\tApplying Wizard Talent Intelligence or Spell-casting Check Bonus")
-        logger.info("\tRandomly Choosing Intelligence Stat Boost or Spell-casting Check Boost.")
-        random_choice = random.choice(['I', 'C'])
-        if random_choice == 'C':
+        logger.info(
+            "\tApplying Wizard Talent Intelligence or Spell-casting Check Bonus"
+        )
+        logger.info(
+            "\tRandomly Choosing Intelligence Stat Boost or Spell-casting Check Boost."
+        )
+        random_choice = random.choice(["I", "C"])
+        if random_choice == "C":
             logger.info("\tWizard Spell-casting Check Boost Chosen.")
-            note = {'Wizard Talent': '+1 on Spell-casting Check.'}
+            note = {"Wizard Talent": "+1 on Spell-casting Check."}
             self.set_learned_talents(note)
             return
 
@@ -549,7 +638,7 @@ class Wizard(Character):
         logger.info("\tIntelligence Stat Boost Chosen.")
         logger.info("\tApplying +1 to Intelligence.")
         logger.info("\tChecking for Modifier Adjustment.")
-        note = {'Wizard Talent': '+1 to Intelligence.'}
+        note = {"Wizard Talent": "+1 to Intelligence."}
         self.set_learned_talents(note)
         self.set_int(1)
         logger.info(f"\tIntelligence now = {self.int}")
@@ -564,8 +653,8 @@ class Wizard(Character):
         random_spell = random.choice(list(self.spells))
         logger.info(f"\t{random_spell} Chosen to Give Cast Check Boost")
         logger.info(f"\tApplying +1 to Spell-Casting Check to Spell Notes.")
-        self.spells[random_spell].append('Wizard Talent: +1 on Spell-Casting Checks')
-        self.set_learned_talents({'Wizard Talent': '+1 on Spell-Casting Checks'})
+        self.spells[random_spell].append("Wizard Talent: +1 on Spell-Casting Checks")
+        self.set_learned_talents({"Wizard Talent": "+1 on Spell-Casting Checks"})
 
     def add_spell(self):
         logger.info("\tApplying Wizard Talent Learning Additional Spell.")
@@ -575,7 +664,11 @@ class Wizard(Character):
         symmetric_difference = list(known_spells.symmetric_difference(wizard_spells))
         random_choice = random.choice(symmetric_difference)
         logger.info(f"\tWizard Learning {random_choice}.")
-        self.set_learned_talents({"Wizard Talent Learning Additional Spell": f"{random_choice} Spell Added to Spells."})
+        self.set_learned_talents(
+            {
+                "Wizard Talent Learning Additional Spell": f"{random_choice} Spell Added to Spells."
+            }
+        )
         spell_notes = Tier_1_Spells[random_choice]
         self.spells.update({random_choice: spell_notes})
 

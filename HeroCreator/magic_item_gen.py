@@ -1,4 +1,5 @@
 import logging
+
 # from hero_logger import start_logger  # Remove this after tied into rest of program
 
 from HeroCreator.magic_item_names import generate_name
@@ -32,7 +33,9 @@ def generate_magical_item():
 
 
 def log_magical_item(name, item_type, item_name, bonus, quality, personality):
-    logger.info(f"Generated Name: {name}, Item Type: {item_type}, and Item Description: {item_name}")
+    logger.info(
+        f"Generated Name: {name}, Item Type: {item_type}, and Item Description: {item_name}"
+    )
     logger.info(f"Generated Bonus: {bonus}")
     logger.info(f"Generated Quality: {quality}")
     logger.info(f"Generated Personality: {personality}")
@@ -65,11 +68,11 @@ def calculate_personality_roll():
 
 def craft_item(item_type, quality, personality, name, item_name):
     match item_type:
-        case 'Armor':
+        case "Armor":
             return magical_armor(quality, personality, name, item_name)
-        case 'Potion':
+        case "Potion":
             return make_potion(quality, name)
-        case 'Scroll':
+        case "Scroll":
             return make_magic_scroll_wand(quality, name, item_type)
         case "Utility":
             return make_magic_utility(quality, name, item_name)

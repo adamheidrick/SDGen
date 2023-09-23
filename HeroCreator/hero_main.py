@@ -22,8 +22,8 @@ def create_hero():
 
 
 def jsonify_hero(hero):
-    hero.pop('talents')
-    hero.pop('stats')
-    hero.pop('learned_talents')
+    hero.pop("talents")
+    hero.pop("stats")
+    hero.pop("learned_talents")
     hero = json.dumps(hero)
     return hero
