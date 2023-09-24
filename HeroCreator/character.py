@@ -264,10 +264,16 @@ class Character:
     def roll_religion(self):
         logger.info("Rolling for Religion.")
         coin_toss = random.randint(0, 1)
+        deity_dict = {}
         if coin_toss == 1:
-            self.deity = random.choice(list(Deities[0].items()))
+            chosen_diety = random.choice(list(Deities[0].items()))
+            key, value = chosen_diety
+            deity_dict[key] = value
+            self.deity = deity_dict
             logger.info(f"\tDeity = {list(self.deity)[0]}")
         else:
+            deity_dict['None'] = f'{self.name} does not believe in God . . . yet.'
+            self.deity = deity_dict
             logger.info("\tThis character as of now does not believe in God.")
 
     def set_background(self):

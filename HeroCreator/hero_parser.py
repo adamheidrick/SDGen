@@ -38,15 +38,16 @@ def parse_hero(hero):
     print("\n")
     weapon = hero_dict["weapon"]
     print(f"{'Weapon':<25}{'Description'}")
-    print(f"{hero_dict['weapon']:<25}{', '.join(hero_dict['weapon_notes'][weapon])}")
+    print(f"{hero_dict['weapon']:<25}{hero_dict['weapon_notes'][weapon]}")
 
     print("\n")
     print(f"{'Armor':<25}{'Description'}")
     if hero_dict["armor"] is not None:
-        # print(f"{hero_dict['armor']['type'].capitalize():<25}{hero_dict['armor_notes']['Armor Properties']}")
-        print(
-            f"{hero_dict['armor']['type'].capitalize():<25}{hero_dict['armor_notes']}"
-        )
+        print(f"{hero_dict['armor']['Type']:<25}{hero_dict['armor_notes']['Armor Properties']}")
+        pass
+        # print(
+        #     f"{hero_dict['armor']:<25}{hero_dict['armor_notes']}"
+        # )
 
     else:
         print("Glass Cannon's Can't Wear Armor.")
@@ -55,7 +56,7 @@ def parse_hero(hero):
     print(f"{'Gear':<25}{'Quantity'}")
     print(
         "\n".join(
-            f"{k:<25} {(list(v[0].values())[0])}" for k, v in hero_dict["gear"].items()
+            f"{k:<25} {v}" for k, v in hero_dict["gear"].items()
         )
     )
 

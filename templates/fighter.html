@@ -2,8 +2,7 @@
 {% block content %}
 <h1>Fighter</h1>
 <br>
-    <table>
-<!--      <caption>Character</caption>-->
+    <table class="styled-table">
 <!--      <p>{{ hero }}</p>-->
       <tr>
         <td>Name</td>
@@ -32,13 +31,19 @@
         <td>Background</td>
         <td>{{ hero['background'] }}</td>
       </tr>
+        <tr>
+        <td>Religion</td>
+         {% for key,value in hero['deity'].items() %}
+         <td>{{ key }}: {{ value }}</td>
+        {% endfor %}
+<!--        <td>{{ hero['alignment'][0] }}</td>-->
+      </tr>
     </table>
 <br>
 
-    <table>
-<!--      <caption>HP and AC</caption>-->
+    <table class="styled-table">
       <tr>
-        <td>Health Points</td>
+        <td>Hit Points</td>
         <td>{{ hero['hp'] }}</td>
       </tr>
       <tr>
@@ -48,8 +53,7 @@
     </table>
 
 <br>
-    <table>
-<!--      <caption>Stats</caption>-->
+    <table class="styled-table">
       <tr>
         <td>Strength: </td>
         <td>{{ hero['str']}}</td>
@@ -81,17 +85,93 @@
         <td>Mod: {{ hero['cha_mod'] }}</td>
       </tr>
     </table>
+
 <br>
- <table>
-<!--      <caption>Additional Notes</caption>-->
-   {% for key,value in hero['notes'].items() %}
-       <tr>
+<table class="styled-table">
+    {% for key,value in hero['learned_talents'].items() %}
+    <tr>
+        <td>{{ key }}:</td>
+        <td>  {{ value }} </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+<!--<table class="styled-table">-->
+<!--    <caption>Weapon</caption>-->
+<!--    {% for key,value in hero['weapon_notes'].items() %}-->
+<!--    <tr>-->
+<!--        <td>{{ key }}</td>-->
+<!--    </tr>-->
+<!--    {% endfor %}-->
+<!--</table>-->
+<!--<br>-->
+<table class="styled-table">
+    {% for key,value in hero['weapon_notes'].items() %}
+    <tr>
+        <td>{{ key }}:</td>
+        <td>  {{ value }} </td>
+    </tr>
+       {% endfor %}
+
+</table>
+<!--<br>-->
+<!--<table class="styled-table">-->
+<!--    <caption>Armor</caption>-->
+<!--    <tr>-->
+<!--        <td>Type</td>-->
+<!--        <td>{{ hero['armor']['Type'] }}</td>-->
+
+<!--    </tr>-->
+
+
+<!--</table>-->
+<br>
+
+<table class="styled-table">
+
+    {% for key,value in hero['armor'].items() %}
+    <tr>
+        <td>{{ key }}:</td>
+        <td>  {{ value }} </td>
+    </tr>
+       {% endfor %}
+
+</table>
+<br>
+<table class="styled-table">
+    {% for key,value in hero['notes'].items() %}
+    <tr>
          <td>{{ key }}:</td>
         <td>  {{ value }} </td>
-        </tr>
-   {% endfor %}
+    </tr>
+    {% endfor %}
 
-    </table>
+</table>
+<br>
+
+<table class="styled-table">
+    {% for key,value in hero['gear'].items() %}
+    <tr>
+         <td>{{ key }}:</td>
+        {% for quantity, slots in value.items() %}
+        <td>  {{ quantity }} </td>
+        <td>  {{ slots }} </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+
+    <tr>
+        <td> Gear spots remaining</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td> {{ hero['gear_slots']}}</td>
+    </tr>
+
+</table>
+<br>
+
 
 
 {% endblock %}

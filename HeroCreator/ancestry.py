@@ -65,7 +65,8 @@ def elf(hero: object):
     hero.languages.append("Sylvan")
     weapon = list(hero.weapon_notes)[0]
     if weapon in ranged:
-        hero.weapon_notes[weapon].append(" (Elf Farsight: +1 to attack roll.)")
+        note = {"Elf Farsight": "+1 to attack roll."}
+        hero.set_weapon_notes(note)
     else:
         hero.set_notes({"Farsight: ": " +1 bonus to spell-casting checks."})
 
@@ -81,7 +82,8 @@ def half_orc(hero: object):
     hero.languages.append("Orcish")
     hero.languages.append("Common")
     weapon = list(hero.weapon_notes)[0]
-    hero.weapon_notes[weapon].append(" (Half-Orc Mighty: +1 attack and damage.)")
+    note = {"Half-Orc Mighty": "+1 attack and damage"}
+    hero.set_weapon_notes(note)
 
 
 def halfling(hero: object):

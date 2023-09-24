@@ -76,13 +76,14 @@ class Fighter(Character):
         self.set_weapon_notes(note)
 
     def weapon_mastery(self):
-        self.weapon_notes[self.weapon].append(
-            "Weapon Mastery: +1 Attack and Damage + Half your level rounding down."
-        )
+        note = {
+            "Fighter Weapon Mastery": "+1 Attack and Damage + Half your level rounding down."
+        }
+        self.set_weapon_notes(note)
 
     def weapon_mastery_talent(self):
         note = {
-            "Weapon Mastery": "+1 Attack and Damage + Half your level rounding down."
+            "Weapon Mastery Talent": "+1 Attack and Damage + Half your level rounding down."
         }
         logger.info(
             "\tTalent: Weapon Mastery Chosen: Weapon Mastery with One Additional Weapon."
@@ -109,11 +110,11 @@ class Fighter(Character):
         self.set_notes(note)
 
     def extra_weapon_dmg(self):
-        note = {"Fighter Talent": "+1 Attack to Melee and Ranged."}
+        note = {"Fighter Talent Extra Damage": "+1 Attack to Melee and Ranged."}
         logger.info("\tTalent +1 Melee and Ranged Attacks Being Applied.")
         self.set_learned_talents(note)
         logger.info("\tAdding Weapon Boost to Weapon Notes.")
-        self.weapon_notes[self.weapon].append("Fighter Talent +1 to attack")
+        self.set_weapon_notes(note)
 
     def stat_boost(self):
         logger.info("\tTalent Strength, Dexterity, or Constitution Boost Being Applied")
@@ -124,7 +125,7 @@ class Fighter(Character):
         logger.info(f"\tAdjusting {random_stat[ran_choice]} by + 2.")
         logger.info("\tChecking if Modifier Needs Adjusting.")
         self.set_learned_talents(
-            {f"Talent Str, Dex, or Con boost": f"{random_stat[ran_choice]} chosen."}
+            {f"Talent Str, Dex, or Con boost": f" +2 to {random_stat[ran_choice]} chosen, applied, and stats modified."}
         )
         choice = None
         match ran_choice:
@@ -678,6 +679,7 @@ def random_class():
     logger.info(f"Rolling for Random Class = {num}")
     logger.info("Generating Random Class.")
     new_hero = None
+    num = 0
     match num:
         case 0:
             logger.info("\tFighter Class Chosen")

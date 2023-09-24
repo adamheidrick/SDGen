@@ -8,4 +8,4 @@ def pack_backpack(hero):
     for key, value in hero.gear.items():
         if key == "Backpack":
             continue
-        logger.info(f"\tPacking {key}, {value[0]}")
+        logger.info(f"\tPacking {key}")
