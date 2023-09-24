@@ -34,7 +34,7 @@ class Fighter(Character):
         return "This is the Fighter Class Object."
 
     def set_title(self):
-        title = Titles[self.hero_class][list(self.alignment)[0]]
+        title = Titles[self.hero_class][self.alignment]
         logger.info("Generating Title.")
         logger.info(f"\t{title}")
         self.title = title
@@ -145,6 +145,8 @@ class Fighter(Character):
                 if mod[0] > self.dex_mod:
                     logger.info("\tAdjusting Dexterity Modifier.")
                     self.set_dex_mod(mod[0])
+                self.ac = 0
+                self.fighter_ac()
             case 2:
                 choice = "Constitution"
                 self.set_con(2)
@@ -156,6 +158,7 @@ class Fighter(Character):
         self.set_notes(
             {"Fighter Talent": f"+2 Added to {choice} and Modifier Adjusted."}
         )
+
 
     def armor_boost(self):
         logger.info("\tTalent: Armor Choice +1 to AC Boost Being Applied.")

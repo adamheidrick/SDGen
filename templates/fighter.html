@@ -1,10 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>Fighter</h1>
-<br>
+<div>
+    <table class="styled-table">
+        <tr>
+            <td>
     <table class="styled-table">
 <!--      <p>{{ hero }}</p>-->
       <tr>
+        <td><h1>{{ hero['name']}} the {{ hero['title'] }}</h1></td>
+      </tr>
+        <tr>
         <td>Name</td>
         <td>{{ hero['name'] }}</td>
       </tr>
@@ -22,9 +27,8 @@
       </tr>
        <tr>
         <td>Alignment</td>
-         {% for key,value in hero['alignment'].items() %}
-         <td>{{ key }}: {{ value }}</td>
-        {% endfor %}
+
+         <td>{{ hero['alignment'] }}</td>
 <!--        <td>{{ hero['alignment'][0] }}</td>-->
       </tr>
        <tr>
@@ -34,25 +38,27 @@
         <tr>
         <td>Religion</td>
          {% for key,value in hero['deity'].items() %}
-         <td>{{ key }}: {{ value }}</td>
+         <td>{{ key }}</td>
         {% endfor %}
 <!--        <td>{{ hero['alignment'][0] }}</td>-->
       </tr>
     </table>
-<br>
 
+
+</td>
+            <td>
     <table class="styled-table">
-      <tr>
+        <tr>
         <td>Hit Points</td>
         <td>{{ hero['hp'] }}</td>
       </tr>
+
       <tr>
         <td>Armor Class</td>
         <td>{{ hero['ac'] }}</td>
       </tr>
     </table>
 
-<br>
     <table class="styled-table">
       <tr>
         <td>Strength: </td>
@@ -85,72 +91,14 @@
         <td>Mod: {{ hero['cha_mod'] }}</td>
       </tr>
     </table>
-
-<br>
-<table class="styled-table">
-    {% for key,value in hero['learned_talents'].items() %}
-    <tr>
-        <td>{{ key }}:</td>
-        <td>  {{ value }} </td>
-    </tr>
-    {% endfor %}
-</table>
-
-<br>
-<!--<table class="styled-table">-->
-<!--    <caption>Weapon</caption>-->
-<!--    {% for key,value in hero['weapon_notes'].items() %}-->
-<!--    <tr>-->
-<!--        <td>{{ key }}</td>-->
-<!--    </tr>-->
-<!--    {% endfor %}-->
-<!--</table>-->
-<!--<br>-->
-<table class="styled-table">
-    {% for key,value in hero['weapon_notes'].items() %}
-    <tr>
-        <td>{{ key }}:</td>
-        <td>  {{ value }} </td>
-    </tr>
-       {% endfor %}
-
-</table>
-<!--<br>-->
-<!--<table class="styled-table">-->
-<!--    <caption>Armor</caption>-->
-<!--    <tr>-->
-<!--        <td>Type</td>-->
-<!--        <td>{{ hero['armor']['Type'] }}</td>-->
-
-<!--    </tr>-->
-
-
-<!--</table>-->
-<br>
-
-<table class="styled-table">
-
-    {% for key,value in hero['armor'].items() %}
-    <tr>
-        <td>{{ key }}:</td>
-        <td>  {{ value }} </td>
-    </tr>
-       {% endfor %}
-
-</table>
-<br>
-<table class="styled-table">
-    {% for key,value in hero['notes'].items() %}
-    <tr>
-         <td>{{ key }}:</td>
-        <td>  {{ value }} </td>
-    </tr>
-    {% endfor %}
-
-</table>
-<br>
-
-<table class="styled-table">
+</td>
+            <td>
+                <table class="styled-table">
+                    <tr>
+                        <td>
+                            <b>Packed Items</b>
+                        </td>
+                    </tr>
     {% for key,value in hero['gear'].items() %}
     <tr>
          <td>{{ key }}:</td>
@@ -162,15 +110,86 @@
     {% endfor %}
 
     <tr>
-        <td> Gear spots remaining</td>
+        <td> <b>Gear spots remaining</b></td>
         <td></td>
         <td></td>
         <td></td>
-        <td> {{ hero['gear_slots']}}</td>
+        <td> <b>{{ hero['gear_slots']}}</b></td>
     </tr>
 
 </table>
-<br>
+            </td>
+        </tr>
+    </table>
+
+
+<div>
+<table class="styled-table">
+    {% for key,value in hero['learned_talents'].items() %}
+    <tr>
+        <td>{{ key }}:</td>
+        <td>  {{ value }} </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+<!--<table class="styled-table">-->
+<!--    <caption>Weapon</caption>-->
+<!--    {% for key,value in hero['weapon_notes'].items() %}-->
+<!--    <tr>-->
+<!--        <td>{{ key }}</td>-->
+<!--    </tr>-->
+<!--    {% endfor %}-->
+<!--</table>-->
+<!--<br>-->
+<div>
+<table class="styled-table">
+    {% for key,value in hero['weapon_notes'].items() %}
+    <tr>
+        <td>{{ key }}:</td>
+        <td>  {{ value }} </td>
+    </tr>
+       {% endfor %}
+
+</table>
+</div>
+<!--<br>-->
+<!--<table class="styled-table">-->
+<!--    <caption>Armor</caption>-->
+<!--    <tr>-->
+<!--        <td>Type</td>-->
+<!--        <td>{{ hero['armor']['Type'] }}</td>-->
+
+<!--    </tr>-->
+
+
+<!--</table>-->
+<div>
+
+<table class="styled-table">
+
+    {% for key,value in hero['armor'].items() %}
+    <tr>
+        <td>{{ key }}:</td>
+        <td>  {{ value }} </td>
+    </tr>
+       {% endfor %}
+
+</table>
+</div>
+
+<div>
+<table class="styled-table">
+    {% for key,value in hero['notes'].items() %}
+    <tr>
+         <td>{{ key }}:</td>
+        <td>  {{ value }} </td>
+    </tr>
+    {% endfor %}
+
+</table>
+</div>
 
 
 

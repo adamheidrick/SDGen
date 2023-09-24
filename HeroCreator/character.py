@@ -258,8 +258,17 @@ class Character:
 
     def roll_alignment(self):
         logger.info("Rolling for Alignment.")
-        self.alignment = random.choice(Alignment)
-        logger.info(f"\tAlignment = {list(self.alignment)[0]}")
+        random_alignment = random.choice(Alignment)
+        marker = None
+        description = None
+        for key, value in random_alignment.items():
+            marker = key
+            description = value
+
+        self.alignment = marker
+        note = {marker: description}
+        logger.info(f"\tAlignment = {marker}: {description}")
+        self.set_notes(note)
 
     def roll_religion(self):
         logger.info("Rolling for Religion.")
@@ -270,10 +279,12 @@ class Character:
             key, value = chosen_diety
             deity_dict[key] = value
             self.deity = deity_dict
+            self.set_notes({'Religion': value})
             logger.info(f"\tDeity = {list(self.deity)[0]}")
         else:
             deity_dict['None'] = f'{self.name} does not believe in God . . . yet.'
             self.deity = deity_dict
+            self.set_notes({"Religion": "Does not believe in God."})
             logger.info("\tThis character as of now does not believe in God.")
 
     def set_background(self):
